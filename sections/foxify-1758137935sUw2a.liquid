@@ -1,0 +1,467 @@
+
+{% liquid
+  
+    assign locales = shop.metafields.foxify.locales.value
+    assign current_locale = request.locale.iso_code
+    assign primary_locale = current_locale
+    for locale in shop.published_locales
+    if locale.primary
+        assign primary_locale = locale.iso_code
+        break
+    endif
+    endfor
+    assign translation = locales[current_locale] | default: locales[primary_locale]
+
+    assign theme_settings = shop.metafields.foxify.theme_settings.value
+    assign productCard = theme_settings.productCard
+  
+  
+      assign foxifyCustomCss = shop.metafields.foxify['68cb0e4e37d4c31776efe329'].value.customCss
+      assign foxifyCustomJs = shop.metafields.foxify['68cb0e4e37d4c31776efe329'].value.customJs
+    
+%}
+
+      <script>
+        window.Foxify = window.Foxify || {}
+        Foxify.ThemeStyles = {
+          product: "https:{{ 'foxify-product.css' | asset_url }}",
+          swiper: "https:{{ 'foxify-swiper.css' | asset_url }}",
+        }
+
+        Foxify.ThemeScripts = {
+          productModel: "https:{{ 'foxify-product-model.js' | asset_url }}",
+          productMedia: "https:{{ 'foxify-media-gallery.js' | asset_url }}",
+          variantPicker: "https:{{ 'foxify-variant-picker.js' | asset_url }}"
+        }
+
+        Foxify.pageId = '1758137935sUw2a';
+        Foxify.default = false;
+      </script>
+    
+<div class="f-app f:content">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,500;0,700;1,500;1,700&display=swap" id="DM Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Arapey:ital,wght@0,400;1,400&display=swap" id="Arapey" rel="stylesheet">
+{{ 'foxify-1758137935sUw2a.css' | asset_url | stylesheet_tag }}
+<style data-foxify-custom-code-page="css">{{ foxifyCustomCss }}</style>
+{{ 'foxify-hero.css' | asset_url | stylesheet_tag }}<div id="f-hero-1758139293wYONe" class="f:sections f:hero f-hero-1758139293wYONe f:section--no-margin f:mobile-hidden f:tablet-hidden" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><div class="f:container-full"><div class="f:hero__wrapper f:hero--medium"><div class="f:hero__inner"><div class="f:hero__bg f:bg-image f:hero__image--desktop"><f-image class="f:image f:bg-image" style="--f-aspect-ratio:2.25"><img srcSet="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Sink_Match_Banner3.jpg?v=1758306379&width=165 165w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Sink_Match_Banner3.jpg?v=1758306379&width=360 360w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Sink_Match_Banner3.jpg?v=1758306379&width=533 533w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Sink_Match_Banner3.jpg?v=1758306379&width=720 720w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Sink_Match_Banner3.jpg?v=1758306379&width=940 940w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Sink_Match_Banner3.jpg?v=1758306379&width=1066 1066w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Sink_Match_Banner3.jpg?v=1758306379&width=1500 1500w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Sink_Match_Banner3.jpg?v=1758306379&width=1780 1780w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Sink_Match_Banner3.jpg?v=1758306379&width=2000 2000w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Sink_Match_Banner3.jpg?v=1758306379&width=3000 3000w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Sink_Match_Banner3.jpg?v=1758306379 3600w" src="//cdn.shopify.com/s/files/1/0620/0016/9151/files/Sink_Match_Banner3_360x.jpg?v=1758306379" sizes="(min-width: 1200px) 533px, (min-width: 990px) calc((100vw - 130px) / 3), (min-width: 750px) calc((100vw - 120px) / 2), calc((100vw - 35px) / 2)" alt="Sink_Match_Banner3.jpg" loading="lazy" width="3600" height="1600"/></f-image></div><div class="f:hero__bg f:bg-image f:hero__image--mobile md:f:hidden"><f-image class="f:image f:bg-image" style="--f-aspect-ratio:1">{{ 'image'| placeholder_svg_tag: 'f:placeholder-svg' }}</f-image></div><div class="f:hero__content-wrapper f:hero__content--center f:flex f:inset-full f:container-extended"><div class="f:hero__content"></div></div></div></div></div></div>{{ 'foxify-product.css' | asset_url | stylesheet_tag }}<div id="f-main-product-1758137935lYvcJ" class="f:sections f:main-product f-main-product-1758137935lYvcJ"><div class="f:container-extended"><div class="f:flex f:flex-wrap md:f:flex-nowrap f:single-product--media-medium f:single-product--media-left"><div class="f:column f:product__media-wrapper">{% if product.media.size > 0 %}{{ 'foxify-swiper.css' | asset_url | stylesheet_tag }}<script src="{{ 'foxify-media-gallery.js' | asset_url }}" defer=""></script><f-media-gallery id="Media-Gallery-{{ section.id }}" class="f:product-media__gallery f:product-media__gallery--carousel" data-layout="carousel"><div class="f:product-media__list f:product-media--carousel"><f-swiper-carousel-component class="f:product-media__carousel f:swiper" data-swiper-options="{&quot;slidesPerView&quot;:1,&quot;autoplay&quot;:false,&quot;navigation&quot;:true,&quot;pagination&quot;:true,&quot;paginationType&quot;:&quot;fraction&quot;,&quot;autoHeight&quot;:true,&quot;enabled&quot;:true,&quot;breakpoints&quot;:{&quot;768&quot;:{&quot;enabled&quot;:true}},&quot;effect&quot;:&quot;fade&quot;,&quot;fadeEffect&quot;:{&quot;crossFade&quot;:true}}"><div class="f:product-media__carousel-main"><div class="f:main-swiper f:swiper-container"><div class="f:swiper-wrapper">{%- for media in product.media -%}<div class="f:swiper-slide{% if media.media_type != 'image' %} swiper-no-swiping{% endif %}" data-media-type="{{ media.media_type }}" data-media-id="{{ media.id }}" data-media-index="{{ forloop.index0 }}"><div class="f:product-media f:product-media--{{ media.media_type }}"><f-image class="f:image" style="--f-aspect-ratio:{{ media.preview_image.aspect_ratio | default: 1 }}">{{ media.preview_image | image_url: width: 1946 | image_tag:
+        loading: lazy,
+        sizes: '(min-width: 1200px) 715px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw / 1 - 4rem)',
+        widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946',
+        alt: media.preview_image.alt | escape
+      }}</f-image>{%- if media.media_type != 'image' -%}<f-deferred-media style="--f-aspect-ratio:{{ media.aspect_ratio | default: 1 }}" class="f:deferred-media no-js-hidden" data-media-id="{{ media.id }}"><button id="Deferred-Poster-Modal-{{ media.id }}" class="f:deferred-media__poster" type="button"><span class="f:deferred-media__poster-button motion-reduce">{%- if media.media_type == 'model' -%}<span class="f:visually-hidden">{{ translation.products.product.media.play_model }}</span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="f:icon-3d-model" fill="none" viewBox="0 0 18 21"><path d="M7.67998 20.629L1.28002 16.723C0.886205 16.4784 0.561675 16.1368 0.337572 15.731C0.113468 15.3251 -0.00274623 14.8686 -1.39464e-05 14.405V6.59497C-0.00238367 6.13167 0.113819 5.6755 0.33751 5.26978C0.561202 4.86405 0.884959 4.52227 1.278 4.27698L7.67796 0.377014C8.07524 0.131403 8.53292 0.000877102 8.99999 9.73346e-08C9.46678 -0.000129605 9.92446 0.129369 10.322 0.374024V0.374024L16.722 4.27399C17.1163 4.51985 17.4409 4.86287 17.6647 5.27014C17.8885 5.67742 18.0039 6.13529 18 6.59998V14.409C18.0026 14.8725 17.8864 15.3289 17.6625 15.7347C17.4386 16.1405 17.1145 16.4821 16.721 16.727L10.321 20.633C9.92264 20.8742 9.46565 21.0012 8.99999 21C8.53428 20.9998 8.07761 20.8714 7.67998 20.629V20.629ZM8.72398 2.078L2.32396 5.97803C2.22303 6.04453 2.14066 6.13551 2.08452 6.24255C2.02838 6.34959 2.00031 6.46919 2.00298 6.59003V14.4C2.00026 14.5205 2.02818 14.6396 2.08415 14.7463C2.14013 14.853 2.22233 14.9438 2.32298 15.01L7.99999 18.48V10.919C8.00113 10.5997 8.08851 10.2867 8.25292 10.0129C8.41732 9.73922 8.65267 9.51501 8.93401 9.36401L15.446 5.841L9.28001 2.08002C9.19614 2.02738 9.09901 1.99962 8.99999 2C8.90251 1.99972 8.8069 2.02674 8.72398 2.078V2.078Z" fill="currentColor"></path></svg>{%- else -%}<span class="f:visually-hidden">{{ translation.products.product.media.play_video }}</span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon fill="currentColor" points="5 3 19 12 5 21 5 3"></polygon></svg>{%- endif -%}</span>{{media.preview_image | image_url: width: 1946 | image_tag:
+            loading: lazy,
+            sizes: '(min-width: 1200px) 715px, (min-width: 990px) calc(65.0vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw / 1 - 4rem)',
+            widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946',
+            alt: media.preview_image.alt | escape
+            }}</button><template>{%- liquid
+            case media.media_type
+            when 'external_video'
+              assign video_class = 'js-' | append: media.host
+              if media.host == 'youtube'
+                echo media | external_video_url: autoplay: true, loop: loop, playlist: media.external_id | external_video_tag: class: video_class, loading: 'lazy'
+              else
+                echo media | external_video_url: autoplay: true, loop: loop | external_video_tag: class: video_class, loading: 'lazy'
+              endif
+            when 'video'
+              echo media | media_tag: image_size: '2048x', autoplay: true, loop: loop, controls: true, preload: 'none'
+            when 'model'
+              echo media | media_tag: image_size: '2048x', toggleable: true
+            endcase
+            -%}</template></f-deferred-media>{%- endif -%}</div></div>{%- endfor -%}</div></div>{%- if product.media.size > 1 -%}<div class="f:swiper-controls"><div class="f:swiper-controls__inner"><div class="f:swiper-button-prev"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.1875 9H2.8125" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7.875 3.9375L2.8125 9L7.875 14.0625" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="f:swiper-pagination"></div><div class="f:swiper-button-next"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.8125 9H15.1875" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10.125 3.9375L15.1875 9L10.125 14.0625" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div></div></div>{%- endif -%}</div>{%- if product.media.size > 1 -%}<div class="f:product-media__carousel-thumbs"><div class="f:nav-swiper f:swiper-container" data-swiper-options="{&quot;slidesPerView&quot;:5,&quot;autoplay&quot;:false,&quot;navigation&quot;:false,&quot;pagination&quot;:false,&quot;spaceBetween&quot;:10,&quot;enabled&quot;:true,&quot;breakpoints&quot;:{&quot;768&quot;:{&quot;enabled&quot;:true,&quot;spaceBetween&quot;:15}}}"><div class="f:swiper-wrapper f:items-center">{%- for media in product.media -%}<div class="f:swiper-slide"><div class="f:product-media__thumb">{%- if media.media_type != 'image' -%}<span class="f:product-media__thumb-icon">{%- if media.media_type == 'model' -%}<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="f:icon-3d-model" fill="none" viewBox="0 0 18 21"><path d="M7.67998 20.629L1.28002 16.723C0.886205 16.4784 0.561675 16.1368 0.337572 15.731C0.113468 15.3251 -0.00274623 14.8686 -1.39464e-05 14.405V6.59497C-0.00238367 6.13167 0.113819 5.6755 0.33751 5.26978C0.561202 4.86405 0.884959 4.52227 1.278 4.27698L7.67796 0.377014C8.07524 0.131403 8.53292 0.000877102 8.99999 9.73346e-08C9.46678 -0.000129605 9.92446 0.129369 10.322 0.374024V0.374024L16.722 4.27399C17.1163 4.51985 17.4409 4.86287 17.6647 5.27014C17.8885 5.67742 18.0039 6.13529 18 6.59998V14.409C18.0026 14.8725 17.8864 15.3289 17.6625 15.7347C17.4386 16.1405 17.1145 16.4821 16.721 16.727L10.321 20.633C9.92264 20.8742 9.46565 21.0012 8.99999 21C8.53428 20.9998 8.07761 20.8714 7.67998 20.629V20.629ZM8.72398 2.078L2.32396 5.97803C2.22303 6.04453 2.14066 6.13551 2.08452 6.24255C2.02838 6.34959 2.00031 6.46919 2.00298 6.59003V14.4C2.00026 14.5205 2.02818 14.6396 2.08415 14.7463C2.14013 14.853 2.22233 14.9438 2.32298 15.01L7.99999 18.48V10.919C8.00113 10.5997 8.08851 10.2867 8.25292 10.0129C8.41732 9.73922 8.65267 9.51501 8.93401 9.36401L15.446 5.841L9.28001 2.08002C9.19614 2.02738 9.09901 1.99962 8.99999 2C8.90251 1.99972 8.8069 2.02674 8.72398 2.078V2.078Z" fill="currentColor"></path></svg>{%- else -%}<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon fill="currentColor" points="5 3 19 12 5 21 5 3"></polygon></svg>{%- endif -%}</span>{%- endif -%}<f-image class="f:image" style="--f-aspect-ratio:1"><img srcSet="{% if media.preview_image.width >= 59 %}{{ media.preview_image | image_url: width: 59 }} 59w,{% endif %}
+                            {% if media.preview_image.width >= 118 %}{{ media.preview_image | image_url: width: 118 }} 118w,{% endif %}
+                            {% if media.preview_image.width >= 84 %}{{ media.preview_image | image_url: width: 84 }} 84w,{% endif %}
+                            {% if media.preview_image.width >= 200 %}{{ media.preview_image | image_url: width: 200 }} 200w,{% endif %}
+                            {% if media.preview_image.width >= 130 %}{{ media.preview_image | image_url: width: 130 }} 130w,{% endif %}
+                            {% if media.preview_image.width >= 260 %}{{ media.preview_image | image_url: width: 260 }} 260w{% endif %}" src="{{ media | image_url: width: 84, height: 84 }}" sizes="(min-width: 1200px) calc((1200px - 19.5rem) / 12), (min-width: 750px) calc((100vw - 16.5rem) / 8), calc((100vw - 8rem) / 5)" alt="{{ media.alt | escape }}" height="200" width="200" loading="lazy"/></f-image></div></div>{%- endfor -%}</div></div></div>{%- endif -%}</f-swiper-carousel-component></div></f-media-gallery>{% endif %}</div><div class="f:column f:product-single__info f:w-full f:product-single__info--sticky">{%- form 'product', product, id: 'product-form-f-main-product-1758137935lYvcJ', class: 'f:main-product__form f:product-form', novalidate: 'novalidate', data-type: 'add-to-cart-form', data-product-id: product.id -%}<input type="hidden" name="product_id" value="{{ product.id }}"/><input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}"/><div class="f:product-single__blocks"><div class="f:product-single__block f:product-single__block-product-title"><h1 id="f-product-title-1758137935I2xyb" class="f:blocks f:product-title f-product-title-1758137935I2xyb f:product-single__title h1" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp">{% if product %}{{ product.title }}{% else %}{{ translation.onboarding.product_title }}{% endif %}</h1></div><div class="f:product-single__block f:product-single__block-undefined">{%  assign product_f-richtext-175815850436e1J = product %}
+         {% assign collection_f-richtext-175815850436e1J = collection %}
+        <div id="f-richtext-175815850436e1J" class="f:blocks f:richtext f-richtext-175815850436e1J f:content-block f:gs-heading-2 f:mobile-hidden f:tablet-hidden f:rte">
+{{ 'sections.foxify-1758137935sUw2a.f-richtext-175815850436e1J-text_html' | t }}</div></div><div class="f:product-single__block f:product-single__block-product-price"><div id="f-product-price-1758137935rjZCq" class="f:blocks f:product-price f-product-price-1758137935rjZCq f:product-single__block f:product-single__block--price" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp">{% render 'foxify-price', use_variant: true, product: product, show_sale_badge: true, sale_badge_type: 'percentage', show_soldout_badge: true %}{%- if shop.taxes_included -%}<div class="f:product-single__block-tax f:gs-body-text f:gs-caption">{{- translation.products.product.include_taxes -}}</div>{%- endif -%}{% if product != blank %}{{ form | payment_terms }}{% endif %}</div></div><div class="f:product-single__block f:product-single__block-custom-code"><div id="f-custom-code-1758315050D8loc" class="f:blocks f:custom-code f-custom-code-1758315050D8loc" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><style>
+  .hover-border img {
+    transition: border 0.2s ease;
+  }
+
+  .hover-border:hover img {
+    border: 2px solid black;
+  }
+
+  .square-title {
+    margin-top: 8px;
+    font-family: 'SM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 16px; /* Default desktop size */
+  }
+
+  @media (max-width: 600px) {
+    .square-title {
+      font-size: 14px; /* Smaller on mobile */
+    }
+  }
+</style>
+
+<div style="display: flex; justify-content: flex-start; gap: 20px; max-width: 100%; margin: 0; padding: 0; flex-wrap: wrap;">
+  <div style="display: flex; flex-direction: column; align-items: flex-start;">
+    <a href="https://www.metpure.com/products/4-stage-mv4-rogb-quick-twist-reverse-osmosis-water-filtration-system-perfect-match-bundle" class="hover-border" style="display: block; width: 120px; height: 120px; background-color: #d3d3d3; text-decoration: none; overflow: hidden;">
+      <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROGB-BUNDLE.jpg?v=1757702991" alt="Water Purification" style="width: 100%; height: 100%; object-fit: cover;">
+    </a>
+    <div class="square-title">Water Purification Kit</div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; align-items: flex-start;">
+    <a href="https://www.metpure.com/products/4-stage-mv4-rolb-quick-twist-reverse-osmosis-water-filtration-system-perfect-match-bundle" class="hover-border" style="display: block; width: 120px; height: 120px; background-color: #d3d3d3; text-decoration: none; overflow: hidden;">
+      <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROLB-VASE-BUNDLE-BN.jpg?v=1757704184" alt="Speed & Flow" style="width: 100%; height: 100%; object-fit: cover;">
+    </a>
+    <div class="square-title">High-Speed Kit</div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; align-items: flex-start;">
+    <a href="https://www.metpure.com/products/4-stage-mv4-rags-alkaline-quick-twist-reverse-osmosis-water-filtration-system-perfect-match-bundle" class="hover-border" style="display: block; width: 120px; height: 120px; background-color: #d3d3d3; text-decoration: none; overflow: hidden;">
+      <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/RAGS-VASE-BUNDLE-MB.jpg?v=1758071369" alt="pH Balance & Alkaline" style="width: 100%; height: 100%; object-fit: cover;">
+    </a>
+    <div class="square-title">Alkaline Kit</div>
+  </div>
+</div>
+
+<br>
+<hr style="width: 100px"></div></div><div class="f:product-single__block f:product-single__block-variant-picker"><script src="{{ 'foxify-variant-picker.js' | asset_url }}" defer=""></script><div id="f-variant-picker-1758137935UxelX" class="f:blocks f:variant-picker f-variant-picker-1758137935UxelX" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp">{% render 'foxify-variant-picker', product: product, variant_picker_type: 'buttons', show_selected_value: true, updateUrl: true, sectionId: 'main-product-1758137935lYvcJ' %}</div></div><div class="f:product-single__block f:product-single__block-quantity-selector"><div id="f-quantity-selector-17581379358l3IS" class="f:blocks f:quantity-selector f-quantity-selector-17581379358l3IS" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><div class="f:product-single__info-quantity"><div class="f:quantity__wrapper"><label class="f:form-label" for="Quantity-{{ product.id }}">{{ translation.products.product.quantity.label }}</label><f-quantity-input class="f:quantity" data-product-id="{{ product.id }}"><button class="f:quantity__button" name="minus" type="button"><svg width="10" height="2" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M.917 1h8.166" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><input class="f:quantity__input f:form-control" type="number" name="quantity" id="Quantity-{{ product.id }}" min="1" value="1"/><button class="f:quantity__button" name="plus" type="button"><svg width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 2.917v8.166M2.917 7h8.166" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button></f-quantity-input></div></div></div></div><div class="f:product-single__block f:product-single__block-buy-buttons"><f-product-form data-form-id="product-form-f-main-product-1758137935lYvcJ" class="f:product-form product-form"><div class="f:product-form__error-message-wrapper" role="alert" hidden=""><svg aria-hidden="true" focusable="false" role="presentation" class="f:icon f:icon-error" viewBox="0 0 13 13"><circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"></circle><circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"></circle><path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"></path><path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7"></path></svg><span class="f:product-form__error-message"></span></div>{% if product != blank %}{% if product.selected_or_first_available_variant.available == false %}<button name="add" id="f-buy-buttons-1758137935stWT1" class="f:blocks f:buy-buttons f-buy-buttons-1758137935stWT1 f:gs-primary-button f:btn f:w-full f:btn-atc" disabled="" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><span class="f:btn__label">{{ translation.products.product.sold_out }}</span></button>{% else %}<button name="add" id="f-buy-buttons-1758137935stWT1" class="f:blocks f:buy-buttons f-buy-buttons-1758137935stWT1 f:gs-primary-button f:btn f:w-full f:btn-atc" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><span class="f:btn__label">
+{{ 'sections.foxify-1758137935sUw2a.f-buy-buttons-1758137935stWT1-button_label_html' | t }}</span><svg width="16" height="16" aria-hidden="true" focusable="false" role="presentation" class="f:spinner-icon f:svg-icon" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></button>{% endif %}{% else %}<button name="add" id="f-buy-buttons-1758137935stWT1" class="f:blocks f:buy-buttons f-buy-buttons-1758137935stWT1 f:gs-primary-button f:btn f:w-full f:btn-atc"><span class="f:btn__label">
+{{ 'sections.foxify-1758137935sUw2a.f-buy-buttons-1758137935stWT1-button_label_html' | t }}</span></button>{% endif %}<div class="f:product-form__messages" role="alert"></div></f-product-form></div><div class="f:product-single__block f:product-single__block-undefined">{%  assign product_f-collapsible-tab-1758137935FwZsT = product %}
+         {% assign collection_f-collapsible-tab-1758137935FwZsT = collection %}
+        <div id="f-collapsible-tab-1758137935FwZsT" class="f:blocks f:collapsible-tab f-collapsible-tab-1758137935FwZsT" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp">{{ 'foxify-collapsible-tabs.css' | asset_url | stylesheet_tag }}<script src="{{ 'foxify-collapsible.js' | asset_url }}" defer=""></script><f-collapsible-tab class="f:collapsible__item" data-hide-if-empty="true"><div class="f:collapsible__button" data-trigger="true"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-collapsible-tab-1758137935FwZsT-heading_html' | t }}</span><span class="f:collapsible__button-icon"><svg width="2" height="12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.333v9.334" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><svg width="2" height="12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.333v9.334" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></div><div class="f:collapsible__content" data-content="true"><div class="f:collapsible__content-inner"><div>
+{{ 'sections.foxify-1758137935sUw2a.f-collapsible-tab-1758137935FwZsT-content_html' | t }}</div></div></div></f-collapsible-tab></div></div><div class="f:product-single__block f:product-single__block-undefined">{%  assign product_f-collapsible-tab-1758137935lgrQK = product %}
+         {% assign collection_f-collapsible-tab-1758137935lgrQK = collection %}
+        <div id="f-collapsible-tab-1758137935lgrQK" class="f:blocks f:collapsible-tab f-collapsible-tab-1758137935lgrQK" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp">{{ 'foxify-collapsible-tabs.css' | asset_url | stylesheet_tag }}<script src="{{ 'foxify-collapsible.js' | asset_url }}" defer=""></script><f-collapsible-tab class="f:collapsible__item" data-hide-if-empty="true"><div class="f:collapsible__button" data-trigger="true"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-collapsible-tab-1758137935lgrQK-heading_html' | t }}</span><span class="f:collapsible__button-icon"><svg width="2" height="12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.333v9.334" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><svg width="2" height="12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.333v9.334" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></div><div class="f:collapsible__content" data-content="true"><div class="f:collapsible__content-inner"><div>
+{{ 'sections.foxify-1758137935sUw2a.f-collapsible-tab-1758137935lgrQK-content_html' | t }}</div></div></div></f-collapsible-tab></div></div><div class="f:product-single__block f:product-single__block-undefined">{%  assign product_f-collapsible-tab-1758157917EvUFq = product %}
+         {% assign collection_f-collapsible-tab-1758157917EvUFq = collection %}
+        <div id="f-collapsible-tab-1758157917EvUFq" class="f:blocks f:collapsible-tab f-collapsible-tab-1758157917EvUFq" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp">{{ 'foxify-collapsible-tabs.css' | asset_url | stylesheet_tag }}<script src="{{ 'foxify-collapsible.js' | asset_url }}" defer=""></script><f-collapsible-tab class="f:collapsible__item" data-hide-if-empty="true"><div class="f:collapsible__button" data-trigger="true"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-collapsible-tab-1758157917EvUFq-heading_html' | t }}</span><span class="f:collapsible__button-icon"><svg width="2" height="12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.333v9.334" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><svg width="2" height="12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.333v9.334" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></div><div class="f:collapsible__content" data-content="true"><div class="f:collapsible__content-inner"><div>
+{{ 'sections.foxify-1758137935sUw2a.f-collapsible-tab-1758157917EvUFq-content_html' | t }}</div></div></div></f-collapsible-tab></div></div><div class="f:product-single__block f:product-single__block-undefined">{%  assign product_f-collapsible-tab-1758157921DXlCk = product %}
+         {% assign collection_f-collapsible-tab-1758157921DXlCk = collection %}
+        <div id="f-collapsible-tab-1758157921DXlCk" class="f:blocks f:collapsible-tab f-collapsible-tab-1758157921DXlCk" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp">{{ 'foxify-collapsible-tabs.css' | asset_url | stylesheet_tag }}<script src="{{ 'foxify-collapsible.js' | asset_url }}" defer=""></script><f-collapsible-tab class="f:collapsible__item" data-hide-if-empty="true"><div class="f:collapsible__button" data-trigger="true"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-collapsible-tab-1758157921DXlCk-heading_html' | t }}</span><span class="f:collapsible__button-icon"><svg width="2" height="12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.333v9.334" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><svg width="2" height="12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.333v9.334" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></div><div class="f:collapsible__content" data-content="true"><div class="f:collapsible__content-inner"><div>
+{{ 'sections.foxify-1758137935sUw2a.f-collapsible-tab-1758157921DXlCk-content_html' | t }}</div></div></div></f-collapsible-tab></div></div></div>{% endform %}</div></div></div></div><div id="f-video-17581379359zuEx" class="f:sections f:video f-video-17581379359zuEx"><div class="f:container-full"><div id="f-video-block-1758137935oZTDo" class="f:blocks f:video-block f-video-block-1758137935oZTDo f:video__wrapper f:relative"><f-deferred-media class="f:video__media f:deferred-media" data-media-thumb="gid://shopify/MediaImage/31573856026815" data-media-id="gid://shopify/Video/31107938943167" data-autoplay="false" data-lazyload="false" data-loop="false" data-muted="true" style="--f-aspect-ratio:16/9"><button id="f:Deferred-Poster-Modal-f-video-block-1758137935oZTDo" class="f:video__poster f:media f:deferred-media__poster" type="button"><div class="f:video__cover f:bg-image"><f-image class="f:image " style="--f-aspect-ratio:16/9"><img srcSet="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Vase_Style_Set2.jpg?v=1757954825&width=165 165w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Vase_Style_Set2.jpg?v=1757954825&width=360 360w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Vase_Style_Set2.jpg?v=1757954825&width=533 533w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Vase_Style_Set2.jpg?v=1757954825&width=720 720w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Vase_Style_Set2.jpg?v=1757954825&width=940 940w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Vase_Style_Set2.jpg?v=1757954825&width=1066 1066w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Vase_Style_Set2.jpg?v=1757954825&width=1500 1500w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Vase_Style_Set2.jpg?v=1757954825&width=1780 1780w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Vase_Style_Set2.jpg?v=1757954825 2000w" src="//cdn.shopify.com/s/files/1/0620/0016/9151/files/Vase_Style_Set2_1000x.jpg?v=1757954825" sizes="(min-width: 1200px) 533px, (min-width: 990px) calc((100vw - 130px) / 3), (min-width: 750px) calc((100vw - 120px) / 2), calc((100vw - 35px) / 2)" alt="" loading="lazy" width="2000" height="1200"/></f-image></div><span class="f:deferred-media__poster-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon fill="currentColor" points="5 3 19 12 5 21 5 3"></polygon></svg></span></button><template><video controls playsinline autoplay muted class="video-playsinline" preload="metadata"><source src="https://cdn.shopify.com/videos/c/o/v/368c2e0a9c2f43ce9fe9042da5bff371.mp4" type="video/mp4"></video></template></f-deferred-media></div></div></div><div id="f-custom-section-1758137935690Zz" class="f:sections f:custom-section f-custom-section-1758137935690Zz"><div class="f:container"><div id="f-grid-1758137935HQGfJ" class="f:blocks f:grid f-grid-1758137935HQGfJ" style="--f-grid-columns-sm:minmax(0, 12fr);--f-grid-columns-md:minmax(0, 12fr);--f-grid-columns-lg:minmax(0, 6fr) minmax(0, 6fr);--f-grid-columns-xl:minmax(0, 5fr) minmax(0, 7fr)"><div id="f-col-1758137935mHoPN" class="f:blocks f:col f-col-1758137935mHoPN f:column"><h2 id="f-heading-17581379355JJ0M" class="f:blocks f:heading f-heading-17581379355JJ0M f:content-block" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-heading-17581379355JJ0M-text_html' | t }}</span></h2>{%  assign product_f-richtext-17581379358eiG6 = product %}
+         {% assign collection_f-richtext-17581379358eiG6 = collection %}
+        <div id="f-richtext-17581379358eiG6" class="f:blocks f:richtext f-richtext-17581379358eiG6 f:content-block f:gs-body-text f:rte" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp">
+{{ 'sections.foxify-1758137935sUw2a.f-richtext-17581379358eiG6-text_html' | t }}</div>{{ 'foxify-multicolumn.css' | asset_url | stylesheet_tag }}<div id="f-icon-box-1758137935IL3R5" class="f:blocks f:icon-box f-icon-box-1758137935IL3R5 f:multicolumn-items--horizontal f:multicolumn-items--vertical-top" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><div class="f:column" style="--blocks-count:3"><div class="f:multicolumn-block"><div id="f-image-1758137935twOtA" class="f:blocks f-image-1758137935twOtA f:custom-section__image f:image-block"><f-image class="f:image " style="--f-aspect-ratio:1"><img srcSet="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/star.png?v=1758150400&width=165 165w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/star.png?v=1758150400&width=360 360w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/star.png?v=1758150400 512w" src="//cdn.shopify.com/s/files/1/0620/0016/9151/files/star_360x.png?v=1758150400" sizes="(min-width: 1200px) 533px, (min-width: 990px) calc((100vw - 130px) / 3), (min-width: 750px) calc((100vw - 120px) / 2), calc((100vw - 35px) / 2)" alt="star.png" loading="lazy" width="512" height="512"/></f-image></div><h3 id="f-heading-175813793514bOP" class="f:blocks f:heading f-heading-175813793514bOP f:content-block"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-heading-175813793514bOP-text_html' | t }}</span></h3>{%  assign product_f-richtext-17581379351tgNk = product %}
+         {% assign collection_f-richtext-17581379351tgNk = collection %}
+        <div id="f-richtext-17581379351tgNk" class="f:blocks f:richtext f-richtext-17581379351tgNk f:content-block f:gs-body-text f:rte">
+{{ 'sections.foxify-1758137935sUw2a.f-richtext-17581379351tgNk-text_html' | t }}</div></div></div></div>{{ 'foxify-multicolumn.css' | asset_url | stylesheet_tag }}<div id="f-icon-box-17581379359nleL" class="f:blocks f:icon-box f-icon-box-17581379359nleL f:multicolumn-items--horizontal f:multicolumn-items--vertical-top" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><div class="f:column" style="--blocks-count:3"><div class="f:multicolumn-block"><div id="f-image-1758137935zqbjh" class="f:blocks f-image-1758137935zqbjh f:custom-section__image f:image-block"><f-image class="f:image " style="--f-aspect-ratio:1"><img srcSet="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/rotation.png?v=1758150426&width=165 165w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/rotation.png?v=1758150426&width=360 360w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/rotation.png?v=1758150426 512w" src="//cdn.shopify.com/s/files/1/0620/0016/9151/files/rotation_360x.png?v=1758150426" sizes="(min-width: 1200px) 533px, (min-width: 990px) calc((100vw - 130px) / 3), (min-width: 750px) calc((100vw - 120px) / 2), calc((100vw - 35px) / 2)" alt="rotation.png" loading="lazy" width="512" height="512"/></f-image></div><h3 id="f-heading-1758137935IV8dV" class="f:blocks f:heading f-heading-1758137935IV8dV f:content-block"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-heading-1758137935IV8dV-text_html' | t }}</span></h3>{%  assign product_f-richtext-17581379355T9Pd = product %}
+         {% assign collection_f-richtext-17581379355T9Pd = collection %}
+        <div id="f-richtext-17581379355T9Pd" class="f:blocks f:richtext f-richtext-17581379355T9Pd f:content-block f:gs-body-text f:rte">
+{{ 'sections.foxify-1758137935sUw2a.f-richtext-17581379355T9Pd-text_html' | t }}</div></div></div></div>{{ 'foxify-multicolumn.css' | asset_url | stylesheet_tag }}<div id="f-icon-box-1758137935K4fFn" class="f:blocks f:icon-box f-icon-box-1758137935K4fFn f:multicolumn-items--horizontal f:multicolumn-items--vertical-top" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><div class="f:column" style="--blocks-count:3"><div class="f:multicolumn-block"><div id="f-image-1758137935bdex1" class="f:blocks f-image-1758137935bdex1 f:custom-section__image f:image-block"><f-image class="f:image " style="--f-aspect-ratio:1"><img srcSet="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/easy-installation.png?v=1758150448&width=165 165w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/easy-installation.png?v=1758150448&width=360 360w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/easy-installation.png?v=1758150448 512w" src="//cdn.shopify.com/s/files/1/0620/0016/9151/files/easy-installation_360x.png?v=1758150448" sizes="(min-width: 1200px) 533px, (min-width: 990px) calc((100vw - 130px) / 3), (min-width: 750px) calc((100vw - 120px) / 2), calc((100vw - 35px) / 2)" alt="easy-installation.png" loading="lazy" width="512" height="512"/></f-image></div><h3 id="f-heading-1758137935zOqRS" class="f:blocks f:heading f-heading-1758137935zOqRS f:content-block"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-heading-1758137935zOqRS-text_html' | t }}</span></h3>{%  assign product_f-richtext-1758137935N7c4C = product %}
+         {% assign collection_f-richtext-1758137935N7c4C = collection %}
+        <div id="f-richtext-1758137935N7c4C" class="f:blocks f:richtext f-richtext-1758137935N7c4C f:content-block f:gs-body-text f:rte">
+{{ 'sections.foxify-1758137935sUw2a.f-richtext-1758137935N7c4C-text_html' | t }}</div></div></div></div></div><div id="f-col-1758137935CgGxE" class="f:blocks f:col f-col-1758137935CgGxE f:column"><div id="f-image-1758137935SPj0t" class="f:blocks f-image-1758137935SPj0t f:custom-section__image f:image-block" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><f-image class="f:image " style="--f-aspect-ratio:1"><img srcSet="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Before-After.png?v=1758143568&width=165 165w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Before-After.png?v=1758143568&width=360 360w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Before-After.png?v=1758143568&width=533 533w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Before-After.png?v=1758143568&width=720 720w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Before-After.png?v=1758143568&width=940 940w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Before-After.png?v=1758143568&width=1066 1066w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Before-After.png?v=1758143568 1080w" src="//cdn.shopify.com/s/files/1/0620/0016/9151/files/Before-After_360x.png?v=1758143568" sizes="(min-width: 1200px) 533px, (min-width: 990px) calc((100vw - 130px) / 3), (min-width: 750px) calc((100vw - 120px) / 2), calc((100vw - 35px) / 2)" alt="Before-After.png" loading="lazy" width="1080" height="1080"/></f-image></div></div></div></div></div><div id="f-custom-section-1758137935TsYig" class="f:sections f:custom-section f-custom-section-1758137935TsYig"><div class="f:container"><div id="f-grid-1758137935QGYFl" class="f:blocks f:grid f-grid-1758137935QGYFl f:justify-center f:items-center" style="--f-grid-columns-sm:minmax(0, 12fr);--f-grid-columns-md:minmax(0, 12fr);--f-grid-columns-lg:minmax(0, 6fr) minmax(0, 6fr);--f-grid-columns-xl:minmax(0, 5fr) minmax(0, 7fr)"><div id="f-col-1758137935CeJTN" class="f:blocks f:col f-col-1758137935CeJTN f:column"><div id="f-image-1758137935grnzc" class="f:blocks f-image-1758137935grnzc f:custom-section__image f:image-block" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><f-image class="f:image " style="--f-aspect-ratio:0.8968481375358166"><img srcSet="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROFaucet_Finishes.jpg?v=1758159736&width=165 165w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROFaucet_Finishes.jpg?v=1758159736&width=360 360w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROFaucet_Finishes.jpg?v=1758159736&width=533 533w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROFaucet_Finishes.jpg?v=1758159736 626w" src="//cdn.shopify.com/s/files/1/0620/0016/9151/files/ROFaucet_Finishes_360x.jpg?v=1758159736" sizes="(min-width: 1200px) 533px, (min-width: 990px) calc((100vw - 130px) / 3), (min-width: 750px) calc((100vw - 120px) / 2), calc((100vw - 35px) / 2)" alt="ROFaucet_Finishes.jpg" loading="lazy" width="626" height="698"/></f-image></div><div id="f-block-1758310754ue5KH" class="f:blocks f:block f-block-1758310754ue5KH f:block f:isolate"><a id="f-button-1758310773kky5g" class="f:blocks f:button f-button-1758310773kky5g f:gs-outline-button f:btn"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-button-1758310773kky5g-button_label_html' | t }}</span></a><a class="f:full-width-link" href="https://www.metpure.com/collections/vase-style-water-filtration-faucets/products/vase-style-water-filtration-faucets-products-water-filtration-faucet-non-air-gap-certified-by-nsf?variant=43569774330047"></a></div></div><div id="f-col-1758137935eiyeB" class="f:blocks f:col f-col-1758137935eiyeB f:column"><h2 id="f-heading-1758137935GT68G" class="f:blocks f:heading f-heading-1758137935GT68G f:content-block" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-heading-1758137935GT68G-text_html' | t }}</span></h2>{%  assign product_f-richtext-1758137935UmJmo = product %}
+         {% assign collection_f-richtext-1758137935UmJmo = collection %}
+        <div id="f-richtext-1758137935UmJmo" class="f:blocks f:richtext f-richtext-1758137935UmJmo f:content-block f:gs-body-text f:rte" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp">
+{{ 'sections.foxify-1758137935sUw2a.f-richtext-1758137935UmJmo-text_html' | t }}</div><div id="f-custom-code-1758137935Uh1Tb" class="f:blocks f:custom-code f-custom-code-1758137935Uh1Tb" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><ul class="f:custom-product-detail" style="list-style: none; padding: 0; margin: 0; max-width: 600px;">
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Brand:</span>
+            <span class="value" style="flex: 1;">Metpure</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Material:</span>
+            <span class="value" style="flex: 1;">Zinc/plastic composite</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Size:</span>
+            <span class="value" style="flex: 1;">5" x 1.75" x 10.75"</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Waterflow:</span>
+            <span class="value" style="flex: 1;">1.13 gpm</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">L x W x H:</span>
+            <span class="value" style="flex: 1;">5 inches | 5.125 inches | 10.75 inches</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Dimensions:</span>
+            <span class="value" style="flex: 1;">14.33 x 5.31 x 1.85 inches</span>
+        </div>
+    </li>
+    <li style="display: block;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Weight:</span>
+            <span class="value" style="flex: 1;">1.25 lb</span>
+        </div>
+    </li>
+</ul></div></div></div></div></div><div id="f-custom-section-17583140629PG9W" class="f:sections f:custom-section f-custom-section-17583140629PG9W"><div class="f:container"><div id="f-grid-1758314062Xa4sH" class="f:blocks f:grid f-grid-1758314062Xa4sH f:justify-center f:items-center" style="--f-grid-columns-sm:minmax(0, 12fr);--f-grid-columns-md:minmax(0, 12fr);--f-grid-columns-lg:minmax(0, 6fr) minmax(0, 6fr);--f-grid-columns-xl:minmax(0, 5fr) minmax(0, 7fr)"><div id="f-col-1758314062IXpaV" class="f:blocks f:col f-col-1758314062IXpaV f:column"><div id="f-image-1758314062SusZF" class="f:blocks f-image-1758314062SusZF f:custom-section__image f:image-block" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><f-image class="f:image " style="--f-aspect-ratio:0.8968481375358166"><img srcSet="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/KF6016Dimensions_Finish.jpg?v=1758159757&width=165 165w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/KF6016Dimensions_Finish.jpg?v=1758159757&width=360 360w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/KF6016Dimensions_Finish.jpg?v=1758159757&width=533 533w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/KF6016Dimensions_Finish.jpg?v=1758159757 626w" src="//cdn.shopify.com/s/files/1/0620/0016/9151/files/KF6016Dimensions_Finish_360x.jpg?v=1758159757" sizes="(min-width: 1200px) 533px, (min-width: 990px) calc((100vw - 130px) / 3), (min-width: 750px) calc((100vw - 120px) / 2), calc((100vw - 35px) / 2)" alt="KF6016Dimensions_Finish.jpg" loading="lazy" width="626" height="698"/></f-image></div><div id="f-block-1758314062E5JAF" class="f:blocks f:block f-block-1758314062E5JAF f:block f:isolate"><a id="f-button-1758314062gnzGi" class="f:blocks f:button f-button-1758314062gnzGi f:gs-outline-button f:btn"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-button-1758314062gnzGi-button_label_html' | t }}</span></a><a class="f:full-width-link" href="https://www.metpure.com/collections/kitchen-vase-style-faucet/products/metpure-stainless-steel-kitchen-faucet-with-pull-down-single-handle-hose-in-brushed-nickel-finish-vase-style-lead-free-variant?variant=43582458593471"></a></div></div><div id="f-col-1758314062X7T6E" class="f:blocks f:col f-col-1758314062X7T6E f:column"><h2 id="f-heading-17583140626m2bo" class="f:blocks f:heading f-heading-17583140626m2bo f:content-block" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-heading-17583140626m2bo-text_html' | t }}</span></h2>{%  assign product_f-richtext-1758314062qWzNl = product %}
+         {% assign collection_f-richtext-1758314062qWzNl = collection %}
+        <div id="f-richtext-1758314062qWzNl" class="f:blocks f:richtext f-richtext-1758314062qWzNl f:content-block f:gs-body-text f:rte" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp">
+{{ 'sections.foxify-1758137935sUw2a.f-richtext-1758314062qWzNl-text_html' | t }}</div><div id="f-custom-code-175831406217LcM" class="f:blocks f:custom-code f-custom-code-175831406217LcM" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><ul class="f:custom-product-detail" style="list-style: none; padding: 0; margin: 0; max-width: 600px;">
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Brand:</span>
+            <span class="value" style="flex: 1;">Metpure</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Material:</span>
+            <span class="value" style="flex: 1;">Stainless steel (SUS 304)</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Size:</span>
+            <span class="value" style="flex: 1;">5" x 1.75" x 10.75"</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Style:</span>
+            <span class="value" style="flex: 1;">Vase / Pull-Down </span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Length:</span>
+            <span class="value" style="flex: 1;">14.35"</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Dimensions:</span>
+            <span class="value" style="flex: 1;">N/A</span>
+        </div>
+    </li>
+    <li style="display: block;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Weight:</span>
+            <span class="value" style="flex: 1;">1.3 poundslb</span>
+        </div>
+    </li>
+</ul></div></div></div></div></div><div id="f-custom-section-1758314168ZG9Sm" class="f:sections f:custom-section f-custom-section-1758314168ZG9Sm"><div class="f:container"><div id="f-grid-17583141680Hr9U" class="f:blocks f:grid f-grid-17583141680Hr9U f:justify-center f:items-center" style="--f-grid-columns-sm:minmax(0, 12fr);--f-grid-columns-md:minmax(0, 12fr);--f-grid-columns-lg:minmax(0, 6fr) minmax(0, 6fr);--f-grid-columns-xl:minmax(0, 5fr) minmax(0, 7fr)"><div id="f-col-1758314168M9hb0" class="f:blocks f:col f-col-1758314168M9hb0 f:column"><div id="f-image-17583141683ghD1" class="f:blocks f-image-17583141683ghD1 f:custom-section__image f:image-block" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><f-image class="f:image " style="--f-aspect-ratio:0.8968481375358166"><img srcSet="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/SoapDispenser_Finishes.jpg?v=1758159779&width=165 165w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/SoapDispenser_Finishes.jpg?v=1758159779&width=360 360w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/SoapDispenser_Finishes.jpg?v=1758159779&width=533 533w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/SoapDispenser_Finishes.jpg?v=1758159779 626w" src="//cdn.shopify.com/s/files/1/0620/0016/9151/files/SoapDispenser_Finishes_360x.jpg?v=1758159779" sizes="(min-width: 1200px) 533px, (min-width: 990px) calc((100vw - 130px) / 3), (min-width: 750px) calc((100vw - 120px) / 2), calc((100vw - 35px) / 2)" alt="SoapDispenser_Finishes.jpg" loading="lazy" width="626" height="698"/></f-image></div><div id="f-block-1758314168ZHYb9" class="f:blocks f:block f-block-1758314168ZHYb9 f:block f:isolate"><a id="f-button-1758314168Hfxzq" class="f:blocks f:button f-button-1758314168Hfxzq f:gs-outline-button f:btn"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-button-1758314168Hfxzq-button_label_html' | t }}</span></a><a class="f:full-width-link" href="https://www.metpure.com/collections/soap-dispensers/products/soap-dispenser-for-kitchen-sink-brushed-nickel-metpure-stainless-steel-test-countertop-pump-with-below-counter-built-in-refillable-17oz-bottle-for-soap-lotion-copy?variant=43582400200895"></a></div></div><div id="f-col-1758314168Vn4rU" class="f:blocks f:col f-col-1758314168Vn4rU f:column"><h2 id="f-heading-1758314168kKzZD" class="f:blocks f:heading f-heading-1758314168kKzZD f:content-block" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-heading-1758314168kKzZD-text_html' | t }}</span></h2>{%  assign product_f-richtext-1758314168ExhFV = product %}
+         {% assign collection_f-richtext-1758314168ExhFV = collection %}
+        <div id="f-richtext-1758314168ExhFV" class="f:blocks f:richtext f-richtext-1758314168ExhFV f:content-block f:gs-body-text f:rte" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp">
+{{ 'sections.foxify-1758137935sUw2a.f-richtext-1758314168ExhFV-text_html' | t }}</div><div id="f-custom-code-1758314168r8TQf" class="f:blocks f:custom-code f-custom-code-1758314168r8TQf" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><ul class="f:custom-product-detail" style="list-style: none; padding: 0; margin: 0; max-width: 600px;">
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Brand:</span>
+            <span class="value" style="flex: 1;">Metpure</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Material:</span>
+            <span class="value" style="flex: 1;">Stainless steel (SUS 304)</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Size:</span>
+            <span class="value" style="flex: 1;">3.9" x 2.5" x 12.31"</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Waterflow:</span>
+            <span class="value" style="flex: 1;">Hand pump soap dispenser</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Len:</span>
+            <span class="value" style="flex: 1;">3 inches</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Dimensions:</span>
+            <span class="value" style="flex: 1;">14.33 x 5.31 x 1.85 inches</span>
+        </div>
+    </li>
+    <li style="display: block;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Weight:</span>
+            <span class="value" style="flex: 1;">1.25 lb</span>
+        </div>
+    </li>
+</ul></div></div></div></div></div><div id="f-custom-section-1758314601hmqGN" class="f:sections f:custom-section f-custom-section-1758314601hmqGN"><div class="f:container"><div id="f-grid-17583146016Z9HT" class="f:blocks f:grid f-grid-17583146016Z9HT f:justify-center f:items-center" style="--f-grid-columns-sm:minmax(0, 12fr);--f-grid-columns-md:minmax(0, 12fr);--f-grid-columns-lg:minmax(0, 6fr) minmax(0, 6fr);--f-grid-columns-xl:minmax(0, 5fr) minmax(0, 7fr)"><div id="f-col-1758314601SxOBx" class="f:blocks f:col f-col-1758314601SxOBx f:column"><div id="f-image-1758314601Nw8GA" class="f:blocks f-image-1758314601Nw8GA f:custom-section__image f:image-block" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><f-image class="f:image " style="--f-aspect-ratio:1"><img srcSet="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROGB-BUNDLE_1_b6e61043-1a3f-47c6-bfaf-c9e72466d1a7.jpg?v=1758153049&width=165 165w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROGB-BUNDLE_1_b6e61043-1a3f-47c6-bfaf-c9e72466d1a7.jpg?v=1758153049&width=360 360w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROGB-BUNDLE_1_b6e61043-1a3f-47c6-bfaf-c9e72466d1a7.jpg?v=1758153049&width=533 533w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROGB-BUNDLE_1_b6e61043-1a3f-47c6-bfaf-c9e72466d1a7.jpg?v=1758153049&width=720 720w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROGB-BUNDLE_1_b6e61043-1a3f-47c6-bfaf-c9e72466d1a7.jpg?v=1758153049&width=940 940w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROGB-BUNDLE_1_b6e61043-1a3f-47c6-bfaf-c9e72466d1a7.jpg?v=1758153049&width=1066 1066w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROGB-BUNDLE_1_b6e61043-1a3f-47c6-bfaf-c9e72466d1a7.jpg?v=1758153049&width=1500 1500w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROGB-BUNDLE_1_b6e61043-1a3f-47c6-bfaf-c9e72466d1a7.jpg?v=1758153049&width=1780 1780w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROGB-BUNDLE_1_b6e61043-1a3f-47c6-bfaf-c9e72466d1a7.jpg?v=1758153049&width=2000 2000w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/ROGB-BUNDLE_1_b6e61043-1a3f-47c6-bfaf-c9e72466d1a7.jpg?v=1758153049 2048w" src="//cdn.shopify.com/s/files/1/0620/0016/9151/files/ROGB-BUNDLE_1_b6e61043-1a3f-47c6-bfaf-c9e72466d1a7_360x.jpg?v=1758153049" sizes="(min-width: 1200px) 533px, (min-width: 990px) calc((100vw - 130px) / 3), (min-width: 750px) calc((100vw - 120px) / 2), calc((100vw - 35px) / 2)" alt="ROGB-BUNDLE_1.jpg" loading="lazy" width="2048" height="2048"/></f-image></div><div id="f-block-1758314601w7RxT" class="f:blocks f:block f-block-1758314601w7RxT f:block f:isolate"><a id="f-button-1758314601LmaMU" class="f:blocks f:button f-button-1758314601LmaMU f:gs-outline-button f:btn"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-button-1758314601LmaMU-button_label_html' | t }}</span></a><a class="f:full-width-link" href="https://www.metpure.com/products/4-stage-quick-twist-whole-house-water-filtration-system-metpure-versatile-customizable-reverse-osmosis-ro-water-filtration-system-complete-system-with-hardware-filters-storage-tank-and-faucet-select-your-system-type-and-faucet-bundle"></a></div></div><div id="f-col-1758314601p1Zdh" class="f:blocks f:col f-col-1758314601p1Zdh f:column"><h2 id="f-heading-17583146015NAvS" class="f:blocks f:heading f-heading-17583146015NAvS f:content-block" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-heading-17583146015NAvS-text_html' | t }}</span></h2>{%  assign product_f-richtext-1758314601mvcB4 = product %}
+         {% assign collection_f-richtext-1758314601mvcB4 = collection %}
+        <div id="f-richtext-1758314601mvcB4" class="f:blocks f:richtext f-richtext-1758314601mvcB4 f:content-block f:gs-body-text f:rte" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp">
+{{ 'sections.foxify-1758137935sUw2a.f-richtext-1758314601mvcB4-text_html' | t }}</div><div id="f-custom-code-1758314601S0cEE" class="f:blocks f:custom-code f-custom-code-1758314601S0cEE" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><ul class="f:custom-product-detail" style="list-style: none; padding: 0; margin: 0; max-width: 600px;">
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Brand:</span>
+            <span class="value" style="flex: 1;">Metpure</span>
+        </div>
+    </li>
+     <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Style:</span>
+            <span class="value" style="flex: 1;">Water Filtration Systems</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Material:</span>
+            <span class="value" style="flex: 1;">Carbon,Coconut Shell</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;"># of Pieces:</span>
+            <span class="value" style="flex: 1;">4</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Waterflow:</span>
+            <span class="value" style="flex: 1;">1.13 gpm</span>
+        </div>
+    </li>
+    <li style="display: block; margin-bottom: 12px;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Dimensions:</span>
+            <span class="value" style="flex: 1;">19 x 15 x 12 inches</span>
+        </div>
+    </li>
+    <li style="display: block;">
+        <div style="display: flex; flex-wrap: wrap;">
+            <span class="label" style="flex: 0 0 140px; font-weight: bold; white-space: nowrap;">Weight:</span>
+            <span class="value" style="flex: 1;">18.15 Pounds</span>
+        </div>
+    </li>
+</ul></div></div></div></div></div><div id="f-multicolumn-1758157117O8TCi" class="f:sections f:multicolumn f-multicolumn-1758157117O8TCi"><div class="f:container"><div id="f-section-header-1758157117GURq5" class="f:blocks f:section-header f-section-header-1758157117GURq5 f:section-header"><h2 id="f-heading-1758157117WnaX7" class="f:blocks f:heading f-heading-1758157117WnaX7 f:content-block" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-heading-1758157117WnaX7-text_html' | t }}</span></h2>{%  assign product_f-richtext-1758157117VdAGA = product %}
+         {% assign collection_f-richtext-1758157117VdAGA = collection %}
+        <div id="f-richtext-1758157117VdAGA" class="f:blocks f:richtext f-richtext-1758157117VdAGA f:content-block f:gs-body-text f:rte" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp">
+{{ 'sections.foxify-1758137935sUw2a.f-richtext-1758157117VdAGA-text_html' | t }}</div></div>{{ 'foxify-multicolumn.css' | asset_url | stylesheet_tag }}<div id="f-multicolumn-items-1758157117ObMjF" class="f:blocks f:multicolumn-items f-multicolumn-items-1758157117ObMjF f:grid f:grid-1-cols md:f:grid-2-cols lg:f:grid-4-cols f:multicolumn-items--vertical f:multicolumn-items--vertical-top" style="--f-grid-gap:30px;--f-grid-gap-mobile:15px;--swiper-column-width:66vw"><div id="f-multicolumn-block-1758157117ycqCi" class="f:column f:blocks f:multicolumn-block f-multicolumn-block-1758157117ycqCi" style="--blocks-count:3" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><div id="f-image-17581571172c9WG" class="f:blocks f-image-17581571172c9WG f:multicolumn__image f:image-block"><f-image class="f:image " style="--f-aspect-ratio:1"><img srcSet="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/eco.png?v=1758155591&width=165 165w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/eco.png?v=1758155591&width=360 360w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/eco.png?v=1758155591 512w" src="//cdn.shopify.com/s/files/1/0620/0016/9151/files/eco_360x.png?v=1758155591" sizes="(min-width: 1200px) 533px, (min-width: 990px) calc((100vw - 130px) / 3), (min-width: 750px) calc((100vw - 120px) / 2), calc((100vw - 35px) / 2)" alt="eco.png" loading="lazy" width="512" height="512"/></f-image></div><h3 id="f-heading-1758157117r8FUC" class="f:blocks f:heading f-heading-1758157117r8FUC f:content-block"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-heading-1758157117r8FUC-text_html' | t }}</span></h3>{%  assign product_f-richtext-1758157117HZigH = product %}
+         {% assign collection_f-richtext-1758157117HZigH = collection %}
+        <div id="f-richtext-1758157117HZigH" class="f:blocks f:richtext f-richtext-1758157117HZigH f:content-block f:gs-body-text f:rte">
+{{ 'sections.foxify-1758137935sUw2a.f-richtext-1758157117HZigH-text_html' | t }}</div></div><div id="f-multicolumn-block-1758157117PZSR4" class="f:column f:blocks f:multicolumn-block f-multicolumn-block-1758157117PZSR4" style="--blocks-count:3" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><div id="f-image-1758157117PPivE" class="f:blocks f-image-1758157117PPivE f:multicolumn__image f:image-block"><f-image class="f:image " style="--f-aspect-ratio:1"><img srcSet="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/tap-water.png?v=1758155487&width=165 165w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/tap-water.png?v=1758155487&width=360 360w, https://cdn.shopify.com/s/files/1/0620/0016/9151/files/tap-water.png?v=1758155487 512w" src="//cdn.shopify.com/s/files/1/0620/0016/9151/files/tap-water_360x.png?v=1758155487" sizes="(min-width: 1200px) 533px, (min-width: 990px) calc((100vw - 130px) / 3), (min-width: 750px) calc((100vw - 120px) / 2), calc((100vw - 35px) / 2)" alt="tap-water.png" loading="lazy" width="512" height="512"/></f-image></div><h3 id="f-heading-17581571179cUAt" class="f:blocks f:heading f-heading-17581571179cUAt f:content-block"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-heading-17581571179cUAt-text_html' | t }}</span></h3>{%  assign product_f-richtext-1758157117JyCS0 = product %}
+         {% assign collection_f-richtext-1758157117JyCS0 = collection %}
+        <div id="f-richtext-1758157117JyCS0" class="f:blocks f:richtext f-richtext-1758157117JyCS0 f:content-block f:gs-body-text f:rte">
+{{ 'sections.foxify-1758137935sUw2a.f-richtext-1758157117JyCS0-text_html' | t }}</div></div></div></div></div><div id="f-featured-collection-1758137935Ssc53" class="f:sections f:featured-collection f-featured-collection-1758137935Ssc53"><div class="f:container"><div id="f-section-header-1758137935F77j2" class="f:blocks f:section-header f-section-header-1758137935F77j2 f:section-header"><h2 id="f-heading-1758137935mdwhT" class="f:blocks f:heading f-heading-1758137935mdwhT f:content-block" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp"><span>
+{{ 'sections.foxify-1758137935sUw2a.f-heading-1758137935mdwhT-text_html' | t }}</span></h2></div>{{ 'foxify-component-product-card.css' | asset_url | stylesheet_tag }}<div class="f:blocks f:featured-collection-block f-featured-collection-block-1758137935UNQ0s" data-animate-trigger="scroll_into_view" data-animate-name="fFadeInUp">{% liquid 
+          assign collection_f-featured-collection-block-1758137935UNQ0s = section.settings['f-featured-collection-block-1758137935UNQ0s']
+        %}<div class="f:grid f:grid-2-cols md:f:grid-3-cols xl:f:grid-4-cols f:mobile-swiper" style="--f-grid-gap:30px;--f-grid-gap-mobile:15px;--swiper-column-width:66vw">{% if collection_f-featured-collection-block-1758137935UNQ0s != blank %}{% for product in collection_f-featured-collection-block-1758137935UNQ0s.products limit: 4 %}<div class="f:column">{% render 'foxify-product-card', product: product, card_style: 'inherit', image_ratio: 'inherit', text_align: 'inherit' %}</div> {% endfor %} {% else %}{% for i in (1..4) %}<div class="f:column">{% render 'foxify-product-card', onboarding: true %}</div>{% endfor %}{% endif %}</div></div></div></div>
+<script data-foxify-custom-code-page="js" defer>{{ foxifyCustomJs }}</script>
+{% liquid
+        assign theme_settings = shop.metafields.foxify.theme_settings.value
+        assign customCodeBody = theme_settings.customCodeBody
+        echo customCodeBody
+      %}
+
+</div>
+{% schema %}
+  {
+  "name": "Foxify main content",
+  "class": "foxify-main f-app",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Customize main content",
+      "info": "Go to [Foxify app](https://admin.shopify.com/store/metpure/apps/foxify-builder/editor?id=1758137935sUw2a&type=product) to edit this section."
+    },
+    {
+      "id": "f-featured-collection-block-1758137935UNQ0s",
+      "type": "collection",
+      "label": "Product grid"
+    }
+  ],
+  "locales": {
+    "en": {
+      "f-collapsible-tab-1758137935lgrQK-content_html": "<p>Upgrading your kitchen be simple and feel amazing. That’s why every Perfect Match kit is designed for fast, frustration-free DIY installation.<br /><br /><strong>How It Works:</strong><br /><br /><strong>1) Unbox &amp; Prep</strong> – Everything you need comes in the box. Grab a screwdriver and drill for a quick install.</p>\n<p><br /><strong>2) Set Up Fixtures<span style=\"text-decoration: underline;\"> </span></strong>– Mount your matching main faucet, RO faucet, and soap dispenser with included hardware.</p>\n<p><br /><strong>3) Quick Connections </strong>– Attach the 4-stage RO system with Twist-Lock filters and pre-fitted lines.</p>\n<p><br /><strong>4) Finish &amp; Enjoy </strong>– From unboxing to fully upgraded sink — pure water, matching fixtures, and modern style in less than half an hour.</p>",
+      "f-collapsible-tab-1758137935lgrQK-heading_html": "Installation",
+      "f-heading-17581379355JJ0M-text_html": "From Mismatched Mess to a Perfect Match.",
+      "f-richtext-17581379358eiG6-text_html": "<p><span style=\"letter-spacing: 0px;\">Your sink shouldn’t look like an afterthought. See the difference a fully coordinated fixture + filtration kit makes sleek, seamless, and designed to feel intentional.</span>e.</p>",
+      "f-heading-175813793514bOP-text_html": "Seamless Aesthetic",
+      "f-richtext-17581379351tgNk-text_html": "<p>Matching finishes create a designer look instantly</p>",
+      "f-heading-1758137935IV8dV-text_html": "Modern Quick Twist Filters",
+      "f-richtext-17581379355T9Pd-text_html": "<p>Sleek design and effortless replacement for fresh, filtered water.</p>",
+      "f-heading-1758137935zOqRS-text_html": "DYI Friendly ",
+      "f-richtext-1758137935N7c4C-text_html": "<p>Complete install in under 30 minutes, no plumber required</p>",
+      "f-heading-1758137935GT68G-text_html": "Metpure Reverse Osmosis Faucet <br>Product Specifications",
+      "f-richtext-1758137935UmJmo-text_html": "<p>A sleek, compact design, the RO Faucet delivers fresh, filtered water on demand. Built for durability and style, it installs easily and pairs perfectly with your kitchen fixtures.</p>",
+      "f-heading-1758137935HnChA-text_html": "Customers love us",
+      "f-testimonial-items-1758137935V9EE4-testimonial_list-Item-1-bio_html": "Customer",
+      "f-testimonial-items-1758137935V9EE4-testimonial_list-Item-1-text_html": "<p>We're humans too and we understand that skin care and cosmetics should rejuvenate and rehydrate in the short and long run.</p>",
+      "f-testimonial-items-1758137935V9EE4-testimonial_list-Item-1-author_html": "Felicity Smoke",
+      "f-testimonial-items-1758137935V9EE4-testimonial_list-Item-5-bio_html": "Customer",
+      "f-testimonial-items-1758137935V9EE4-testimonial_list-Item-5-text_html": "<p>We're humans too and we understand that skin care and cosmetics should rejuvenate and rehydrate in the short and long run.</p>",
+      "f-testimonial-items-1758137935V9EE4-testimonial_list-Item-5-author_html": "Felicity Smoke",
+      "f-testimonial-items-1758137935V9EE4-testimonial_list-Item-4-bio_html": "Customer",
+      "f-testimonial-items-1758137935V9EE4-testimonial_list-Item-4-text_html": "<p>We're humans too and we understand that skin care and cosmetics should rejuvenate and rehydrate in the short and long run.</p>",
+      "f-testimonial-items-1758137935V9EE4-testimonial_list-Item-4-author_html": "Felicity Smoke",
+      "f-testimonial-items-1758137935V9EE4-testimonial_list-Item-3-bio_html": "Customer",
+      "f-testimonial-items-1758137935V9EE4-testimonial_list-Item-3-text_html": "<p>We're humans too and we understand that skin care and cosmetics should rejuvenate and rehydrate in the short and long run.</p>",
+      "f-testimonial-items-1758137935V9EE4-testimonial_list-Item-3-author_html": "Felicity Smoke",
+      "f-testimonial-items-1758137935V9EE4-testimonial_list-Item-2-bio_html": "Customer",
+      "f-testimonial-items-1758137935V9EE4-testimonial_list-Item-2-text_html": "<p>We're humans too and we understand that skin care and cosmetics should rejuvenate and rehydrate in the short and long run.</p>",
+      "f-testimonial-items-1758137935V9EE4-testimonial_list-Item-2-author_html": "Felicity Smoke",
+      "f-heading-1758137935Ttgbe-text_html": "Why wait?  Order yours now.",
+      "f-richtext-1758137935jAakE-text_html": "<p>Two straps in refreshing colors! Three microphones at work simultaneously for a clearer call experience.</p>",
+      "f-add-to-cart-button-1758137935jHOtw-button_label_html": "Order now | $299",
+      "f-heading-1758137935mdwhT-text_html": "You May Also Like",
+      "f-buy-buttons-1758137935stWT1-button_label_html": "Add to cart",
+      "f-collapsible-tab-1758137935FwZsT-content_html": "<p><strong>Metpure Reverse Osmosis (RO) Faucet </strong>– For fresh, purified water on demand</p>\n<p><br /><strong>Metpure Kitchen Faucet</strong> – Durable design with pullout hose and smooth flow</p>\n<p><br /><strong>Metpure Soap Dispenser</strong> – Sleek, refillable, and matching finish</p>\n<p><br /><strong>4-Stage Metpure Versatile RO System </strong>- Advanced 4-stage purification with easy quick-twist filters with a simple, plumber-free setup.</p>",
+      "f-collapsible-tab-1758137935FwZsT-heading_html": "WHAT'S INLCUDED",
+      "f-richtext-1758140198CGwwS-text_html": "Harmonized Fixtures & Water Filtration, Designed for Modern Kitchens.",
+      "f-heading-1758141888zpOL9-text_html": "Organic foods",
+      "f-richtext-1758141888ueBHS-text_html": "<p>Lather up with our newest shampoo for clean, strong, <br />and healthy hair.</p>",
+      "f-button-1758141888uHtfi-button_label_html": "Shop collection",
+      "f-heading-1758157134wFJLp-text_html": "Choose Your Perfect Match- Different Systems, Same Seamless Style ",
+      "f-heading-17581571346nrYf-text_html": "Pure Confidence",
+      "f-richtext-1758157134zHIUf-text_html": "Crystal-clear, great-tasting water at your fingertips. The ROGB delivers advanced purification technology in a finish-matched kit that blends effortlessly with your kitchen.",
+      "f-button-1758157134NicRS-button_label_html": "Shop now",
+      "f-heading-17581571343u8X4-text_html": "Speed Meets Style",
+      "f-richtext-1758157134bKkFL-text_html": "Stay hydrated without the wait. The ROLB’s high-flow design delivers fast, reliable access to fresh water all in a sleek, fully coordinated fixture set.",
+      "f-button-17581571344CxIO-button_label_html": "Shop now",
+      "f-heading-1758157134AbWQ9-text_html": "Balance In Every Sip",
+      "f-richtext-1758157134AkqgC-text_html": "Elevate your wellness with pH-balanced, mineral-rich water. The RAGS Alkaline System combines health benefits with seamless design for the modern kitchen.",
+      "f-button-1758157134kvuSn-button_label_html": "Shop now",
+      "f-heading-1758157117WnaX7-text_html": "A Kit That Brings It All Together",
+      "f-richtext-1758157117VdAGA-text_html": "<p>The heart of your home deserves more than mismatched metal. With <em data-start=\"274\" data-end=\"290\">Perfect Match,</em> every fixture flows seamlessly — turning everyday moments into something special.</p>",
+      "f-heading-1758157117r8FUC-text_html": "Pure Water",
+      "f-richtext-1758157117HZigH-text_html": "<p>A polished, designer look that elevates your entire kitchen</p>",
+      "f-heading-17581571179cUAt-text_html": "Seamless Finishes",
+      "f-richtext-1758157117JyCS0-text_html": "<p>Easy-to-use fixtures built for daily life, from cooking to clean-up</p>",
+      "f-collapsible-tab-1758157917EvUFq-content_html": "<p>We stand behind every product we make. All Metpure products come with a 90-day limited warranty from the date of purchase.<br /><br />Find out more about our Warrantty Policy <a href=\"https://www.metpure.com/pages/warranty?_gl=1*1b2xk8e*_gcl_aw*R0NMLjE3NTY0ODMyODYuRUFJYUlRb2JDaE1JdnVxZXhMNnZqd01WUGd4RUNCM3dld0UtRUFRWUFpQUJFZ0tqaFBEX0J3RQ..*_gcl_au*MTAyOTg5Mjk5NS4xNzU1NzI2NTg4\">h<span style=\"text-decoration: underline;\">ere</span></a><span style=\"text-decoration: underline;\">.</span><br /><br /></p>",
+      "f-collapsible-tab-1758157917EvUFq-heading_html": "Warranty",
+      "f-collapsible-tab-1758157921DXlCk-content_html": "<p><br /><strong>Free Shipping: </strong>FREE economy shipping for orders over $79 within the 48 contiguous U.S. states.</p>\n<p><br /><strong>Processing Time:</strong> Retail orders ship within 48 business hours.<br />Carriers: Orders may ship via FedEx, UPS, or USPS (chosen at our discretion).</p>\n<p><br /><strong>Exclusions:</strong> Free shipping does not apply to Alaska, Hawaii, U.S. territories, international orders, oversized items, or reseller/business accounts.</p>\n<p><br /><strong>Tracking: </strong>You’ll receive a tracking number once your order ships.</p>\n<p><br />For special shipping requests, contact us at support@metpure.com.</p>",
+      "f-collapsible-tab-1758157921DXlCk-heading_html": "SHIPPING",
+      "f-richtext-175815850436e1J-text_html": "4-Stage Quick Twist Reverse Osmosis System + Matching Fixtures",
+      "f-button-1758310773kky5g-button_label_html": "Learn More",
+      "f-button-1758314062gnzGi-button_label_html": "Learn More",
+      "f-heading-17583140626m2bo-text_html": "Metpure Kitchen Faucet <br>Product Specifications",
+      "f-richtext-1758314062qWzNl-text_html": "<p>With a flexible pull-out hose, the Metpure Kitchen Faucet makes rinsing, cleaning, and filling effortless. Designed for durability and modern style, it delivers smooth water flow and everyday convenience.</p>",
+      "f-button-1758314168Hfxzq-button_label_html": "Learn More",
+      "f-heading-1758314168kKzZD-text_html": "Metpure Soap Dispenser<br>Product Specifications",
+      "f-richtext-1758314168ExhFV-text_html": "<p>With a sleek, refillable design, the Soap Dispenser keeps your sink area clean and coordinated. Built for everyday use, it delivers convenience with a seamless, modern look.</p>",
+      "f-button-1758314601LmaMU-button_label_html": "Learn More",
+      "f-heading-17583146015NAvS-text_html": "Metpure Versatile 4 Stage System Product Specifications",
+      "f-richtext-1758314601mvcB4-text_html": "<p>With a sleek, refillable design, the Soap Dispenser keeps your sink area clean and coordinated. Built for everyday use, it delivers convenience with a seamless, modern look.</p>"
+    }
+  }
+}
+{% endschema %}
+  

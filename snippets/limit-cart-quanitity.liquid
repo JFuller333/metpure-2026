@@ -1,0 +1,51 @@
+<!--
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const restrictedProducts = ['8014848032959', '8014848032959']; 
+    const cartForm = document.querySelector('form[action="/cart"]');
+    if (cartForm) {
+      cartForm.addEventListener('submit', function(event) {
+        const quantityInputs = cartForm.querySelectorAll('input[name^="updates"]');
+        let totalQuantity = 0;
+        let hasRestrictedProduct = false;
+        
+        quantityInputs.forEach(input => {
+          const productHandle = input.closest('.cart-item').dataset.productHandle; // Assuming you have a data attribute for product handle
+          console.log('Product Handle:', productHandle); // Debugging line
+          if (restrictedProducts.includes(productHandle)) {
+            hasRestrictedProduct = true;
+          }
+          totalQuantity += parseInt(input.value, 10);
+        });
+
+        console.log('Total Quantity:', totalQuantity); // Debugging line
+        console.log('Has Restricted Product:', hasRestrictedProduct); // Debugging line
+
+        if (hasRestrictedProduct && totalQuantity > 1) {
+          event.preventDefault();
+          alert('You can only have one of this item in your cart.');
+        }
+      });
+    }
+  });
+</script>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const restrictedProducts = ['8014848032959', '8014848032959']; // Replace with your specific product IDs or handles
+  const cartItems = document.querySelectorAll('.m-cart-drawer-item'); // Assuming each cart item has this class
+
+  cartItems.forEach(item => {
+    const productHandle = item.dataset.productHandle; // Assuming you have a data attribute for product handle
+    if (restrictedProducts.includes(productHandle)) {
+      const quantityElement = item.querySelector('m-cart-drawer-item .m-quantity');
+      if (quantityElement) {
+        quantityElement.style.display = 'none'; // Hide the quantity element
+      }
+    }
+  });
+});
+</script>
+-->

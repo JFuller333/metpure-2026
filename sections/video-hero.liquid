@@ -1,0 +1,159 @@
+{% comment %} 
+  Added "section_link" setting to schema.
+  If section_link is set, the entire hero section is wrapped in an <a> tag that covers the whole area and is clickable.
+{% endcomment %}
+{{ 'hero.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign video_url = ''
+  if section.settings.video_type == 'shopify' and section.settings.shopify_video != blank
+    for source in section.settings.shopify_video.sources
+      if source.url contains '.mp4'
+        assign video_url = source.url
+        break
+      endif
+    endfor
+  endif
+
+  assign content_positions = section.settings.content_position | split: ' '
+  assign text_horizontal_alignment = content_positions.first
+  assign text_vertical_alignment = content_positions.last | strip
+  assign section_link = section.settings.section_link
+%}
+
+<section class="video-hero-section" style="position: relative; width: 100%; overflow: hidden;">
+  {% if section_link != blank %}
+    <a href="{{ section_link }}" style="position: absolute; z-index: 10; top: 0; left: 0; width: 100%; height: 100%; display: block; text-indent: -9999px;" aria-label="Go to link"></a>
+  {% endif %}
+  {% if video_url != blank %}
+    <div class="video-container" style="position: relative; width: 100%; padding-top: 33.33%;">
+      <video 
+        class="hero-video"
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+        autoplay
+        muted
+        loop
+        playsinline
+      >
+        <source src="{{ video_url }}" type="video/mp4">
+      </video>
+    </div>
+  {% endif %}
+
+  <div class="hero-content" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; z-index: 2;">
+    <div class="content-wrapper" style="text-align: center; padding: 2rem; max-width: 800px;">
+      {% if section.settings.title != blank %}
+        <h2 style="color: {{ section.settings.text_color }}; margin-bottom: 1rem;">{{ section.settings.title }}</h2>
+      {% endif %}
+      
+      {% if section.settings.subtitle != blank %}
+        <div style="color: {{ section.settings.text_color }}; margin-bottom: 1rem;">{{ section.settings.subtitle }}</div>
+      {% endif %}
+      
+      {% if section.settings.text != blank %}
+        <div style="color: {{ section.settings.text_color }}; margin-bottom: 2rem;">{{ section.settings.text }}</div>
+      {% endif %}
+      
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="hero-button" style="display: inline-block; padding: 1rem 2rem; background-color: {{ section.settings.button_style }}; color: white; text-decoration: none; border-radius: 4px;">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Video Hero",
+  "settings": [
+    {
+      "type": "select",
+      "id": "video_type",
+      "label": "Video Type",
+      "options": [
+        {
+          "value": "shopify",
+          "label": "Shopify Hosted"
+        }
+      ],
+      "default": "shopify"
+    },
+    {
+      "type": "video",
+      "id": "shopify_video",
+      "label": "Video"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Video Hero"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "url",
+      "id": "section_link",
+      "label": "Section link (clickable area)",
+      "info": "If set, clicking anywhere on the hero section will go to this link."
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_style",
+      "label": "Button color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Content position",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        }
+      ],
+      "default": "center center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Hero",
+      "category": "Video"
+    }
+  ]
+}
+{% endschema %}

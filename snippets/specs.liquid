@@ -1,0 +1,136 @@
+<div class="table2-mv4">
+    <div class="row-mv4 header2-mv4">
+        <div class="cell-mv4 title-mv4">Product Specifications</div>
+    </div>
+
+    <div class="row-mv4">
+        <div class="cell-mv4 left-cell-mv4">
+            <strong>Brand:</strong> <span>{{ product.metafields.custom.brand }}</span>
+        </div>
+        <div class="cell-mv4 right-cell-mv4">
+            <strong>Length:</strong> <span>{{ product.metafields.custom.length }}</span>
+        </div>
+    </div>
+
+    <div class="row-mv4">
+        <div class="cell-mv4 left-cell-mv4">
+            <strong>Style:</strong> <span>{{ product.metafields.custom.style }}</span>
+        </div>
+        <div class="cell-mv4 right-cell-mv4">
+            <strong>Width:</strong> <span>{{ product.metafields.custom.width }}</span>
+        </div>
+    </div>
+
+    <div class="row-mv4">
+        <div class="cell-mv4 left-cell-mv4">
+            <strong>Shape:</strong> <span>{{ product.metafields.custom.shape }}</span>
+        </div>
+        <div class="cell-mv4 right-cell-mv4">
+            <strong>Height:</strong> <span>{{ product.metafields.custom.height }}</span>
+        </div>
+    </div>
+
+    <div class="row-mv4">
+        <div class="cell-mv4 left-cell-mv4">
+            <strong>Material:</strong> <span>{{ product.metafields.custom.material }}</span>
+        </div>
+        <div class="cell-mv4 right-cell-mv4">
+            <strong>Diameter:</strong> <span>{{ product.metafields.custom.diameter }}</span>
+        </div>
+    </div>
+
+    <div class="row-mv4">
+        <div class="cell-mv4 left-cell-mv4">
+            <strong>Color/Finish:</strong> <span>{{ product.metafields.custom.color_finish }}</span>
+        </div>
+        <div class="cell-mv4 right-cell-mv4">
+            <strong>Product Dimensions:</strong> <span>{{ product.metafields.custom.product_dimensions }}</span>
+        </div>
+    </div>
+
+    <div class="row-mv4">
+        <div class="cell-mv4 left-cell-mv4">
+            <strong>Part Number:</strong> <span>{{ product.metafields.custom.part_number }}</span>
+        </div>
+        <div class="cell-mv4 right-cell-mv4">
+            <strong>Temperature Rating:</strong> <span>{{ product.metafields.custom.temperature_ratings }}</span>
+        </div>
+    </div>
+
+    <div class="row-mv4">
+        <div class="cell-mv4 left-cell-mv4">
+            <strong>Size:</strong> <span>{{ product.metafields.custom.size }}</span>
+        </div>
+        <div class="cell-mv4 right-cell-mv4">
+            <strong>Pressure Rating:</strong> <span>{{ product.metafields.custom.pressure_ratings }}</span>
+        </div>
+    </div>
+
+    <div class="row-mv4">
+        <div class="cell-mv4 left-cell-mv4">
+            <strong>Number of Pieces:</strong> <span>{{ product.metafields.custom.number_of_pieces }}</span>
+        </div>
+        <div class="cell-mv4 right-cell-mv4">
+            <strong>Item Weight:</strong> <span>{{ product.metafields.custom.item_weight }}</span>
+        </div>
+    </div>
+
+    <div class="row-mv4">
+        <div class="cell-mv4 left-cell-mv4">
+            <strong>Water Flow:</strong> <span>{{ product.metafields.custom.water_flow }}</span>
+        </div>
+        <div class="cell-mv4 right-cell-mv4">
+            <strong>Miscellaneous:</strong> <span>{{ product.metafields.custom.miscellaneous }}</span>
+        </div>
+    </div>
+</div>
+<style>
+    .table2-mv4 {
+        width: 100%;
+        font-family: Arial, sans-serif;
+        border-collapse: collapse;
+    }
+
+    .row-mv4 {
+        display: flex;
+        border-bottom: 1px solid #000;
+    }
+
+    .cell-mv4 {
+        flex: 1;
+        padding: 12px;
+        border-right: 1px solid #000;
+        font-size: 16px;
+    }
+
+    .cell-mv4:last-child {
+        border-right: none;
+    }
+
+    .header2-mv4 {
+        background-color: #6BC2FD;
+        color: white;
+        font-weight: bold;
+        font-size: 30px;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .row-mv4 .cell-mv4.left-cell-mv4 {
+        background-color: #6BC2FD;
+        color: white;
+        font-weight: bold;
+    }
+
+    .row-mv4 .cell-mv4.right-cell-mv4 {
+        background-color: #fff;
+        color: #000;
+        font-weight: normal;
+    }
+
+    /* Ensure the title remains white and set font size to 2rem */
+    .title-mv4 {
+        color: white !important;
+        font-size: 1.5rem !important;
+    }
+</style>

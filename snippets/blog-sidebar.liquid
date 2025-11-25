@@ -1,0 +1,374 @@
+
+
+{{ 'blog-sidebar.css' | asset_url | stylesheet_tag }}
+
+{% comment %}
+<div class="m-blog-sidebar">
+  {%- for block in section.blocks -%}
+  {%- case block.type -%}
+    {%- when 'categories' -%}
+      {%- assign blogs_name = block.settings.list_blog -%}
+      {%- if blogs_name != blank -%}
+      <div class="m-widget">
+        <h3 class="m-widget__title">{{ block.settings.title }}</h3>
+        <div class="m-widget__content">
+          <ul class="m-link-lists">
+            {% for link in linklists[blogs_name].links %}
+              {% unless blog.handle == link.handle %}
+                <li class="m-link-lists--item m:block">
+                  <a class="m-link" href="{{ link.url }}">
+                    <span class="m-link__label">
+                      {{ link.title }}
+                      {%- if blogs[link.handle] != blank -%}
+                        <span class="m-link__count">({{ blogs[link.handle].articles_count }})</span>
+                      {%- endif -%}
+                    </span>
+                  </a>
+                </li>
+              {% endunless %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      {%- endif -%}
+    {%- when 'tags' -%}
+      {%- if blog.all_tags != blank -%}
+      <div class="m-widget">
+        <h3 class="m-widget__title">{{ block.settings.title }}</h3>
+        <div class="m-widget__content">
+          <ul class="m-link-lists m-link-lists--inline">
+            {%- for tag in blog.all_tags -%}
+              <li class="m-link-lists--item m:block m:capitalize"><a class="m-link" href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+      {%- endif -%}
+    {%- when 'recent_post' -%}
+      {% liquid
+        assign name_collection = block.settings.sidebar_recent_blog_name
+        assign length = block.settings.sidebar_recent_blog_count | plus: 0
+        assign selected_blog = blogs[name_collection]
+      %}
+      {%- if name_collection != blank -%}
+      <div class="m-widget">
+        <h3 class="m-widget__title">{{ block.settings.title }}</h3>
+        <div class="m-widget__content">
+          <div class="m-recent-posts">
+            {%- for article in selected_blog.articles limit: length -%}
+              {% liquid
+                if article.excerpt != blank
+                  assign article_excerpt = article.excerpt
+                else
+                  assign article_excerpt = article.content
+                endif
+
+                assign truncate = block.settings.truncate | default: 10
+              %}
+              <div class="m-recent-post">
+                <a class="m-recent-post__thumbnail" href="{{ article.url }}">{% render 'responsive-image', image: article.image %}</a>
+                <div class="m-recent-post__summary">
+                  {%- if article.tags.size > 0 and block.settings.blog_show_tags -%}
+                    <div class="m-recent-post__tag">
+                      {%- for tag in article.tags limit: 1 -%}{{ tag | link_to_tag: tag }}{%- endfor -%}
+                    </div>
+                  {%- endif -%}
+
+                  <div class="m-recent-post__title"><a href="{{ article.url }}">{{ article.title }}</a></div>
+                  {%- if block.settings.show_excerpt and article_excerpt != blank -%}
+                    <div class="m-recent-post__description">
+                      {%- if block.settings.truncate_excerpt -%}
+                        {{ article_excerpt | strip_html | truncatewords: truncate, block.settings.truncate_last_symbols }}
+                      {%- else -%}
+                        {{ article_excerpt | strip_html }}
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                  
+                  {%- if block.settings.blog_show_author or block.settings.blog_show_date -%}
+                    <div class="m-recent-post__meta">
+                      {% if block.settings.blog_show_author %}{{ 'blogs.article.by_author' | t }} <span>{{ article.author }}</span> {% endif %}{% if block.settings.blog_show_date %}{{ 'blogs.article.posted_in' | t }} <span>{{ article.created_at | date: '%B' }} {{ article.created_at | date: '%d, %Y' }}</span>{% endif %}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+      {%- endif -%}
+    {%- when 'instagram' -%}
+      {%- if settings.instagram_token != blank -%}
+      <div class="m-widget">
+        {{ 'instagram.css' | asset_url | stylesheet_tag }}
+        <h3 class="m-widget__title">{{ block.settings.title }}</h3>
+        <div class="m-widget__content">
+          <m-instagram class="m-instagram" data-access-token="{{ settings.instagram_token }}" data-images-count="{{ block.settings.images_count }}">
+            <div class="m-instagram__wrapper m:grid m:grid-3-cols"></div>
+          </m-instagram>
+        </div>
+      </div>
+      {%- endif -%}
+  {%- endcase -%}
+  {%- endfor -%}
+
+
+  <!-- Call to Action Section -->
+
+{% form 'customer', id: formId %}
+{%- capture success_message -%}
+  {{ 'general.newsletter_form.confirmation' | t }} 
+{%- endcapture -%}
+{% render 'form__error', form: form %}
+{% render 'form__success', form: form, success_message: success_message %}
+<div class="cta" style="background-color: #52A09E;">
+  <!-- Replace the heading with an image -->
+  
+  <!-- Add image below the title -->
+  <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/RO_Faucet_Blog_Image_1.jpg?v=1726090992" 
+       alt="RO Faucets Image" 
+       style="width: 100%; height: auto; margin-bottom: 15px;" />
+  
+  <input type="hidden" name="contact[tags]" value="blog">
+  
+  <div>
+<p style="padding: 10px; color: white;"> Unlock savings today! Sign up and receive exclusive offers on our best-selling water filtration faucets and plumbing products.</p>
+    <input
+      type="text"
+      name="contact[first_name]"
+      id="{{ formId }}-first-name"
+      placeholder="First Name"
+      autocorrect="off"
+      autocapitalize="off"
+      autocomplete="off"
+      spellcheck="false"
+      class="form-field m-newsletter-form__input"
+    >
+  </div>
+  <div>
+    <input
+      type="email"
+      name="contact[email]"
+      id="{{ formId }}-email"
+      value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
+      placeholder="Email"
+      autocorrect="off"
+      autocapitalize="off"
+      autocomplete="off"
+      spellcheck="false"
+      class="form-field m-newsletter-form__input{% if has_icon %} form-field--input__icon{% endif %}"
+    >
+  </div>
+  <button
+    type="submit"
+    name="commit"
+    class="m-newsletter-form__button m-newsletter-form__button--{{ button_type }} m-button {{ button_style }}"
+    aria-label="{{ button_label | default: 'Subscribe' }}"
+    style="background-color: black; color: white;"
+  >
+    {% if button_type == 'icon' %}
+      <svg class="m-svg-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path d="M218.101 38.101L198.302 57.9c-4.686 4.686-4.686 12.284 0 16.971L353.432 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h341.432l-155.13 155.13c-4.686 4.686-4.686 12.284 0 16.971l19.799 19.799c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L235.071 38.101c-4.686-4.687-12.284-4.687-16.97 0z"/>
+      </svg>
+    {% else %}
+      <span>{{ button_label | default: 'Subscribe' }}</span>
+    {% endif %}
+  </button>
+</div>
+{% endform %}
+ 
+<style> 
+.cta {
+  margin-top: 60px;
+}
+
+</style>
+{% endcomment %}
+
+
+{% assign applied_tag = article.tags | join: ',' %} <!-- Combine all applied tags into a single string for easier comparison --> 
+{% assign selected_collection = collections['google-shopping-best-sellers'] %} <!-- Default collection --> 
+
+<div style="text-align: center; padding: 20px; border: 2px solid #009B9F; border-radius: 8px; background-color: rgba(172, 246, 244, 0.5);">
+    <h4 style="color: #52A09E; margin-bottom: 10px; font-weight: bold;">GET FREE SHIPPING & 10% OFF YOUR FIRST ORDER!</h4>
+    <p style="color: #333; margin-bottom: 20px;">Place your order today and enjoy special discounts on your first purchase!</p>
+    
+    <!-- Button to copy the discount code -->
+    <button 
+        onclick="copyToClipboard()" 
+        style="background-color: white; color: #52A09E; padding: 10px 15px; border-radius: 5px; border: 2px solid #52A09E; cursor: pointer; transition: background-color 0.3s, color 0.3s;"
+        onmouseover="this.style.backgroundColor='#52A09E'; this.style.color='white';" 
+        onmouseout="this.style.backgroundColor='white'; this.style.color='#52A09E';">
+        COPY PROMO CODE: FIRSTORDER
+    </button>
+
+    <script>
+        function copyToClipboard() {
+            const code = "FIRSTORDER";
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Discount code copied to clipboard: " + code);
+            }).catch(err => {
+                console.error("Failed to copy: ", err);
+            });
+        }
+    </script>
+</div>
+
+
+<!-- Adjust the condition to check for the applied tag -->
+{% if applied_tag contains 'RO Filtration Faucet' %}
+  {% assign selected_collection = collections['kit-faucets'] %}
+{% elsif applied_tag contains 'Faucet Supply Lines' %}
+  {% assign selected_collection = collections['supply-lines'] %}
+{% elsif applied_tag contains 'Pex Fittings' %}
+  {% assign selected_collection = collections['pex'] %}
+{% elsif applied_tag contains 'Water Filter' %}
+  {% assign selected_collection = collections['water-filter-collection'] %}
+{% elsif applied_tag contains 'Kitchen' %}
+  {% assign selected_collection = collections['kitchen-collection'] %}
+{% elsif applied_tag contains 'Bathroom' %}
+  {% assign selected_collection = collections['bathroom-collection'] %} 
+{% elsif applied_tag contains 'Water Filtration Systems' %}
+  {% assign selected_collection = collections['water-filtration-systems'] %}
+{% elsif applied_tag contains 'Water Heater' %}
+  {% assign selected_collection = collections['water-heater-accessories-1'] %}
+{% elsif applied_tag contains 'Water Filters' %}
+  {% assign selected_collection = collections['other-water-filters'] %} 
+{% elsif applied_tag contains 'PVC Pipes' %}
+  {% assign selected_collection = collections['pvc-pipes'] %}
+{% elsif applied_tag contains 'Soap Dispensers' %}
+  {% assign selected_collection = collections['all-soap-dispensers'] %}
+{% elsif applied_tag contains 'Metpure Versatile' %}
+  {% assign selected_collection = collections['metpure-versatile-water-filters'] %}
+{% elsif applied_tag contains 'Tubing' %}
+  {% assign selected_collection = collections['lldpe-tubing'] %}
+  {% elsif applied_tag contains 'faucet supply lines' %}
+  {% assign selected_collection = collections['faucet-supply-lines-1'] %}
+  {% elsif applied_tag contains 'valves' %}
+  {% assign selected_collection = collections['valves-1'] %}
+   {% elsif applied_tag contains 'Ball valves' %}
+  {% assign selected_collection = collections['valves-1'] %}
+  {% elsif applied_tag contains 'Black Friday' %}
+  {% assign selected_collection = collections['water-filtration-systems'] %}
+   {% elsif applied_tag contains 'Shower Head' %}
+  {% assign selected_collection = collections['shower-heads'] %}
+   {% elsif applied_tag contains 'RO Water Filtration' %}
+  {% assign selected_collection = collections['metpure-versatile-rags'] %}
+   {% elsif applied_tag contains 'Black Friday Exclusive' %}
+  {% assign selected_collection = collections['water-filtration'] %}
+  {% elsif applied_tag contains 'Water Pressure' %}
+  {% assign selected_collection = collections['carbon-collection'] %}
+   {% elsif applied_tag contains 'Pex-Fittings' %}
+  {% assign selected_collection = collections['pex-fittings'] %}
+   {% elsif applied_tag contains 'Air Gap vs Non-Air Gap Faucets' %}
+  {% assign selected_collection = collections['wholesale-ro-faucets'] %}
+   {% elsif applied_tag contains 'Water-Filters' %}
+  {% assign selected_collection = collections['water-filters'] %}
+   {% elsif applied_tag contains 'Best Water Filtration System' %}
+  {% assign selected_collection = collections['metpure-versatile-systems'] %}
+   {% elsif applied_tag contains 'Sink Faucet' %}
+  {% assign selected_collection = collections['water-filtration-faucets'] %}
+     {% elsif applied_tag contains 'Toilet' %}
+  {% assign selected_collection = collections['toilet-supply-lines-2'] %}
+     {% elsif applied_tag contains 'Connector' %}
+  {% assign selected_collection = collections['pp-plastic-quick-connect-1'] %}
+   {% elsif applied_tag contains 'Best Fridge Filter' %}
+  {% assign selected_collection = collections['metpure-versatile-systems'] %}
+   {% elsif applied_tag contains 'Carbon Filter' %}
+  {% assign selected_collection = collections['carbon-collection'] %}
+   {% elsif applied_tag contains 'Cushion Clamp' %}
+  {% assign selected_collection = collections['cushion-clamps'] %}
+  {% elsif applied_tag contains 'Extending Water Heater' %}
+  {% assign selected_collection = collections['water-heater-accessories-1'] %}
+  {% elsif applied_tag contains 'Copper Fittings' %}
+  {% assign selected_collection = collections['copper-fittings'] %}
+  {% elsif applied_tag contains 'Brass Fittings' %}
+  {% assign selected_collection = collections['fittings-main-brass'] %}
+{% endif %}
+
+<!-- Collection Display -->
+{% if selected_collection and selected_collection.products.size > 0 %}
+  <div class="collection-display">
+    <h3 style="text-align: center; font-size: 28px; color: #009B9F; font-weight: bold; margin-bottom: 5px;">SHOP</h3> 
+    <h4 style="text-align: center; font-size: 22px; color: black; font-weight: 400; margin-bottom: 20px;">{{ applied_tag }}</h4> <!-- Display applied tag --> 
+    <div class="products-grid"> 
+      {% for product in selected_collection.products limit: 5 %}
+        <div class="product-item">
+          <a href="{{ product.url }}" class="product-link">
+            <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}" class="product-image" />
+            <div class="product-info">
+              <span class="product-title">{{ product.title }}</span>
+            </div>
+          </a>
+          <a href="{{ product.url }}" class="buy-now-button">Buy Now</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% else %}
+  <p>No products found in this collection.</p>
+{% endif %}
+
+<!-- Styles for the Collection Display -->
+<style>
+.collection-display {
+  margin-top: 10px;
+  background-color: #f9f9f9; /* Use white background for contrast */
+  padding: 20px; 
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */ 
+}
+
+.products-grid {
+  display: grid; /* Use grid layout for products */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Space between items */
+}
+
+.product-item {
+  background-color: #ffffff; /* Light background for product items */
+  border-radius: 8px; /* Rounded corners */
+  padding: 15px;
+  text-align: center; /* Centered text */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s; /* Animation effect */
+}
+
+.product-item:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.product-link {
+  text-decoration: none;
+  color: #333; /* Text color */
+}
+
+.product-image {
+  max-width: 100%; /* Responsive images */
+  height: auto;
+  margin-bottom: 10px; /* Spacing below the image */
+  border-radius: 5px; /* Rounded image corners */
+}
+
+.product-title {
+  font-size: 16px; /* Size of product title */
+  margin: 10px 0; /* Margin around title */
+  display: block; /* Ensure title is on its own line */
+  padding-bottom: 10px;
+}
+
+.buy-now-button {
+  background-color: #52A09E; /* Button background color */
+  color: white; /* Button text color */
+  padding: 10px 15px; /* Padding */
+  border-radius: 5px; /* Rounded corners */
+  text-align: center; /* Centered text */
+  text-decoration: none; /* Remove underline */
+  margin: 20px 0; /* Space on top and bottom of the button */
+  transition: background-color 0.3s; /* Transition effect */
+}
+
+.buy-now-button:hover {
+  background-color: #3f8a76; /* Darker shade on hover */
+}
+</style>  

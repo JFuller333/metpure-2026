@@ -1,0 +1,29 @@
+<script>window._usfTheme={
+    id:136816689343,
+    name:"Minimog - OS 2.0",
+    version:"5.2.0",
+    vendor:"FoxEcom",
+    applied:1,
+    assetUrl:"{{ 'usf-boot.js' | asset_url }}"
+};
+window._usfCustomerTags = {{ customer.tags | json }};
+window._usfCollectionId = {{ collection.id | json }};
+window._usfCollectionDefaultSort = {{ collection.default_sort_by | json }};
+window._usfLocale = {{ request.locale.iso_code | json | downcase }};
+window._usfRootUrl = {{ routes.root_url | json }};
+window.usf = {
+  settings: {{ shop.metafields.usf.settings }}
+}
+
+{% if customer and customer.b2b != true %}
+   window._usfCustomerTags = {{ customer.tags | json }};
+  if (!window._usfCustomerTags.includes('b2b')) {
+    window._usfCustomerTags.push('NotB2B');
+  }
+{% elsif customer %}
+  window._usfCustomerTags = {{ customer.tags | json }};
+{% else %}
+  window._usfCustomerTags = ['NotLogin'];
+{% endif %}  
+</script>
+<script src="{{ 'usf-boot.js' | asset_url }}" async></script>

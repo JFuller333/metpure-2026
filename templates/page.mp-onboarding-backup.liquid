@@ -1,0 +1,58 @@
+{% comment %} registration.liquid {% endcomment %}
+{% layout none %}
+<body>
+  <div class="flex h-screen">
+    <div class="container">
+     <div class="globo-formbuilder" data-id="MTAxMzU4"></div>
+    </div>
+  </div>
+</body>
+<style>
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(100% 88.39% at 0% 88.39%, #F0F0F0 1.44%, #E5E5E5 51.45%, #EEEEEE 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  color: #374151;
+  line-height: 1.5;
+}
+/* Container styles */
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.logo {
+  width: 25%;
+  margin-bottom: 24px;
+}
+
+/* Globo form styles */
+.globo-formbuilder {
+  max-width: 100%;
+}
+
+/* Media queries for mobile */
+@media (max-width: 640px) {
+  .container {
+    padding: 24px;
+    height: auto;
+  }
+  
+  .logo {
+    width: 50%;
+  }
+  
+  .globo-formbuilder {
+    max-width: 100%;
+  }
+}
+</style>

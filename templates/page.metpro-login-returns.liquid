@@ -1,0 +1,92 @@
+<div>
+    <img class="metpro-members-only-logo w-full md:w-2/3 lg:w-1/6" src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/login-members-metpro-logo.svg?v=1682021671" style="max-width: 20%;">
+</div>  
+
+<div class="metpro-login-form"> 
+    <script>
+        if (sessionStorage.getItem("wcp_account_login") != null) {
+            sessionStorage.removeItem("wcp_account_login");
+        }
+    </script> 
+
+    <div data-login-form class="flex flex-col-reverse px-6">
+        {% form 'customer_login' %}
+            {% render 'form__error', form: form %}
+            <h5 class="pb-5" style="text-align: center;">Must sign-in to access this item. Please login using your account credentials.</h5>
+            <input type="email" name="customer[email]" placeholder="{{ 'customer.login.email' | t }}" class="form-control" />
+            <input type="password" name="customer[password]" placeholder="{{ 'customer.login.password' | t }}" class="form-control" />
+            <input type="hidden" name="return_to" value="{{ request.query.return_to }}">
+
+            <a class="sf-customer__reset-password-btn">{{ 'customer.login.forgot_password' | t }}</a>
+            <button class="sf__btn sf__btn-primary mt-4 mb-3 w-full" type="submit">Login</button>
+            
+            <div class="mt-4 text-center">
+                <h5 class="mb-2" style="text-align: center;">Not a member? Sign up for Met Pro <u><a style="color: blue;" href="https://www.metpure.com/pages/metpro">here.</a></u></h5>
+            </div>
+            <br><br><br><br><br><br><br>
+        {% endform %}
+    </div>
+</div>
+
+<!-- CSS -->
+<style>       
+.metpro-members-only-logo {
+    margin: auto;
+    padding-top: 10%;
+    padding-bottom: 10px;
+}
+
+.metpro-login-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 0 20px;
+    text-align: center;
+    margin: auto;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.sf__btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: black; 
+    color: white; 
+}
+
+.sf__btn-primary {
+    background-color: black; 
+}
+
+.sf__btn-primary:hover {
+    background-color: #333; 
+}
+
+.sf-customer__reset-password-btn {
+    color: black; /* Color for the "Forgot your password?" link */
+    text-decoration: underline;
+    display: inline-block;
+    margin-top: 10px; /* Add margin-top to separate from other elements */
+}
+
+.sf-customer__reset-password-btn:hover {
+    color: #333; /* Darker shade on hover */
+}
+
+/* Additional styling to align "Forgot your password?" to the left */
+[data-login-form] {
+    text-align: left; /* Aligns all content in the login form to the left */
+}
+</style>

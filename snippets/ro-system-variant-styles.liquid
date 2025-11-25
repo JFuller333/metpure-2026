@@ -1,0 +1,107 @@
+{% if template == 'product.mv4-system' or template == 'product.mv2-system' %}
+<div style="padding: 10px 10px 10px 0;"><b>Select Filter Type:</b> <span id="style-title">{{ product.metafields.custom.faucet_style_name }}</span></div>
+{% endif %} 
+
+<div class="product-styles">
+    <!-- Image 1 -->
+    <div class="current-variant" data-style="ROGB">
+      <a href="https://www.metpure.com/products/metpure-4-stage-reverse-osmosis-water-filtration-system-mv4-rogb-with-faucet-50-gpd-ro-membrane-copy">
+        <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/MV4-ROGB-BG.png?v=1722537391" alt="ROGB" />
+      </a>
+    </div>
+
+    <!-- Image 2 -->
+    <div class="current-variant" data-style="ROLB">
+      <a href="https://www.metpure.com/products/metpure-4-stage-reverse-osmosis-water-filtration-system-mv4-rolb-100-gpd-ro-membrane">
+        <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/MV4-ROLB-BG_1.png?v=1729274182" alt="ROLB" />
+      </a>
+    </div>
+
+     <!-- Image 2 -->
+     <div class="current-variant" data-style="RAGS4">
+      <a href="https://www.metpure.com/products/metpure-4-stage-alkaline-reverse-osmosis-water-filtration-system-mv4-rags-50-gpd-ro-membrane">
+        <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/MV4-RAGS-BG_1.png?v=1729274131" alt="RAGS" />
+      </a>
+    </div>
+</div>
+
+<style>
+.product-styles {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  margin-bottom: 30px;
+}
+
+.product-styles .current-variant {
+  width: 120px; 
+  height: 120px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; 
+  border: 1px solid #ddd; /* default border */
+  overflow: hidden;
+  background-color: rgb(253, 253, 253);
+  transition: all 0.3s ease; /* smooth hover/selection */
+  cursor: pointer;
+  position: relative;
+}
+
+/* Selected effect (like the square cards version) */
+.product-styles .current-variant.selected {
+  border: 2px solid #007aff;
+  box-shadow: 0 0 0 2px #007aff33;
+  background-color: #f8fbff; /* subtle highlight */
+}
+
+/* Hover effect */
+.product-styles .current-variant:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Link wrapper fills the circle */
+.product-styles a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Image inside circle */
+.product-styles img {
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s ease; /* smooth zoom */
+}
+
+/* Image zooms in on hover */
+.product-styles .current-variant:hover img {
+  transform: scale(1.05);
+</style>
+
+<script>
+  function displayStyleTitle(styleName) {
+    var styleTitle = document.getElementById('style-title');
+    if (styleTitle) {
+      styleTitle.textContent = styleName;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var variants = document.querySelectorAll('.current-variant');
+    variants.forEach(function(variant) {
+      variant.addEventListener('mouseover', function() {
+        displayStyleTitle(variant.getAttribute('data-style'));
+      });
+
+      // Add click event listener to keep the title when selected
+      variant.addEventListener('click', function() {
+        displayStyleTitle(variant.getAttribute('data-style'));
+      });
+    });
+  });
+</script>

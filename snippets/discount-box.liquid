@@ -1,0 +1,140 @@
+<!-- Begin Discount Box Snippet -->
+{% assign discount_code = discount_code | default: 'FIRSTORDER' %}
+{% assign title = title | default: 'FIRST ORDER GET 10% OFF ' %}
+{% assign subtext = subtext | default: 'Use the discount code at checkout to get 10% off!' %}
+
+<div class="discount-header">
+  <h2 class="discount-title">{{ title }}</h2>
+  <p class="discount-subtext">{{ subtext }}</p>
+</div>
+
+<div class="discount-code-container">
+  <div class="discount-code-wrapper">
+    <strong id="discountCode">{{ discount_code }}</strong>
+    <button class="btn" onclick="copyDiscountCode()">COPY</button>
+  </div>
+</div>
+
+<script>
+  function copyDiscountCode() {
+    var discountCode = document.getElementById('discountCode').textContent;
+    navigator.clipboard.writeText(discountCode).then(function() {
+      alert('Discount code copied: ' + discountCode);
+    }, function(err) {
+      console.error('Could not copy text: ', err);
+    });
+  }
+</script>
+
+<style>
+  .discount-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .discount-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .discount-subtext {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .discount-code-container {
+    border: 1.5px solid black;
+    background-color: #ffffff;
+    border-radius: 50px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 88px;
+    margin: 0 auto;
+    max-width: 600px; /* Limit width on larger screens */
+  }
+
+  .discount-code-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+  }
+
+  #discountCode {
+    font-size: 24px;
+    font-weight: 200;
+    padding-left: 60px;
+    color: black;
+    margin-right: 20px;
+    flex: 1;
+  }
+
+  .btn {
+    padding: 31px 60px;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  .btn:hover {
+    background-color: #0AAFA2;
+  }
+
+  /* Media queries for responsive adjustments */
+  @media (max-width: 768px) {
+    .discount-code-container {
+      border-radius: 20px;
+      height: auto; /* Adjust height for better fit */
+      padding: 10px 15px;
+    }
+
+    #discountCode {
+      font-size: 20px;
+      padding-left: 20px;
+      margin-right: 10px;
+    }
+
+    .btn {
+      padding: 20px 40px;
+      font-size: 16px;
+      border-radius: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .discount-title {
+      font-size: 20px;
+    }
+
+    .discount-subtext {
+      font-size: 16px;
+    }
+
+    .discount-code-container {
+      border-radius: 10px;
+      height: auto;
+      padding: 10px;
+    }
+
+    #discountCode {
+      font-size: 18px;
+      padding-left: 10px;
+    }
+
+    .btn {
+      padding: 15px 20px;
+      font-size: 14px;
+      border-radius: 10px;
+    }
+  }
+</style>
+<!-- End Discount Box Snippet -->

@@ -1,0 +1,64 @@
+{% if section.settings.image_custom_payment == blank %}
+  <div class="payment-options-container">
+    <span class="payment-options-label">{{ 'general.payment.options' | t }}:</span>
+    <ul class="payment-icons-list">
+      <li>{{ 'visa' | payment_type_svg_tag: class: 'icon icon--full-color' }}</li> 
+      <li>{{ 'master' | payment_type_svg_tag: class: 'icon icon--full-color' }}</li>
+      <li>{{ 'discover' | payment_type_svg_tag: class: 'icon icon--full-color' }}</li>
+      <li>{{ 'paypal' | payment_type_svg_tag: class: 'icon icon--full-color' }}</li>
+      <li>{{ 'venmo' | payment_type_svg_tag: class: 'icon icon--full-color' }}</li>
+      <!-- Add more SVGs in the desired order -->
+    </ul>
+  </div>
+{% else %}
+  <div class="custom-image">
+    {% render 'responsive-image', image: section.settings.image_custom_payment %}
+  </div>
+{% endif %}
+
+<style> 
+
+.payment-options-container {
+  display: flex;
+  align-items: center; /* Align items vertically centered */
+  margin-right: 0.625rem;
+}
+
+.payment-options-label {
+  margin-right: 0.625rem; /* Space between label and icons */
+}
+
+.payment-icons-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.payment-icons-list li {
+  margin-right: 0.625rem; /* Space between icons */
+}
+
+.custom-image {
+  width: 100%; /* Ensure the image container takes the full width */
+  max-width: {{ section.settings.payment_icons_width }}px; /* Constrain width */
+}
+
+@media (max-width: 768px) {
+  .payment-options-container {
+    flex-direction: column; /* Stack label and icons vertically on mobile */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .payment-options-label {
+    margin-bottom: 0.3125rem; /* Space between label and icons on mobile */
+  }
+
+  .payment-icons-list li {
+    margin-right: 0.3125rem; /* Adjust spacing for smaller screens */
+  }
+}
+
+
+</style>

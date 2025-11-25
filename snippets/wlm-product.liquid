@@ -1,0 +1,41 @@
+{%- assign w_continue = 'no' -%}
+{% assign wlmHideItem_Product = false %}{% assign wlmLockedTags152208 = false %}
+{% assign wlmLockedTags154065 = false %}
+{% assign wlmLockedTags154066 = false %}
+{% assign wlmLockedTags265819 = false %}
+{% assign wlmLockedTags312760 = false %}
+{% assign wlmLockedTags274171 = false %}
+{% assign wlmLockedTags351256 = false %}
+{% assign wlmLockedTags351257 = false %}
+{% assign wlmLockedTags350153 = false %}
+{% for tag in customer.tags %}
+{% if tag == 'TAP369' %}{% assign wlmLockedTags152208 = true %}{% endif %}
+{% if tag == 'b2b' %}{% assign wlmLockedTags154065 = true %}{% endif %}
+{% if tag == 'b2b' %}{% assign wlmLockedTags154066 = true %}{% endif %}
+{% if tag == 'retail customer MV filter' %}{% assign wlmLockedTags265819 = true %}{% endif %}
+{% if tag == 'WLMTest' %}{% assign wlmLockedTags312760 = true %}{% endif %}
+{% if tag == 'staff' %}{% assign wlmLockedTags274171 = true %}{% endif %}
+{% if tag == 'b2b' %}{% assign wlmLockedTags351256 = true %}{% endif %}
+{% if tag == 'b2b' %}{% assign wlmLockedTags351257 = true %}{% endif %}
+{% if tag == 'staff' %}{% assign wlmLockedTags350153 = true %}{% endif %}
+{% endfor %}
+
+{% if wlm-product.id == 7391036539071 or wlm-product.id == 7391768445119 or wlm-product.id == 7391005343935 or wlm-product.id == 7391040045247 %} 
+{% unless customer %}
+{% assign  wlmHideItem_Product = true %}
+{% else %}
+{% unless wlmLockedTags152208 %}{% assign  wlmHideItem_Product = true %}{% endunless %}
+{% endunless %}
+{% endif %}
+
+{% if wlm-product.id == 7265329447103 or wlm-product.id == 7989190066367 or wlm-product.id == 7265325646015 or wlm-product.id == 7265330823359 or wlm-product.id == 7265327677631 or wlm-product.id == 7265327710399 or wlm-product.id == 7265331806399 or wlm-product.id == 7265330757823 or wlm-product.id == 7305579233471 or wlm-product.id == 7265329774783 or wlm-product.id == 7925749022911 or wlm-product.id == 7925749547199 or wlm-product.id == 7925728903359 or wlm-product.id == 7920915382463 or wlm-product.id == 7920914399423 or wlm-product.id == 7920915054783 or wlm-product.id == 7923126108351 or wlm-product.id == 7920912662719 or wlm-product.id == 7265332101311 or wlm-product.id == 7265328201919 or wlm-product.id == 7438603976895 or wlm-product.id == 7438463664319 or wlm-product.id == 7438444298431 or wlm-product.id == 7438576550079 or wlm-product.id == 7435550884031 or wlm-product.id == 7435531387071 or wlm-product.id == 7436006883519 or wlm-product.id == 7265329709247 or wlm-product.id == 7434228727999 or wlm-product.id == 7434234855615 or wlm-product.id == 7433952067775 or wlm-product.id == 7265328955583 or wlm-product.id == 7265325973695 or wlm-product.id == 7434230661311 or wlm-product.id == 7434239344831 or wlm-product.id == 7434270802111 or wlm-product.id == 7330866233535 or wlm-product.id == 7265327808703 or wlm-product.id == 7265326170303 or wlm-product.id == 7265326891199 or wlm-product.id == 7265301037247 or wlm-product.id == 7429261394111 or wlm-product.id == 7265329545407 or wlm-product.id == 7265331675327 or wlm-product.id == 7265332297919 or wlm-product.id == 7433412739263 or wlm-product.id == 7436172230847 or wlm-product.id == 7265329610943 or wlm-product.id == 7265328431295 or wlm-product.id == 7434206904511 or wlm-product.id == 7434299474111 or wlm-product.id == 7265325547711 or wlm-product.id == 7435557044415 or wlm-product.id == 7265331937471 or wlm-product.id == 7265329676479 or wlm-product.id == 7436048269503 or wlm-product.id == 7265327644863 or wlm-product.id == 7436064817343 or wlm-product.id == 7265325580479 or wlm-product.id == 7434293313727 or wlm-product.id == 7436055150783 or wlm-product.id == 7265331708095 or wlm-product.id == 7265332428991 or wlm-product.id == 7265330528447 or wlm-product.id == 7265325514943 or wlm-product.id == 7265330036927 or wlm-product.id == 7265330462911 or wlm-product.id == 7265330430143 or wlm-product.id == 7265332363455 or wlm-product.id == 7265301299391 or wlm-product.id == 7265326235839 or wlm-product.id == 7265328169151 or wlm-product.id == 7265329119423 or wlm-product.id == 7265300218047 or wlm-product.id == 7265331249343 or wlm-product.id == 7265328038079 or wlm-product.id == 7265299955903 or wlm-product.id == 7265331282111 or wlm-product.id == 7265330561215 or wlm-product.id == 7265331347647 or wlm-product.id == 7265331380415 or wlm-product.id == 7294422712511 or wlm-product.id == 7265326137535 or wlm-product.id == 7265326858431 or wlm-product.id == 7265325744319 or wlm-product.id == 7317907439807 or wlm-product.id == 7265329184959 or wlm-product.id == 7265328005311 or wlm-product.id == 7265327841471 or wlm-product.id == 7265327939775 or wlm-product.id == 7265299792063 or wlm-product.id == 7265300086975 or wlm-product.id == 7265326071999 or wlm-product.id == 7265328332991 or wlm-product.id == 7265331151039 or wlm-product.id == 7265331183807 or wlm-product.id == 7265300349119 or wlm-product.id == 7265328988351 or wlm-product.id == 7265332330687 or wlm-product.id == 7265332396223 or wlm-product.id == 7265328136383 or wlm-product.id == 7265330495679 or wlm-product.id == 7265330987199 or wlm-product.id == 7265326923967 or wlm-product.id == 7265326825663 or wlm-product.id == 7265332166847 or wlm-product.id == 7265330954431 or wlm-product.id == 7265331773631 or wlm-product.id == 7265300578495 or wlm-product.id == 7265332461759 or wlm-product.id == 8101839700159 or wlm-product.id == 7453277847743 or wlm-product.id == 7265329250495 or wlm-product.id == 8087033610431 or wlm-product.id == 8102705103039 or wlm-product.id == 8046862008511 or wlm-product.id == 7925064204479 or wlm-product.id == 8046862532799 or wlm-product.id == 7453258547391 or wlm-product.id == 7265329316031 or wlm-product.id == 7483358347455 or wlm-product.id == 7285652750527 or wlm-product.id == 8068588470463 or wlm-product.id == 7285238300863 or wlm-product.id == 7621942771903 or wlm-product.id == 7561575006399 or wlm-product.id == 8016910483647 or wlm-product.id == 8094492524735 or wlm-product.id == 8101839077567 or wlm-product.id == 7305579299007 or wlm-product.id == 8094035574975 or wlm-product.id == 8101775474879 or wlm-product.id == 7305579135167 or wlm-product.id == 7305579167935 or wlm-product.id == 7485912842431 or wlm-product.id == 7494553305279 or wlm-product.id == 7607055909055 or wlm-product.id == 7493456167103 or wlm-product.id == 8087032922303 or wlm-product.id == 8086984392895 or wlm-product.id == 8087006118079 or wlm-product.id == 8085950070975 or wlm-product.id == 7265327775935 or wlm-product.id == 7294421860543 or wlm-product.id == 7294361829567 or wlm-product.id == 7265301135551 or wlm-product.id == 7549031022783 %} 
+{% if customer %}
+{% if wlmLockedTags351256 %}{% assign  wlmHideItem_Product = true %}{% else %}{% assign wlmHideItem_Product = false %}{% endif %}
+{% endif %}
+{% endif %}
+
+
+
+{% if wlmHideItem_Product == true %}{% continue %}{% endif %}
+
+{%- if wlm_is_render == 'yes' -%}{{- w_continue -}}{%-endif-%}

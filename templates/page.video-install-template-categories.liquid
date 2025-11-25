@@ -1,0 +1,23 @@
+{% assign video_param = request.params.video %}
+<video id="dynamicVideo" controls>
+  Your browser does not support the video tag.
+</video>
+
+{% assign video_config = '{
+  "videos": {
+    "video1": "https://www.example.com/video1.mp4",
+    "video2": "https://www.example.com/video2.mp4",
+    "default": "https://www.example.com/default.mp4"
+  }
+}' %}
+
+<script>
+  var videoConfig = {{ video_config | jsonify }};
+  var videoParam = "{{ video_param | default: 'default' }}";
+  var videoUrl = videoConfig.videos[videoParam];
+
+  if (videoUrl) {
+    var videoElement = document.getElementById('dynamicVideo');
+    videoElement.src = videoUrl;
+  }
+</script>

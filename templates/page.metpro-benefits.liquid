@@ -1,0 +1,899 @@
+<body>
+<section>
+  <div class="bg-auto w-full py-8 md:min-h-550 bg-cover" style="background-image: url('https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Rectangle_143.jpg?v=1679435373');"> 
+  <div class="container">
+    <div class="flex flex-col items-center">
+      <div class="container-sm">
+        <div class="flex justify-center pt-8">
+          <img class="sm:w-auto logo-desktop" src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/metpure_logo_white_1.svg?v=1679957006" width="25%" display="block" atl="metpro-logo"></div>
+          <p class="heading py-10 md:py-16 text-center md:pb-16" style="font-family: Lemon Milk; font-weight: bold;">YOUR SOURCE FOR HIGH QUALITY FILTRATION PRODUCTS AT WHOLESALE PRICE</p>
+         <!-- <p class="subheading text-center py-2">Join&nbsp <img class="mp-logo" src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Metpro_logo_white_1.png?v=1680199882"> for FREE and get wholesale price on water filtration and plumbing supplies!</p> -->     
+      
+       <div class="flex items-center justify-center h-full">
+        <div class="text-center my-4">
+          <u>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/deq75as-soU" frameborder="0" allowfullscreen></iframe>
+          </u>
+        </div>
+      </div>
+  <img class="mx-auto img-desktop" src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Metpro_website_main_2.png?v=1680133242" width="100%" style="padding-bottom: 30px;"></img>
+
+    <p class="subheading text-center pt-4" style="color: white;font-size: 16px;">To get wholesale price, you must be a Met Pro member. Membership is restricted to trade professionals such as suppliers, <br>plumbers, installers, technicians, and business entities engaging in selling plumbing and water filtration products. </p>
+        
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<div class="h-36 py-24"></div>
+
+<div class="mx-auto md:p-36 perks">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mx-auto place-items-center">
+  <div class="bg-gray-200 h-24 w-24 md:h-auto">
+    <div class="text-4xl mb-4">
+    <img class="mb-5" src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Discount_Icon_2b56a0e7-8a2d-4a39-9315-e2abeaeec03c.svg?v=1679506371"></img>
+      <h2 class="text-2xl font-bold mb-2 text-left my-2" style="font-family: Lemon Milk; font-weight: bold;">WHOLESALE PRICE</h2>
+      <p class="text-lg text-left">Up to 80% discount on popular plumbing and water treatment supplies.</p>
+  </div>
+  </div>
+  <div class="bg-gray-300 h-24 md:h-auto">
+      <div class="text-4xl mb-4">
+      <img class="mb-4" src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Same-Day_Shipping_Icon_d0e5e9f0-73cb-4aad-8d50-cb535c1a7847.svg?v=1679506371"></img>
+      <h2 class="text-2xl font-bold mb-2 text-left my-2" style="font-family: Lemon Milk; font-weight: bold;" >SAME-DAY SHIPPING</h2>
+      <p class="text-lg text-left">If the order is in stock and processed before 12 noon PST we ship out same day.</p>
+  </div>
+  </div>
+  <div class="bg-gray-400 h-24 md:h-auto">
+    <div class="text-4xl mb-4">
+      <img class="mb-4" src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Customer_Service_Icon_82905f7c-a636-4284-9b7d-3a0b73ef91fd.svg?v=1679506371"></img>
+      <h2 class="text-2xl font-bold mb-2 text-left my-2" style="font-family: Lemon Milk; font-weight: bold;" >CUSTOMER SERVICE REP</h2>
+      <p class="text-lg text-left">Met Pro members are provided with a dedicated service rep to assist with orders.</p>
+    </div>
+   </div>
+  </div>
+</div>
+
+
+<div class="h-36 py-24"></div>
+
+<div class="container mx-auto px-8 rounded-lg shadow-lg" style="border-radius: 20px;">
+  <h2 class="text-5xl text-center font-extrabold text-gray-900 py-8">
+    WHOLESALE PRICING ON WATER <br> FILTRATION &amp; PLUMBING SUPPLIES
+  </h2>
+  <div class="grid grid-cols-4 gap-8 md:gap-12">
+    {% assign products = collections['water-filtration'].products | sort: 'best-selling' %}
+    {% for product in (products | reverse | slice: 0, 8) %}
+      <div class="max-w-md bg-white rounded-lg overflow-hidden shadow-lg" style="border-radius: 20px;">
+        <a href="{{ product.url }}">
+          <img class="w-full" src="{{ product.featured_image.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+        </a>
+        <div class="p-6">
+          <h3 class="text-2xl font-extrabold text-gray-900 mb-2">{{ product.title }}</h3>
+          <p class="text-gray-700 font-semibold text-2xl">{{ product.price | money }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+  
+<div  class="divider h-36 py-24"></div>
+
+  
+  <!--  Testimonial Section -->
+  <section class="mb-32 text-gray-800 text-center">
+<div><h2 class="text-center py-24" style="font-family: Lemon Milk; font-weight: bold; color: #06706D"> HEAR FROM OUR <img class="mp-logo2" src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Metpro-Logo3-svg-svg_2-trim_1.png?v=1680122397"> MEMBERS </h2></img></h2>
+    <div class="grid md:grid-cols-3 gap-x-6 lg:gap-x-12" style="padding: 100px;">
+      <div class="mb-12 md:mb-0">
+        <div class="flex justify-center mb-8">
+          <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Plumber_Testimonial_3.png?v=1679937166" class="rounded-full shadow-lg w-20" />
+        </div>
+        <h5 class="text-lg mb-2">Steve G.</h5>
+        <h4 class="font-medium text-blue-600 mb-4"style="font-family: Roboto;">Plumber</h4>
+        <h6 class="mb-8">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="quote-left"
+            class="w-6 pr-2 inline-block" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path fill="currentColor"
+              d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z">
+            </path>
+          </svg>
+          Easy to order and shipping was fast.<br> It’s great to have a online supplier.
+        </h6>
+        <ul class="flex justify-center mb-16">
+          <li>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500"
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path fill="currentColor"
+                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+              </path>
+            </svg>
+          </li>
+          <li>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500"
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path fill="currentColor"
+                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+              </path>
+            </svg>
+          </li>
+          <li>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500"
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path fill="currentColor"
+                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+              </path>
+            </svg>
+          </li>
+          <li>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500"
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path fill="currentColor"
+                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+              </path>
+            </svg>
+          </li>
+          <li>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star-half-alt"
+              class="w-4 text-yellow-500" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 536 512">
+              <path fill="currentColor"
+                d="M508.55 171.51L362.18 150.2 296.77 17.81C290.89 5.98 279.42 0 267.95 0c-11.4 0-22.79 5.9-28.69 17.81l-65.43 132.38-146.38 21.29c-26.25 3.8-36.77 36.09-17.74 54.59l105.89 103-25.06 145.48C86.98 495.33 103.57 512 122.15 512c4.93 0 10-1.17 14.87-3.75l130.95-68.68 130.94 68.7c4.86 2.55 9.92 3.71 14.83 3.71 18.6 0 35.22-16.61 31.66-37.4l-25.03-145.49 105.91-102.98c19.04-18.5 8.52-50.8-17.73-54.6zm-121.74 123.2l-18.12 17.62 4.28 24.88 19.52 113.45-102.13-53.59-22.38-11.74.03-317.19 51.03 103.29 11.18 22.63 25.01 3.64 114.23 16.63-82.65 80.38z">
+              </path>
+            </svg>
+          </li>
+        </ul>
+      </div>
+      <div class="mb-12 md:mb-0">
+        <div class="flex justify-center mb-8">
+          <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Plumber_Testimonial_6.png?v=1679938036" class="rounded-full shadow-lg w-20" />
+        </div>
+        <h5 class="text-lg mb-2">Thomas R.</h5>
+        <h4 class="font-medium text-blue-600 mb-4" style="font-family: Roboto;">Installer</h4>
+        <h6 class="mb-8">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="quote-left"
+            class="w-6 pr-2 inline-block" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path fill="currentColor"
+              d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z">
+            </path>
+          </svg>Great supplies for the price.</br>Feels good to order on the go!
+        </h6>
+        <ul class="flex justify-center mb-16">
+          <li>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500"
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path fill="currentColor"
+                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+              </path>
+            </svg>
+          </li>
+          <li>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500"
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path fill="currentColor"
+                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+              </path>
+            </svg>
+          </li>
+          <li>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500"
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path fill="currentColor"
+                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+              </path>
+            </svg>
+          </li>
+          <li>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500"
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path fill="currentColor"
+                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+              </path>
+            </svg>
+          </li>
+          <li>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500"
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path fill="currentColor"
+                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+              </path>
+            </svg>
+          </li>
+        </ul>
+      </div>
+      <div class="mb-0">
+        <div class="flex justify-center mb-6">
+          <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Plumber_Testimonial_4.png?v=1679937572" class="rounded-full shadow-lg w-20" /> 
+        </div>
+        <h5 class="text-lg mb-2">John H.</h5>
+        <h4 class="font-medium text-blue-600 mb-4" style="font-family: Roboto;">Reseller</h4>
+        <h6 class="mb-8">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="quote-left"
+            class="w-6 pr-2 inline-block" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path fill="currentColor"
+              d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z">
+            </path>
+          </svg> I can order in volume to help restock my inventory!<br> Love the customer service as well!
+        </h6>
+        <ul class="flex justify-center mb-16"> 
+          <li>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500"
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path fill="currentColor"
+                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+              </path>
+            </svg>
+          </li>
+          <li>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500"
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path fill="currentColor"
+                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+              </path>
+            </svg>
+          </li>
+          <li>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500"
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path fill="currentColor"
+                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+              </path>
+            </svg>
+          </li>
+          <li>
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500"
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path fill="currentColor"
+                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+              </path>
+            </svg>
+          </li>
+          <li>
+           <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="w-4 text-yellow-500"
+              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <path fill="currentColor"
+                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z">
+              </path>
+            </svg>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+<!-- Testimonial section End --> 
+  
+  
+<!-- <div>
+  <div class="flex flex-col items-center py-32 md:py-48">
+     <div style="padding: 40px;">
+    <h1 class="text-2xl md:text-3xl font-bold text-center">"Easy to order and shipping was fast. Great pricing on the valves and supply lines. It’s great to have a online supplier.”</h1>
+    </div>
+      <div style="padding-right: 20px;padding-left: 20px;">
+    <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Paul-_Testimonial_1.jpg?v=1679428920" alt="MP-testimonial class="w-48 md:w-64 h-48 md:h-64 object-contain my-8">
+      </div>
+      </div>
+</div> -->
+
+
+<div class="h-36 py-24"></div>
+
+  
+
+<div class="container mx-auto p-4">
+    <div class="w-full overflow-x-auto">
+        <table class="w-full bg-white border-collapse table-auto">
+            <thead>
+                <tr>
+                    <th class="border p-2 w-1/2 sm:w-1/4 bg-gray-100">Specification</th>
+                    <th class="border p-2 w-1/2 sm:w-1/4">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white">
+                    <td class="border p-2 bg-gray-100">Spec 1</td>
+                    <td class="border p-2">Value 1</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border p-2 bg-gray-100">Spec 2</td>
+                    <td class="border p-2">Value 2</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border p-2 bg-gray-100">Spec 3</td>
+                    <td class="border p-2">Value 3</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border p-2 bg-gray-100">Spec 4</td>
+                    <td class="border p-2">Value 4</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border p-2 bg-gray-100">Spec 5</td>
+                    <td class="border p-2">Value 5</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border p-2 bg-gray-100">Spec 6</td>
+                    <td class="border p-2">Value 6</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border p-2 bg-gray-100">Spec 7</td>
+                    <td class="border p-2">Value 7</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border p-2 bg-gray-100">Spec 8</td>
+                    <td class="border p-2">Value 8</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border p-2 bg-gray-100">Spec 9</td>
+                    <td class="border p-2">Value 9</td>
+                </tr>
+                <tr class="bg-white">
+                    <td class="border p-2 bg-gray-100">Spec 10</td>
+                    <td class="border p-2">Value 10</td>
+                </tr>
+                <!-- Replicate the structure for more rows -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+  
+
+<div class="flex flex-col lg:flex-row">
+  <div class="flex-1 lg:w-1/3"> <!-- First child div -->
+    <!-- Content of first child div here -->
+  </div>
+  <div class="flex-1 lg:w-1/3"> <!-- Second child div -->
+    <div class="text-left">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <h1 class="text-5xl font-bold text-center my-10" style="color: #00837F;font-family: Roboto;">FAQ</h1>
+        <dl>
+          <div class="border-t border-gray-200 py-4">
+            <dt class="flex justify-between">
+              <h2 class="text-lg" style="color: #000000; font-family: Roboto;">What is Met Pro?</h2>
+              <span class="accordion-toggle cursor-pointer">+ 
+            <dd class="mt-2 text-base text-gray-500 accordion-content hidden">
+              <!-- Answer goes here -->Met Pro is Metpure’s membership program exclusively catered toward suppliers, plumbers, installers, technicians, and businesses engaging in selling water filtration and plumbing products.</span>
+            </dt>
+            </dd>
+          </div>
+          <div class="border-t border-gray-200 py-6">
+            <dt class="flex justify-between">
+              <h2 class="text-lg" style="color: #000000; font-family: Roboto;">Why join Met Pro?</h2>
+              <span class="accordion-toggle cursor-pointer">+ 
+            </dt>
+            <dd class="mt-2 text-base text-gray-500 accordion-content hidden">
+              <!-- Answer goes here --> We understand you don’t want to waste time chasing after sales reps for pricing and waiting for your quotes. Being a Met Pro member, we help streamline this process by giving you open access to your transparent wholesale pricing so you can make fast decisions to place your order online at any time.  That way, you can focus on your clients and we can focus on supplying you the right parts at competitive rates.</span>
+            </dd>
+          </div>
+          <div class="border-t border-gray-200 py-4">
+            <dt class="flex justify-between">
+              <h2 class="text-lg" style="color: #000000; font-family: Roboto;">What are the benefits of joining Met Pro membership program?</h2>
+              <span class="accordion-toggle cursor-pointer">+ 
+            </dt>
+            <dd class="mt-2 text-base text-gray-500 accordion-content hidden">
+              <!-- Answer goes here --> After joining the program, members can gain full access to wholesale pricing, special promotions and discounts, tier pricing, credit terms, newly released items, same day shipment, and dedicated customer service rep standing by ready to serve you.</span>
+            </dd>
+          </div>
+          <div class="border-t border-gray-200 py-6">
+            <dt class="flex justify-between">
+              <h2 class="text-lg" style="color: #000000; font-family: Roboto;">How much does Met Pro membership cost?</h2>
+              <span class="accordion-toggle cursor-pointer">+ 
+            </dt>
+            <dd class="mt-2 text-base text-gray-500 accordion-content hidden">
+              <!-- Answer goes here --> Membership is absolutely FREE. There is no cost to join. So join today by clicking <a href="https://www.metpure.com/pages/met-pro-onboarding" ><u>HERE</u></a>. Registration takes less than 2 minutes.</span>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="flex-1 lg:w-1/3"> <!-- Last child div -->
+    <!-- Content of first child div here -->
+  </div>
+</div>
+
+<div class="h-36 py-24"></div> 
+
+              
+<style>
+
+@import url('https://fonts.cdnfonts.com/css/lemonmilk');
+
+  body {
+  background-image:;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: auto;
+  opacity: 0.5;
+  }
+  
+  .fullwidth-background {
+    width: 100%;
+    padding: 0 20px 20px 20px;
+    background-image: url(https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Rectangle_128_1.jpg?v=1679432516); 
+    background-repeat: no-repeat;
+    backgound-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: auto;
+  }
+  
+  .heading {
+    font-family: Lemon Milk;
+    font-weight: bold;
+    color: #ffff;
+    font-size: 64px;
+  }
+  .subheading {
+    font-family: Roboto;
+    font-size: 2em;
+  }
+  
+  .product-cards-container {
+  display: flex;
+  flex-wrap: nowrap;
+  animation-name: scroll-horizontally;
+  animation-duration: 200s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  white-space: nowrap;
+  overflow-x: hidden;
+  height: 100%;
+  width: 1000%; /* Adjust the width here */
+  justify-content: center;
+  }
+  .product-cards-container::after { /* Add this block to add a flex item that fills the remaining space */
+  content: '';
+  flex: 1;
+  }
+  
+  /* Rest of the CSS remains the same */
+  This code aligns the product cards to the left of the container using justify-content: flex-start, and adds a new flex item at the end of the container using the ::after
+  
+  
+  @keyframes scroll-horizontally {
+  0% {
+    transform: translateX(0);
+  }
+  /* Add the following rule to restart the animation from the beginning */
+  101% {
+    transform: translateX(0);
+  }
+  }
+  
+  @media (max-width: 767px) {
+  .product-cards-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    }
+  }
+  
+  .product-card {
+  margin-right: 20px;
+  margin: 10px;
+  box-shadow: 0 3px 10px rgba(245, 244, 244, 0.2);
+  flex-shrink: 0;
+  max-width: calc(33.33% - 20px); /* Adjust the max-width here */
+  }
+  .product-card img {
+  max-width: 250px;
+  border-radius: 40px;
+  }
+  @media (max-width: 767px) {
+  .product-card {
+    width: 100%;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 0 20px;
+  }
+  .fullwidth-background {
+    padding: 80px 0;
+  }
+  .heading {
+    font-size: 30px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .subheading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .globo-formbuilder {
+    margin-top: 20px;
+  }
+  .second-section img {
+    width: 100%;
+  }
+  .py-24 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .p-36 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .text-4xl {
+    font-size: 32px;
+  }
+  .text-2xl {
+    font-size: 24px;
+  }
+  .mb-4 {
+    margin-bottom: 10px;
+  }
+  .text-left {
+    text-align: left;
+  }
+  .flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ecomm-product-image {
+    width: 100%;
+  }
+  h3 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+}
+@media (min-width: 1024px) {
+  section {
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+.faq-section-desktop {
+  display: flex;
+  justify-content: center;
+}
+
+.globo-form-control input {
+  color: red !important;
+  border: blue !important;
+  
+}
+
+.img-desktop {
+  width: 75%;
+}
+
+@media only screen and (max-width: 768px) {
+  .img-desktop {
+    width: 100%;
+  }
+}
+  .logo-desktop {
+    width: 75%;
+  }
+}
+ .mp-logo {
+    width: 400px;
+    padding-bottom: 5px;
+    margin: auto;
+    height: auto;
+    vertical-align: middle;
+    display: inline-block;
+  }
+   .mp-logo2 {
+    width: 240px;
+    height: auto;
+    vertical-align: middle;
+    display: inline-block;
+    margin: auto;
+  }
+   .mp-logo3 {
+    width: 330px;
+    height: auto;
+    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+   .mp-logo4 {
+    width: 420px;
+    height: auto;
+    vertical-align: middle;
+    display: inline-block;
+    margin: auto;
+  }
+
+  @media screen and (max-width: 767px) {
+    .mp-logo {
+      width: 250px; 
+      margin-top: 5px;
+    }
+  }
+
+   @media screen and (max-width: 767px) {
+    .mp-logo2 {
+      width: 190px; 
+    }
+  }
+   @media screen and (max-width: 767px) {
+    .mp-logo3 {
+      width: 170px; 
+      margin-bottom: 2%;
+    }
+  }
+   @media screen and (max-width: 767px) {
+    .mp-logo4 {
+      width: 260px; 
+      margin: auto;
+    }
+  }
+
+<!-- Video Modal CSS -->
+
+/* Button Styles */
+.bttn {
+  background-color: #DEDCDC;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: underline;
+  display: inline-block;
+  font-size: 32px !important;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+/* Modal Styling */
+.modal {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: none;
+  margin: 10% auto;
+}
+
+/* Modal Content */
+.modal-content {
+  margin: auto;
+  padding: 20px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 700px;
+  position: relative;
+}
+iframe {
+  border: none;
+  outline: none;
+  border-radius: 20px;
+}
+
+/* Close Button */
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+  padding-right: 2px;
+  transition: all 0.2s ease-in-out;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    overflow: hidden;
+  }
+  
+  .video-container iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border: none;
+  } 
+
+
+  /* Container for the whole collection carousel */
+  .collection-carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Water Filtration Collection Begin */
+
+
+  /* Title of the collection */
+  .collection-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  /* Flex container for the product cards */
+  .product-cards {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: auto;
+  }
+
+  /* Individual product card */
+  .product-card {
+    width: 200px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .product-card img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .product-card h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .product-card p {
+    font-size: 1rem;
+    color: #777;
+  }
+/* Water Filtration Collection End*/
+
+
+  
+  /* Responsive adjustments for mobile */
+  @media only screen and (max-width: 767px) {
+    .video-container {
+      padding-bottom: 75%; /* 4:3 aspect ratio */
+    }
+  }
+  
+  @media only screen and (max-width: 479px) {
+    .video-container {
+      padding-bottom: 100%; /* 1:1 aspect ratio */
+    }
+  }
+/* Responsive Styles */
+@media only screen and (max-width: 767px) {
+  .modal {
+    width: 100%;
+    height: 75%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .modal-dialog {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .modal-content {
+    width: 100%;
+  }
+  .modal-content iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .modal-body {
+    height: calc(100% - 56px);
+  }
+}
+
+<!-- Shopify Contact Form CSS --> 
+.contact-form input[type="text"],
+.contact-form input[type="email"] {
+  width: 100%;
+  padding: 1px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+}
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus {
+  border-color: #333;
+}
+.contact-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.contact-form button.submit-button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.contact-form button.submit-button:hover {
+  background-color: #333;
+}
+.perks .grid {
+  margin-left:  10%; 
+}
+.perks .grid p {
+  max-width:  400px;
+  margin-right: 30px
+}
+</style>
+
+
+<script>
+
+<!-- FAQ Javascript -->
+  
+  const toggles = document.querySelectorAll('.accordion-toggle');
+
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('active');
+      const content = toggle.parentElement.nextElementSibling;
+      content.classList.toggle('hidden');
+    });
+  });
+
+<!-- Video Modal Javascript -->
+  
+// Get the button element
+var btn = document.getElementById("watch-video-button");
+
+// Get the modal element
+var modal = document.getElementById("video-modal");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
+<!--- Shopify Form - Customer Opt In -->
+
+
+</script>

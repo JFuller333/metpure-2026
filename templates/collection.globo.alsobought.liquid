@@ -1,0 +1,8 @@
+{%- layout none -%}{%- if collection.all_products_count > 0 -%}{%- assign limit = 60 -%}{%- assign count = 0 -%}{%- paginate collection.products by 60 -%}
+[{%- for product in collection.products -%}
+  {% capture wlm_check %}{% include 'wlm-product' with product %}{% endcapture %}{% unless wlm_check contains "Liquid error" %}{% include 'wlm-product' with product %}{% endunless %}
+        {%- unless count == 0 -%},{%- endunless -%}
+        {{-product | json-}}        {%- assign count = count | plus: 1 -%}
+        {%- if count >= 60 -%}{%- break -%}{%- endif -%}
+    {%- endfor -%}]
+{%- endpaginate -%}{%- else -%}[]{%- endif -%}

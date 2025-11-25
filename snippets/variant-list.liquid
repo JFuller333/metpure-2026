@@ -1,0 +1,70 @@
+{% if template == 'product.faucets' %}
+
+{% assign array = product.metafields.custom.product_variant_list.value %}
+
+<div class="my-2 py-4 variant-dropdown-container">
+  <label for="variant-select" class="variant-label"><b>Other Colors:</b></label>
+  <select id="variant-select" class="variant-select" onchange="updateSwatchTitle(this)">
+    {% for item in array %}
+    <option value="{{ item.handle }}" data-color-name="{{ item.metafields.custom.swatch_color_name }}" {% if product.handle == item.handle %}selected{% endif %}>
+      {{ item.metafields.custom.swatch_color_name }}
+    </option>
+    {% endfor %}
+  </select>
+</div>
+{% endif %}
+
+
+
+<style> 
+.variant-dropdown-container {
+  margin: 1rem 0;
+  padding: 1rem 0;
+}
+
+.variant-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.variant-select {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.variant-select:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+.variant-select option {
+  padding: 0.5rem;
+  background-color: #fff;
+  color: #333;
+}
+
+
+</style>
+
+<script>
+  function updateSwatchTitle(select) {
+    var selectedIndex = select.selectedIndex;
+    var selectedOption = select.options[selectedIndex];
+    var swatchTitle = document.getElementById('swatch-title');
+    var colorName = selectedOption.getAttribute('data-color-name');
+    swatchTitle.textContent = colorName;
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var variantSelect = document.getElementById('variant-select');
+    updateSwatchTitle(variantSelect);
+  });
+</script>

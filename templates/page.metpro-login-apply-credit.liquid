@@ -1,0 +1,53 @@
+<div> 
+    <img class="metpro-members-only-logo w-full md: w-2/3 lg: w-2/5" src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/metpro-members-only-page-logo.svg?v=1675457755" style="min-width: 10%">
+<div>
+<div class="metpro-login-form"> 
+<script>
+      if( sessionStorage.getItem("wcp_account_login") != null ){
+        sessionStorage.removeItem("wcp_account_login");
+      }
+  </script> 
+<div data-login-form class="flex flex-col-reverse px-6">
+    {% form 'customer_login' %}
+    {%- comment -%}
+    {% if form.posted_successfully? %}
+    <div class="notification show success mb-3 text-base ">
+        {{ 'customer.recover_password.success' | t }}
+    </div>
+    {% endif %}
+    {%- endcomment -%}
+    {% render 'form__error', form: form %}
+
+    <input type="email" name="customer[email]" placeholder="{{ 'customer.login.email' | t }}" class="form-control" />
+    <input type="password" name="customer[password]" placeholder="{{ 'customer.login.password' | t }}" class="form-control" />
+    <input type="hidden" name="return_to" value="/pages/apply-for-credit-terms">
+  
+    <a class="underline block my-3 sf-customer__reset-password-btn">{{ 'customer.login.forgot_password' | t }}</a>
+    <button class="sf__btn sf__btn-primary mt-4  mb-3 w-full" type="submit">
+    <a>Login</a> 
+    </button>
+    <br>
+    <div>
+    <h5 style="text-align:center;padding:5%">Not a member? Sign-up for Met Pro <u><a style="color: blue;" href="https://www.metpure.com/pages/metpro_registration"> here. </a></u>
+    </h5>
+    </div>
+    {% endform %}
+    <h4 style="text-align:center;padding-bottom: 5%"> Must sign-in to access credit application. If you are a member, please login  using your account credentials.</h4>
+</div>
+
+<style>       
+.metpro-members-only-logo {
+    margin: auto;
+    padding-top: 10%;
+    padding-bottom: 10px;
+}
+@media (min-width: 375px) {
+    .metpro-login-form  {
+    padding: 0 10%;
+    }
+}
+@media (min-width: 575px) {
+    .metpro-login-form {
+        padding: 0 35%;
+    }
+</style>   

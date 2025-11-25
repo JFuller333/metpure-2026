@@ -1,0 +1,299 @@
+{%- assign menu_id = menu | default: 'main_menu' -%}
+{%- assign show_menu_column_divider = section.settings.show_menu_column_divider -%}
+
+{%- assign is_b2b = false -%}
+{%- if customer.tags contains 'b2b' -%}
+  {%- assign is_b2b = true -%}
+{%- endif -%}
+
+{%- if is_b2b -%}
+  {%- assign menu_to_render = 'retail-navigation' -%}
+{%- else -%}
+  {%- assign menu_to_render = section.settings[menu_id] -%}
+{%- endif -%}
+
+<div class="m-header__menu{% if custom_classes != blank %} {{ custom_classes }}{% endif %}">
+  <ul class="m-menu"> 
+    {% if linklists[menu_to_render] %}
+      {% for link in linklists[menu_to_render].links %}
+        <li class="m-menu__item">
+          {% liquid
+            assign li_class = 'm-menu__item'
+            assign is_mega = true
+            assign stretch_width = false
+            assign title_handle = link.title | handleize
+            assign has_mega_item = false
+          %}
+          {% for block in section.blocks %}
+            {% liquid
+              assign menu_title = block.settings.heading | handleize
+              if menu_title == blank or menu_title != title_handle
+                continue
+              endif
+            %}
+            {% if menu_title == title_handle %}
+              {% liquid
+                assign has_mega_item = true
+                if block.settings.container == 'inherit'
+                  assign dropdown_container = section.settings.container
+                else
+                  assign dropdown_container = block.settings.container
+                endif
+              %}
+
+              {% case block.type %}
+                {% when 'banner' %}
+                  {% capture block_type %}
+                      {% if block.settings.banner_image != blank %}
+                        {% liquid
+                          assign banner_class = 'm-mega-banner' | append: ' m-mega-banner--' | append: block.settings.banner_style
+                          assign banner_link = block.settings.banner_link
+                          assign banner_title = block.settings.banner_title
+                          assign banner_desc = block.settings.banner_desc
+                          assign banner_button_text = block.settings.banner_button_text
+
+                          if banner_title == blank and banner_desc == blank and banner_button_text == blank
+                            assign banner_class = banner_class | append: ' m-mega-banner--no-content'
+                          endif
+                        %}
+                        <div class="{{ banner_class }}">
+                          {% if banner_link != blank %}
+                            <a href="{{ banner_link }}" class="m-hidden-link"><span class="m:visually-hidden">{{ banner_title | default: shop.name }}</span></a>
+                          {% endif %}
+                          <div class="m-mega-banner__image">
+                            {% render 'responsive-image', image: block.settings.banner_image, sizes: '500px' %}
+                          </div>
+                          <div class="m-mega-banner__inner">
+                            <div class="m-mega-banner__conntent">
+                              <h4 class="m-mega-banner__title">{{ banner_title }}</h4>
+                              <p class="m-mega-banner__description">{{ banner_desc }}</p>
+                            </div>
+                            {% if banner_link != blank and banner_button_text != blank %}
+                              <a href="{{ banner_link }}" class="m-mega-banner__button m-button m-button--link">{{ banner_button_text }}</a>
+                            {% endif %}
+                          </div>
+                        </div>
+                      {% endif %}
+                    {% endcapture %}
+                {% when 'bloglist' %}
+                  {% capture block_type %}
+                      {% if block.settings.blog != blank %}
+                        <div class="m-mega-blog-list">
+                          {% assign blog = blogs[block.settings.blog] %}
+                          <ul class="m-mega-blog-list__wrapper m:flex m:flex-col">
+                            {% for article in blog.articles limit: 3 %}
+                              <li class="m-mega-blog-list__item m-mega-article-card m:flex">
+                                <a href="{{ article.url }}" class="m-mega-article-card__image m:w-3/12">
+                                  {%- if article.image -%}
+                                    {% render 'responsive-image',
+                                      image: article.image,
+                                      aspect_ratio: '16/9',
+                                      sizes: '200px'
+                                    %}
+                                  {%- else -%}
+                                    {{ 'image' | placeholder_svg_tag: 'm-placeholder-svg m:w-full m:h-full m:object-cover' }}
+                                  {%- endif -%}
+                                </a>
+                                <div class="m-mega-article-card__content m:w-9/12">
+                                  {% if article.tags != blank %}
+                                    <span class="m-mega-article-card__tag">{{ article.tags[0] }}</span>
+                                  {% endif %}
+                                  <a href="{{ article.url }}" class="m-mega-article-card__title">{{ article.title }}</a>
+                                </div>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        </div>
+                      {% endif %}
+                    {% endcapture %}
+                {% when 'product-list' %}
+                  {% assign stretch_width = block.settings.stretch_width %}
+                  {% assign collection = block.settings.collection %}
+                  {% if collection != blank %}
+                    {% capture block_type %}
+                      {{ 'component-product-card.css' | asset_url | stylesheet_tag }}
+                      <div class="m-mega-product-list" data-id="{{ block.id }}">
+                        {%- assign collection = collections[block.settings.collection] -%}
+                        <div class="m-mega-product-list__header">
+                          <h3 class="m-mega-product-list__heading">{{ collection.title }}</h3>
+                          {% if block.settings.limit > block.settings.columns %}
+                            <div id="m-slider-controls-{{ block.id }}" class="m-slider-controls m:flex m:items-center">
+                              <button class="m-slider-controls__button m-slider-controls__button-prev" aria-label="Previous">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </button>
+                              <button class="m-slider-controls__button m-slider-controls__button-next" aria-label="Next">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </button>
+                            </div>
+                          {% endif %}
+                        </div>
+                        <div class="m:grid swiper-container m-product-list-{{ block.id }}" data-column="{{ block.settings.columns }}" style="--column-gap: 20px">
+                          <div class="swiper-wrapper">
+                            {% for product in collection.products limit: block.settings.limit %}
+                              {%- assign image_ratio = product.featured_image.aspect_ratio | default: '1/1' -%}
+                              <div class="swiper-slide m:column">
+                                <div class="m-product-card m-product-card--style-1">
+                                  <div class="m-product-card__media">
+                                    <a class="m-product-card__link m:block m:w-full" href="{{ product.url }}" aria-label="{{ product.title | default: forloop.index }}">
+                                      <div class="m-product-card__main-image">
+                                        {%- if product.featured_image -%}
+                                          {% render 'responsive-image',
+                                            image: product.featured_image,
+                                            aspect_ratio: image_ratio,
+                                            sizes: '400px'
+                                          %}
+                                        {%- else -%}
+                                          {{ 'product-1' | placeholder_svg_tag: 'm-placeholder-svg m:w-full m:h-full m:object-cover' }}
+                                        {%- endif -%}
+                                      </div>
+                                    </a>
+                                  </div>
+                                  <div class="m-product-card__content m:text-left">
+                                    <div class="m-product-card__info">
+                                      <h3 class="m-product-card__title">
+                                        <a href="{{ product.url }}" class="m-product-card__name">
+                                          {{ product.title }}
+                                        </a>
+                                      </h3>
+                                      <div class="m-product-card__price">
+                                        {% render 'product-prices', product: product, is_product_card: true %}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      </div>
+                    {% endcapture %}
+                  {% else %}
+                    {%- capture block_type -%}
+                    {%- endcapture -%}
+                  {% endif %}
+                {% when 'collection-list' %}
+                  {% liquid
+                    assign stretch_width = true
+                    assign collection_ids = 'collection_1,collection_2,collection_3,collection_4,collection_5,collection_6' | split: ','
+                    assign content_empty = true
+
+                    for collection_id in collection_ids
+                      if block.settings[collection_id] != blank
+                        assign content_empty = false
+                        break
+                      endif
+                    endfor
+                  %}
+                  {% unless content_empty %}
+                    {% capture block_type %}
+                      <div class="m-mega-collection-list">
+                        <div class="m-mega-collection-list__header">
+                          <h3 class="m-mega-collection-list__heading">{{ block.settings.heading }}</h3>
+                        </div>
+                        <div class="m-mega-collection-list__content m:grid m:grid-cols-{{ block.settings.columns }} m:gap-6 m:justify-start" style="--column-gap: 20px">
+                          {% for collection_id in collection_ids %}
+                            {% if block.settings[collection_id] != blank %}
+                              {% assign collection = collections[block.settings[collection_id]] %}
+                              <div class="m-mega-collection-list__item m:column">
+                                <a href="{{ collection.url }}" class="m-collection-card">
+                                  <div class="m-collection-card__media">
+                                    {%- if collection.image -%}
+                                      {% render 'responsive-image',
+                                        image: collection.image,
+                                        aspect_ratio: '1/1',
+                                        sizes: '400px'
+                                      %}
+                                    {%- else -%}
+                                      {{ 'collection-placeholder' | placeholder_svg_tag: 'm-placeholder-svg m:w-full m:h-full m:object-cover' }}
+                                    {%- endif -%}
+                                  </div>
+                                  <div class="m-collection-card__content">
+                                    <h3 class="m-collection-card__title">
+                                      {{ collection.title }}
+                                    </h3>
+                                  </div>
+                                </a>
+                              </div>
+                            {% endif %}
+                          {% endfor %}
+                        </div>
+                      </div>
+                    {% endcapture %}
+                  {% endunless %}
+                {% when 'custom' %}
+                  {% capture block_type %}
+                      {% if block.settings.content != blank %}
+                        <div class="m-mega-custom-content m-mega-custom-content--{{ block.settings.style }}">
+                          {{ block.settings.content }}
+                        </div>
+                      {% endif %}
+                    {% endcapture %}
+              {% endcase %}
+            {% endif %}
+          {% endfor %}
+
+          <a href="{{ link.url }}" class="m-menu__link">
+            {{ link.title }}
+            {% if link.links != blank %}
+              <span class="m-menu__sub-arrow">
+                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path>
+                </svg>
+              </span>
+            {% endif %}
+          </a>
+          {% if link.links != blank %}
+            <div class="m-mega-menu{% if is_mega and show_menu_column_divider %} m-show-menu-column-divider{% endif %} m-gradient m-color-{{ section.settings.color_scheme }}"
+                 style="--total-columns: {{ link.links.size }}">
+              <div class="m-mega-menu__container{% if is_mega %} {{ dropdown_container | default: 'container' }}{% endif %}">
+                <div class="m-mega-menu__inner{% if stretch_width %} m-mega-menu__inner--stretch-width{% endif %}">
+                  <ul class="m-sub-menu m-sub-menu--level-1{% if is_mega and block_type == blank %} m:w-full m:flex-1{% endif %}">
+                    {% for childlink in link.links %}
+                      <li class="m-sub-menu__item m-sub-menu__item--level-1">
+                        <a href="{{ childlink.url }}" class="m-menu__link">
+                          {{ childlink.title }}
+                          {% if is_mega == false and childlink.links != blank %}
+                            <span class="m-menu__sub-arrow">
+                              <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path>
+                              </svg>
+                            </span>
+                          {% endif %}
+                        </a>
+                        {% if childlink.links != blank %}
+                          <div class="m-mega-menu__column">
+                            <ul class="m-sub-menu m-sub-menu--level-2">
+                              {% for grandlink in childlink.links %}
+                                <li class="m-sub-menu__item m-sub-menu__item--level-2">
+                                  <a href="{{ grandlink.url }}" class="m-menu__link">
+                                    {{ grandlink.title }}
+                                  </a>
+                                </li>
+                              {% endfor %}
+                            </ul>
+                          </div>
+                        {% endif %}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                  {% if is_mega and block_type != blank %}
+                    <div class="m-mega-menu__content">
+                      {{ block_type }}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </li>
+      {% endfor %}
+    {% else %}
+      <!-- Fallback content if no links found -->
+      <li class="m-menu__item">No menu items available</li>
+    {% endif %}
+  </ul>
+</div>

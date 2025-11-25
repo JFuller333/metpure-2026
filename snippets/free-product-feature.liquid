@@ -1,0 +1,126 @@
+<!-- Cool Product Card Style -->
+<style>
+  .compact-product-card {
+    display: flex;
+    border-radius: 10px;
+    max-width: 750px;
+    margin-top: 15px;
+    margin-bottom: 0;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+  }
+
+  .compact-product-card__image {
+    width: 140px;
+    height: 140px;
+    margin-right: 20px;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .compact-product-card__info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .compact-product-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .compact-product-card__title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    margin-right: 10px;
+    padding-top: 5px;
+    line-height: 1.6;
+  }
+
+  .compact-product-card__button {
+    padding: 6px 12px;
+    background-color: #ff0000;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 3px;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+.gift-text {
+ color: gold; 
+ font-weight: 700;
+}
+
+  /* Responsive Styles */
+  @media (max-width: 1024px) {
+    .compact-product-card {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .compact-product-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center; /* Center the text on smaller screens */
+    }
+
+    .compact-product-card__image {
+      width: 80px;
+      height: 80px;
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+
+    .compact-product-card__title {
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .compact-product-card__button {
+      width: 100%; /* Button takes full width on small screens */
+      margin-top: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .compact-product-card__title {
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .compact-product-card__button {
+      font-size: 12px;
+      padding: 8px 16px;
+    }
+  }
+</style>
+
+<!-- Cool Product Card Component -->
+<div class="compact-product-card">
+  <!-- The Image Box -->
+  <div class="compact-product-card__image" style="background-image: url('https://cdn.shopify.com/s/files/1/0620/0016/9151/files/SD39-1-BN-1_ac2744a7-0f0a-4893-8b19-e3ff710bdefe.jpg?v=1719435124');">
+  </div>
+
+  <!-- Product Info -->
+  <div class="compact-product-card__info">
+    <div class="compact-product-card__header">
+      <div class="compact-product-card__title">
+        <span style="background-color: red; color: white; border-radius: 5px; padding: 0 4px;">BLACK FRIDAY CYBER MONDAY DEAL</span>
+        &nbsp;GET A <span class="gift-text">FREE GIFT </span> WITH YOUR PURCHASE OF METPURE VERSATILE SYSTEM. <span class="gift-text"> CLAIM YOUR FREE GIFT BELOW! </span>
+      </div>
+    </div>
+  </div>
+</div>

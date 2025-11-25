@@ -1,0 +1,204 @@
+{% comment %} 
+  Trust badge updates instantly when a variant is selected, without requiring a page reload.
+  This version is fully dynamic and works with the custom variant selector (see variant-selector.liquid).
+  The badge image and alt text update as soon as the variant changes, using the same events as the variant selector.
+{% endcomment %}
+
+{% liquid
+  assign minimum_price = 79
+  assign selected_variant = product.selected_or_first_available_variant
+  assign show_shipping_badge = false
+  assign selected_variant_price = selected_variant.price | divided_by: 100.0
+  if selected_variant_price >= minimum_price
+    assign show_shipping_badge = true
+  endif
+%}
+
+<script>
+  window.trustBadgeVariants = {
+    {% for variant in product.variants %}
+      "{{ variant.id }}": {{ variant.price | divided_by: 100.0 }}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  };
+  window.trustBadgeMinimum = {{ minimum_price }};
+  window.trustBadgeInitialVariant = "{{ product.selected_or_first_available_variant.id }}";
+</script>
+
+<div class="trust-badge-content" style="
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-wrap: nowrap !important;
+  margin: -30px 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  font-size: 0 !important;
+">
+  <div class="trust-badge-image" style="
+    width: 400px;
+    height: 267px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  ">
+    <img 
+      id="trust-badge-img"
+      src="{% if show_shipping_badge %}https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Trust_Badges-Metpure_12.png?v=1751054677{% else %}https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Trust_Badges-Metpure_1.png?v=1727885577{% endif %}"
+      alt="{% if show_shipping_badge %}Trust Badge with Free Shipping{% else %}Trust Badge{% endif %}"
+      loading="lazy"
+      style="
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        margin: 0 !important;
+        padding: 0 !important;
+      "
+    >
+  </div>
+</div>
+
+<script>
+(function() {
+  var badgeWithShipping = "https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Trust_Badges-Metpure_12.png?v=1751054677";
+  var badgeDefault = "https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Trust_Badges-Metpure_1.png?v=1727885577";
+  var badgeImg = document.getElementById('trust-badge-img');
+  var minimum = window.trustBadgeMinimum;
+  var variantPrices = window.trustBadgeVariants;
+  var initialVariant = window.trustBadgeInitialVariant;
+
+  function updateTrustBadge(variantId) {
+    var price = variantPrices[variantId];
+    if (typeof price === "undefined") return;
+    if (price >= minimum) {
+      badgeImg.src = badgeWithShipping;
+      badgeImg.alt = "Trust Badge with Free Shipping";
+    } else {
+      badgeImg.src = badgeDefault;
+      badgeImg.alt = "Trust Badge";
+    }
+  }
+
+  function listenForVariantChange() {
+    // Listen for custom variant selector (see variant-selector.liquid)
+    // 1. Listen for click on .variant-option
+    document.querySelectorAll('.variant-option').forEach(function(option) {
+      option.addEventListener('click', function() {
+        if (!option.classList.contains('sold-out')) {
+          var variantId = option.getAttribute('data-variant-id');
+          if (variantId) updateTrustBadge(variantId);
+        }
+      });
+    });
+
+    // 2. Listen for radio change (for accessibility/fallback)
+    document.querySelectorAll('input[type="radio"][name="id"]').forEach(function(input) {
+      input.addEventListener('change', function(e) {
+        if (e.target.checked) updateTrustBadge(e.target.value);
+      });
+    });
+
+    // 3. Listen for Shopify's 'variant:change' event (Online Store 2.0)
+    document.addEventListener('variant:change', function(e) {
+      var variantId = e.detail && e.detail.variant && e.detail.variant.id;
+      if (variantId) updateTrustBadge(String(variantId));
+    });
+
+    // 4. Listen for Minimog/OLX custom product JS events if present
+    if (window.MinimogTheme && window.MinimogTheme.Product && window.MinimogTheme.Product.$container) {
+      window.MinimogTheme.Product.$container.on('variantChange', function(e, variant) {
+        if (variant && variant.id) updateTrustBadge(String(variant.id));
+      });
+    }
+
+    // 5. Fallback: listen for select change (for older themes)
+    var variantSelects = document.querySelectorAll('form[action^="/cart/add"] select[name="id"]');
+    variantSelects.forEach(function(variantSelect) {
+      variantSelect.addEventListener('change', function(e) {
+        updateTrustBadge(e.target.value);
+      });
+    });
+  }
+
+  // Initial update (in case JS loads after variant changed)
+  if (initialVariant) updateTrustBadge(initialVariant);
+
+  // Run on DOM ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", listenForVariantChange);
+  } else {
+    listenForVariantChange();
+  }
+})();
+</script>
+
+<style>
+  .main-product__block--trust_badge {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    font-size: 0 !important;
+    border: none !important;
+    background: none !important;
+  }
+  .main-product__block + .main-product__block--trust_badge,
+  .main-product__block--trust_badge + .main-product__block {
+    margin-top: 0 !important;
+  }
+  .main-product__block .m-product-trust-badge {
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+  .main-product__block .m-product-trust-badge__content {
+    margin-top: 0 !important;
+  }
+  .main-product__block--trust_badge > div {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+  }
+  .trust-badge-content {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+    margin: -30px 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    font-size: 0 !important;
+  }
+  .trust-badge-image {
+    flex-shrink: 0 !important;
+    width: 400px !important;
+    height: 267px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+  }
+  .trust-badge-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+  }
+  @media (max-width: 768px) {
+    .trust-badge-image {
+      width: 350px !important;
+      height: 233px !important;
+    }
+  }
+  @media (max-width: 480px) {
+    .trust-badge-image {
+      width: 280px !important;
+      height: 187px !important;
+    }
+  }
+</style>

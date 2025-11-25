@@ -1,0 +1,94 @@
+{% unless customer.tags contains 'b2b' %}
+  <div style="text-align: center; background-color: {{ section.settings.bg_color }}; padding: 1em 0; color: {{ section.settings.text_color }};"> 
+    <div class="shipping-slider">
+      {% for block in section.blocks %}
+        <div class="slide">
+            {% comment %}<b style="font-weight: bold; background-color: black;  border: 1pt solid black; border-radius: 0.5em 0 0.5em 0; padding: 0 0.6em; color: #FFD700;">{{ block.settings.title }}</b>{% endcomment %}
+          <b style="font-weight: bold; background-color: red;  border: 1pt solid black; border-radius: 0.5em 0 0.5em 0; padding: 0 0.6em; color: white;">{{ block.settings.title }}</b>
+          {{ block.settings.annc_text }}
+          <span class="instafast-estimated-arrival-day" style="font-weight: bold; color:#FFD70; ">{{ block.settings.est_arrival_text }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endunless %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var slides = document.querySelectorAll('.shipping-slider .slide'); 
+    var currentIndex = 0;
+
+    function showNextSlide() {
+      slides[currentIndex].style.display = 'none';
+      currentIndex = (currentIndex + 1) % slides.length;
+      slides[currentIndex].style.display = 'block';
+    }
+
+    // Initially hide all slides except the first one
+    slides.forEach(function(slide, index) {
+      slide.style.display = index === 0 ? 'block' : 'none';
+    });
+
+    // Rotate slides every 5 seconds
+    setInterval(showNextSlide, 5000);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Shipping Bar",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fbbc21"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "checkbox",
+      "id": "metpro__disabled",
+      "label": "Disabled for Met Pro Customers",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "FREE Shipping On First Order"
+        },
+        {
+          "type": "text",
+          "id": "annc_text",
+          "label": "Announcement Text",
+          "default": "Order by 12pm Pacific, receive by"
+        },
+        {
+          "type": "text",
+          "id": "est_arrival_text",
+          "label": "Estimated Arrival Text",
+          "default": "Estimated Arrival Day"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shipping Bar",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+ 

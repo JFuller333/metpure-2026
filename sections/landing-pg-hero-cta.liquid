@@ -1,0 +1,108 @@
+<section>
+  <div class="fullwidth-background">
+  <div class="container">
+    <div class="flex flex-col items-center">
+      <div class="container-sm">
+        <div class="flex justify-center py-10">
+          <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Metpure-White-Logo_4_2.svg?v=1679685931" display="block" width="35%" margin="auto" atl="metpro-logo">
+        </div>
+        <h1 class="heading py-4">ONLINE WHOLESALE SUPPLIER <br> FOR TRADE PROFESSIONALS.</h1>
+        <p class="subheading text-center">Shop water filtration products and more!</p>
+        <br>
+        <h3 class="text-center text-white"><a class="button" href="#popup1">Learn more about Met Pro here!</a></h3>
+        <div class="globo-formbuilder" data-id="MTA5NDM5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<style>
+
+body {
+background-image:;
+background-repeat: no-repeat;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+opacity: 0.5;
+}
+
+.fullwidth-background {
+  padding: 0 20px 100px 20px;
+  background-image: url(https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Rectangle_128_2.png?v=1679349077);
+  background-repeat: no-repeat;
+}
+
+.heading {
+  font-family: Lemon Milk;
+  font-weight: bold;
+  color: #ffff;
+}
+.subheading {
+  font-family: Roboto;
+  font-size: 2em;
+}
+
+.product-cards-container {
+display: flex;
+flex-wrap: nowrap;
+animation-name: scroll-horizontally;
+animation-duration: 200s;
+animation-timing-function: ease;
+animation-fill-mode: forwards;
+white-space: nowrap;
+overflow-x: hidden;
+height: 100%;
+width: 1000%; /* Adjust the width here */
+justify-content: center;
+}
+.product-cards-container::after { /* Add this block to add a flex item that fills the remaining space */
+content: '';
+flex: 1;
+}
+
+/* Rest of the CSS remains the same */
+This code aligns the product cards to the left of the container using justify-content: flex-start, and adds a new flex item at the end of the container using the ::after
+
+
+@keyframes scroll-horizontally {
+0% {
+  transform: translateX(0);
+}
+/* Add the following rule to restart the animation from the beginning */
+101% {
+  transform: translateX(0);
+}
+}
+
+@media (max-width: 767px) {
+.product-cards-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  }
+}
+
+.product-card {
+margin-right: 20px;
+margin: 10px;
+box-shadow: 0 3px 10px rgba(245, 244, 244, 0.2);
+flex-shrink: 0;
+max-width: calc(33.33% - 20px); /* Adjust the max-width here */
+}
+.product-card img {
+max-width: 250px;
+border-radius: 40px;
+}
+@media (max-width: 767px) {
+.product-card {
+  width: 100%;
+}
+
+</style>
+
+</script>       

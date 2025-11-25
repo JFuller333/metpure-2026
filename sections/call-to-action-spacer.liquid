@@ -1,0 +1,277 @@
+{%- style -%}
+  .cta-spacer {
+    position: relative;
+    padding: 3.5rem 0;
+    background-color: {{ section.settings.background_color }};
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    {% if section.settings.background_image %}
+      background-image: url({{ section.settings.background_image | img_url: 'master' }});
+      background-position: {{ section.settings.background_position }};
+      background-size: {{ section.settings.background_size }};
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+    {% endif %}
+  }
+  
+  .cta-spacer__container {
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-spacer__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .cta-spacer__item {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .cta-spacer__icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: {{ section.settings.icon_color }};
+  }
+
+  .cta-spacer__text {
+    margin: 0;
+    font-size: 0.9rem;
+    color: {{ section.settings.text_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .cta-spacer {
+      min-height: 200px;
+      padding: 2.5rem 0;
+      {% if section.settings.background_image %}
+        background-image: url({{ section.settings.background_image | img_url: '750x400', crop: 'center' }});
+      {% endif %}
+    }
+
+    .cta-spacer__grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .cta-spacer__item {
+      padding: 0.75rem;
+    }
+
+    .cta-spacer__text {
+      font-size: 0.85rem;
+    }
+  }
+
+  .cta-spacer__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s ease;
+  }
+
+  .cta-spacer__link:hover {
+    opacity: 0.95;
+  }
+{%- endstyle -%}
+
+<div class="cta-spacer">
+  {% if section.settings.link != blank %}
+    <a href="{{ section.settings.link }}" class="cta-spacer__link">
+  {% endif %}
+  
+  <div class="cta-spacer__container">
+    <div class="cta-spacer__grid">
+      {%- for block in section.blocks -%}
+        <div class="cta-spacer__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon != blank -%}
+            <div class="cta-spacer__icon">
+              {{ block.settings.icon }}
+            </div>
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+            <p class="cta-spacer__text">{{ block.settings.text }}</p>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {% if section.settings.link != blank %}
+    </a>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "CTA Spacer",
+  "settings": [
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Section Link",
+      "info": "Makes the entire section clickable"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "background_position",
+      "label": "Background Position",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "center top",
+          "label": "Top"
+        },
+        {
+          "value": "center bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "select",
+      "id": "background_size",
+      "label": "Background Size",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "100% auto",
+          "label": "100% Width"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text Block",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (HTML)",
+          "info": "Add HTML for icon (e.g., ★)"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Your text here"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image Block",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 200,
+          "step": 10,
+          "unit": "px",
+          "label": "Image width",
+          "default": 100
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button Block",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Click here"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "color",
+          "id": "button_color",
+          "label": "Button Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button Text Color",
+          "default": "#ffffff"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CTA Spacer",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

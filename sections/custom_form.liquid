@@ -1,0 +1,451 @@
+<section>
+  <div class="bg-auto w-full py-8 md:min-h-550 bg-cover" style="background-image: url('https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Rectangle_143.jpg?v=1679435373');"> 
+  <div class="container">
+    <div class="flex flex-col items-center">
+      <div class="container-sm">
+        <div class="flex justify-center pt-8">
+          <img class="sm:w-auto logo-desktop" src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/metpure_logo_white_1.svg?v=1679957006" width="25%" display="block" atl="metpro-logo"></div>
+          <p class="heading py-10 md:py-16 text-center md:pb-16">ONLINE WHOLESALE SUPPLIER <br> FOR TRADE PROFESSIONALS.</p>
+         <p class="subheading text-center py-2">Join&nbsp<img class="mp-logo" src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Metpro_logo_white.png?v=1680133698"> for FREE and save on your water filtration and plumbing supplies!</p>
+        {{ section.settings.form_embed_code }}
+        <p class="subheading text-center pt-4" style="color: white;font-size: 16px;">To get wholesale price, you must be a Met Pro member. Membership is restricted to trade professionals such as suppliers, <br>plumbers, installers, technicians, and business entities engaging in selling plumbing and water filtration products. </p>
+        <!-- Video Button & Modal --> 
+       <div class="flex items-center justify-center h-full">
+        <div class="text-center my-4">
+          <u><button id="watch-video-button" class="sf__btn sf__btn-primary" style="margin: 10px;">Watch video</button></u>
+        </div>
+      </div>
+        <div id="video-modal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <iframe width="650" height="350" src="https://www.youtube.com/embed/7XqpPkD160M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      <!-- Video Button & Modal End -->
+      <img class="mx-auto img-desktop" src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Metpro_website_main_2.png?v=1680133242" width="100%" style="padding-bottom: 30px;"></img>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+{% schema %}
+  {
+    "name": "Custom Form",
+    "settings": [
+      {
+        "type": "text",
+        "id": "form_embed_code",
+        "label": "Form Embed code"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom liquid"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+  
+@import url('https://fonts.cdnfonts.com/css/lemonmilk');
+
+  body {
+  background-image:;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: auto;
+  opacity: 0.5;
+  }
+  
+  .fullwidth-background {
+    width: 100%;
+    padding: 0 20px 20px 20px;
+    background-image: url(https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Rectangle_128_1.jpg?v=1679432516); 
+    background-repeat: no-repeat;
+    backgound-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: auto;
+  }
+  
+  .heading {
+    font-family: Lemon Milk;
+    font-weight: bold;
+    color: #ffff;
+    font-size: 64px;
+  }
+  .subheading {
+    font-family: Roboto;
+    font-size: 2em;
+  }
+  
+  .product-cards-container {
+  display: flex;
+  flex-wrap: nowrap;
+  animation-name: scroll-horizontally;
+  animation-duration: 200s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  white-space: nowrap;
+  overflow-x: hidden;
+  height: 100%;
+  width: 1000%; /* Adjust the width here */
+  justify-content: center;
+  }
+  .product-cards-container::after { /* Add this block to add a flex item that fills the remaining space */
+  content: '';
+  flex: 1;
+  }
+  
+  /* Rest of the CSS remains the same */
+  This code aligns the product cards to the left of the container using justify-content: flex-start, and adds a new flex item at the end of the container using the ::after
+  
+  
+  @keyframes scroll-horizontally {
+  0% {
+    transform: translateX(0);
+  }
+  /* Add the following rule to restart the animation from the beginning */
+  101% {
+    transform: translateX(0);
+  }
+  }
+  
+  @media (max-width: 767px) {
+  .product-cards-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    }
+  }
+  
+  .product-card {
+  margin-right: 20px;
+  margin: 10px;
+  box-shadow: 0 3px 10px rgba(245, 244, 244, 0.2);
+  flex-shrink: 0;
+  max-width: calc(33.33% - 20px); /* Adjust the max-width here */
+  }
+  .product-card img {
+  max-width: 250px;
+  border-radius: 40px;
+  }
+  @media (max-width: 767px) {
+  .product-card {
+    width: 100%;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 0 20px;
+  }
+  .fullwidth-background {
+    padding: 80px 0;
+  }
+  .heading {
+    font-size: 30px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .subheading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .globo-formbuilder {
+    margin-top: 20px;
+  }
+  .second-section img {
+    width: 100%;
+  }
+  .py-24 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .p-36 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .text-4xl {
+    font-size: 32px;
+  }
+  .text-2xl {
+    font-size: 24px;
+  }
+  .mb-4 {
+    margin-bottom: 10px;
+  }
+  .text-left {
+    text-align: left;
+  }
+  .flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ecomm-product-image {
+    width: 100%;
+  }
+  h3 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+}
+@media (min-width: 1024px) {
+  section {
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+.faq-section-desktop {
+  display: flex;
+  justify-content: center;
+}
+
+.globo-form-control input {
+  color: red !important;
+  border: blue !important;
+  
+}
+
+.img-desktop {
+  width: 75%;
+}
+
+@media only screen and (max-width: 768px) {
+  .img-desktop {
+    width: 100%;
+  }
+}
+  .logo-desktop {
+    width: 75%;
+  }
+}
+ .mp-logo {
+    width: 400px;
+    padding-bottom: 2%px;
+    margin: 0 0 5px 0;
+    height: auto;
+    vertical-align: middle;
+    display: inline-block;
+  }
+   .mp-logo2 {
+    width: 240px;
+    height: auto;
+    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: 2px;
+  }
+   .mp-logo3 {
+    width: 330px;
+    height: auto;
+    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+   .mp-logo4 {
+    width: 145px;
+    height: auto;
+    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .mp-logo {
+      width: 120px; 
+      margin-bottom: 10px;
+    }
+  }
+
+   @media screen and (max-width: 767px) {
+    .mp-logo2 {
+      width: 190px; 
+    }
+  }
+   @media screen and (max-width: 767px) {
+    .mp-logo3 {
+      width: 170px; 
+      margin-bottom: 2%;
+    }
+  }
+   @media screen and (max-width: 767px) {
+    .mp-logo4 {
+      width: 120px; 
+      margin-bottom: 2%;
+    }
+  }
+
+<!-- Video Modal CSS -->
+
+/* Button Styles */
+.bttn {
+  background-color: #DEDCDC;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: underline;
+  display: inline-block;
+  font-size: 32px !important;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+/* Modal Styling */
+.modal {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: none;
+  margin: 10% auto;
+}
+
+/* Modal Content */
+.modal-content {
+  background: radial-gradient(101.01% 96.32% at 11.11% 9.35%, #B8B8B8 0%, #5F5F5F 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  margin: auto;
+  padding: 20px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 700px;
+  position: relative;
+}
+
+/* Close Button */
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+  padding: 12px 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 767px) {
+  .modal {
+    width: 100%;
+    height: 75%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .modal-dialog {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .modal-content {
+    width: 100%;
+    height: 100%;
+  }
+  .modal-content iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .modal-body {
+    height: calc(100% - 56px);
+  }
+}
+
+<!-- Shopify Contact Form CSS --> 
+.contact-form input[type="text"],
+.contact-form input[type="email"] {
+  width: 100%;
+  padding: 1px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+}
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus {
+  border-color: #333;
+}
+.contact-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.contact-form button.submit-button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.contact-form button.submit-button:hover {
+  background-color: #333;
+}
+.desktop-pad {
+  padding-left: 12em;
+}
+{% endstylesheet %}
+
+{% javascript %}
+  const toggles = document.querySelectorAll('.accordion-toggle');
+
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('active');
+      const content = toggle.parentElement.nextElementSibling;
+      content.classList.toggle('hidden');
+    });
+  });
+
+<!-- Video Modal Javascript -->
+  
+// Get the button element
+var btn = document.getElementById("watch-video-button");
+
+// Get the modal element
+var modal = document.getElementById("video-modal");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+{% endjavascript %}

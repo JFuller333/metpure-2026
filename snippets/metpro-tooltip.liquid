@@ -1,0 +1,116 @@
+  <!-- Clearance ribbon -->
+   {% if product.tags contains 'clearance' %}
+   <div class="clearance-ribbon" ><i> &nbsp;Clearance&nbsp; </i></div>
+  {%  endif %} 
+  <br>
+  <!-- Clearance ribbon -->
+
+
+
+<!-- Met Pro Price tool tip feature Begin-->
+{% if customer.id %} 
+{%else}%}
+<div id="tooltip">
+      {% assign isB2B = false %}
+      {% for tag in product.tags %} 
+        {% if tag == "b2b" or tag == "b2all" %}
+            {% assign isB2B = true %}
+            {% break %}
+          {% endif %}
+      {% endfor %}
+      
+      {% if isB2B %}
+      {% if collection.handle contains 'wholesale' %}
+        <div class=" inline-flex items-center flex-wrap"> | Get this item at&nbsp<span><img class="metpro-price" style="width:110px" style="padding:5px;"; src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/metpro-price-logo-7.svg?v=1671219182"></img></span></div>
+        <span id="tooltipText"> 
+          {% assign pr =  product.price | money_without_currency  %}
+          Join <u><a href="https://www.metpure.com/pages/metpro_registration"> Met Pro </a></u> and save {{ pr | minus: product.metafields.custom.b2b_price | times: 100.0 | divided_by: pr | round: 0.1 }}%   
+        {% else %}
+        <div class=" inline-flex items-center flex-wrap"> | Get this item at&nbsp<span><img class="metpro-price" style="width:110px" style="padding:5px;"; src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/metpro-price-logo-7.svg?v=1671219182"></img></span></div>
+        <span id="tooltipText"> 
+        {% assign pr =  product.price | money_without_currency  %}
+        Join <u><a href="https://www.metpure.com/pages/metpro_registration"> Met Pro </a></u> and save {{ pr | minus: product.metafields.custom.b2b_price | times: 100.0 | divided_by: pr | round: 0.1 }}%   
+        {% endif %}
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+<!-- Met Pro Price tool tip feature End-->
+
+
+<style> 
+
+#tooltip {
+  position: relative; 
+  cursor: pointer;
+  padding: 7px;
+  font-size: 14px;
+  font-family: sans-serif;
+  }
+  #tooltipText {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  background-color: #000;
+  color: #fff;
+  white-space: nowrap;
+  padding: 10px 15px;
+  border-radius: 7px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  }
+  #tooltipText::before{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  border: 15px solid;
+  border-color: #000 #0000 #0000 #0000;
+  }
+  #tooltip:hover #tooltipText{
+  top: -130%;
+  visibility: visible;
+  opacity: 1;
+  }
+  #tooltipText a:hover {
+    color: #7bd3d1ff;
+  }
+
+.promo-ribbon {
+  display: inline-block;
+  background-color:  #3BB6EB;
+  color:white;
+  padding: 8px 8px;
+  font-size: 0.6em;
+  font-weight: 700; /* Very bold, extra black */
+  font-style: italic;
+  margin: 5px;
+}
+
+.promo-ribbon2 {
+  display: inline-block;
+  background-color: black;
+  color: #ffffff;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 700; /* Very bold, extra black */
+  font-style: italic;
+  border-radius: 300px;
+  margin-left: 5px;
+}
+ 
+.clearance-ribbon {
+  display: inline-block;
+  background-color: red;
+  color: #ffffff;
+  padding: 3px 3px;
+  font-size: 12px;
+  font-weight: 700; /* Very bold, extra black */
+  font-style: italic;
+  margin-left: 5px;
+} 
+  
+</style>  

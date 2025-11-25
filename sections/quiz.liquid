@@ -1,0 +1,468 @@
+{% schema %}
+{
+  "name": "Quiz Content",
+  "max_blocks": 10,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "content_section", 
+      "name": "Content Section",
+      "settings": [
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Layout", 
+          "options": [
+            {
+              "value": "image_left",
+              "label": "Image Left, Content Right"
+            },
+            {
+              "value": "image_right",
+              "label": "Content Left, Image Right" 
+            }
+          ],
+          "default": "image_left"
+        },
+        {
+          "type": "range",
+          "id": "left_width",
+          "min": 30,
+          "max": 70,
+          "step": 5,
+          "unit": "%",
+          "label": "Left Section Width",
+          "default": 40
+        },
+        {
+          "type": "image_picker",
+          "id": "left_image",
+          "label": "Left Side Image"
+        },
+        {
+          "type": "range",
+          "id": "left_image_width",
+          "min": 100,
+          "max": 500,
+          "step": 10,
+          "unit": "px",
+          "label": "Circle Image Width",
+          "default": 300
+        },
+        {
+          "type": "range",
+          "id": "left_image_radius",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "%",
+          "label": "Left Image Border Radius",
+          "default": 50
+        },
+        {
+          "type": "select",
+          "id": "circle_position",
+          "label": "Circle Image Position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Text Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Section Heading"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "heading_size",
+          "min": 20,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "label": "Heading Size",
+          "default": 36
+        },
+        {
+          "type": "richtext",
+          "id": "paragraph",
+          "label": "Paragraph Text"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#666666"
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Text Size",
+          "default": 16
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Learn More"
+        },
+        {
+          "type": "select",
+          "id": "button_align",
+          "label": "Button Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "color",
+          "id": "button_color",
+          "label": "Button Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_background",
+          "label": "Button Background",
+          "default": "#000000"
+        },
+        {
+          "type": "color", 
+          "id": "button_hover_background",
+          "label": "Button Hover Background",
+          "default": "#333333"
+        },
+        {
+          "type": "range",
+          "id": "button_radius",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "label": "Button Border Radius",
+          "default": 8
+        },
+        {
+          "type": "color",
+          "id": "arrow_color",
+          "label": "Arrow Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "circle_background",
+          "label": "Circle Background Color",
+          "default": "#000000"
+        },
+        {
+          "type": "image_picker",
+          "id": "right_image",
+          "label": "Right Side Image"
+        },
+        {
+          "type": "range",
+          "id": "right_image_radius",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "%",
+          "label": "Right Image Border Radius",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "right_image_padding",
+          "min": 0,
+          "max": 50,
+          "step": 5,
+          "unit": "px",
+          "label": "Right Image Padding",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "right_image_border",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Right Image Border Width",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "right_image_border_color",
+          "label": "Right Image Border Color",
+          "default": "#000000"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quiz Content",
+      "blocks": [
+        {
+          "type": "content_section"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+{% for block in section.blocks %}
+  {% assign blockId = block.id %}
+  
+  .split-section-{{ blockId }} {
+    padding: 40px 20px;
+  }
+
+  .split-container-{{ blockId }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+  }
+
+  .split-container-{{ blockId }}.image-right {
+    flex-direction: row-reverse;
+  }
+
+  .split-left-{{ blockId }} {
+    width: {{ block.settings.left_width }}%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .split-right-{{ blockId }} {
+    width: calc(100% - {{ block.settings.left_width }}%);
+    display: flex;
+    align-items: stretch;
+    padding: {{ block.settings.right_image_padding }}px;
+  }
+
+  .circle-image-{{ blockId }} {
+    width: {{ block.settings.left_image_width }}px;
+    height: {{ block.settings.left_image_width }}px;
+    min-width: {{ block.settings.left_image_width }}px;
+    min-height: {{ block.settings.left_image_width }}px;
+    border-radius: {{ block.settings.left_image_radius }}%;
+    overflow: hidden;
+    margin-bottom: 30px;
+    {% if block.settings.circle_position == 'left' %}
+      margin-right: auto;
+    {% elsif block.settings.circle_position == 'right' %}
+      margin-left: auto;
+    {% else %}
+      margin-left: auto;
+      margin-right: auto;
+    {% endif %}
+  }
+
+  .circle-image-{{ blockId }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .content-heading-{{ blockId }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin-bottom: 20px;
+    text-align: {{ block.settings.text_align }};
+  }
+
+  .content-text-{{ blockId }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    margin-bottom: 30px;
+    text-align: {{ block.settings.text_align }};
+  }
+
+  .cta-button-{{ blockId }} {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 30px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_radius }}px;
+    transition: background-color 0.3s ease;
+    {% if block.settings.button_align == 'left' %}
+      margin-right: auto;
+    {% elsif block.settings.button_align == 'right' %}
+      margin-left: auto;
+    {% else %}
+      margin-left: auto;
+      margin-right: auto;
+    {% endif %}
+  }
+
+  .cta-button-{{ blockId }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+  }
+
+  .button-arrow-{{ blockId }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    background-color: {{ block.settings.circle_background }};
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .button-arrow-{{ blockId }} svg {
+    width: 14px;
+    height: 14px;
+    fill: {{ block.settings.arrow_color }};
+  }
+
+  .right-image-{{ blockId }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: {{ block.settings.right_image_radius }}%;
+    border: {{ block.settings.right_image_border }}px solid {{ block.settings.right_image_border_color }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .split-section-{{ blockId }} {
+      padding: 30px 15px;
+    }
+
+    .split-container-{{ blockId }},
+    .split-container-{{ blockId }}.image-right {
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .split-left-{{ blockId }},
+    .split-right-{{ blockId }} {
+      width: 100%;
+      padding: 0;
+    }
+    
+    .circle-image-{{ blockId }} {
+      width: {{ block.settings.left_image_width }}px;
+      height: {{ block.settings.left_image_width }}px;
+      min-width: {{ block.settings.left_image_width }}px;
+      min-height: {{ block.settings.left_image_width }}px;
+    }
+    
+    .content-heading-{{ blockId }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.8);
+    }
+
+    .right-image-{{ blockId }} {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+  }
+{% endfor %}
+</style>
+
+{% for block in section.blocks %}
+  {% assign blockId = block.id %}
+  <div class="split-section-{{ blockId }}">
+    <div class="split-container-{{ blockId }} {% if block.settings.layout == 'image_right' %}image-right{% endif %}">
+      <div class="split-left-{{ blockId }}">
+        {% if block.settings.left_image %}
+          <div class="circle-image-{{ blockId }}">
+            <img src="{{ block.settings.left_image | img_url: 'master' }}" alt="{{ block.settings.heading }}">
+          </div>
+        {% endif %}
+        
+        {% if block.settings.heading != blank %}
+          <h2 class="content-heading-{{ blockId }}">{{ block.settings.heading }}</h2>
+        {% endif %}
+        
+        {% if block.settings.paragraph != blank %}
+          <div class="content-text-{{ blockId }}">{{ block.settings.paragraph }}</div>
+        {% endif %}
+        
+        {% if block.settings.button_link != blank and block.settings.button_text != blank %}
+          <a href="{{ block.settings.button_link }}" class="cta-button-{{ blockId }}">
+            {{ block.settings.button_text }}
+            <span class="button-arrow-{{ blockId }}">
+              <svg viewBox="0 0 24 24">
+                <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/>
+              </svg>
+            </span>
+          </a>
+        {% endif %}
+      </div>
+      
+      <div class="split-right-{{ blockId }}">
+        {% if block.settings.right_image %}
+          <img src="{{ block.settings.right_image | img_url: 'master' }}" alt="Right side image" class="right-image-{{ blockId }}">
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endfor %}

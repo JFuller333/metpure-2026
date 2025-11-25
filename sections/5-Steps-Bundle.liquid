@@ -1,0 +1,2036 @@
+{%- assign step1_title = section.settings.step1_title | default: 'Step 1: Choose Your Base Product' -%}
+{%- assign step2_title = section.settings.step2_title | default: 'Step 2: Select Add-ons' -%}
+{%- assign step3_title = section.settings.step3_title | default: 'Fixtures (Add-On)' -%}
+{%- assign step4_title = section.settings.step4_title | default: 'Step 4: Optional Add-ons' -%}
+{%- assign step5_title = section.settings.step5_title | default: 'Step 5: Checkout' -%}
+
+<div class="bundle-steps-container">
+  <h1 class="bundle-title">{{ section.settings.bundle_title }}</h1>
+  <!-- New layout structure -->
+  <div class="bundle-layout">
+    <!-- Left side: Products and Steps -->
+    <div class="bundle-main-content">
+      <!-- Steps Progress Bar -->
+      <div class="steps-progress">
+        <div class="step-indicators">
+          <div class="progress-bar">
+            <div class="step-item" data-step="1" onclick="goToStep(1)">
+              <div class="step-circle active" style="background-color: {{ section.settings.step_background_color }};">
+                <span class="step-number">{% if section.settings.show_step_numbers %}1{% endif %}</span>
+              </div>
+              <div class="step-label active">{{ step1_title }}</div>
+            </div>
+            
+            <div class="step-connector">
+              <div class="connector-line"></div>
+            </div>
+            
+            <div class="step-item" data-step="2" onclick="goToStep(2)">
+              <div class="step-circle" style="background-color: {{ section.settings.step_background_color }};">
+                <span class="step-number">{% if section.settings.show_step_numbers %}2{% endif %}</span>
+              </div>
+              <div class="step-label">{{ step2_title }}</div>
+            </div>
+            
+            <div class="step-connector">
+              <div class="connector-line"></div>
+            </div>
+            
+            <div class="step-item" data-step="3" onclick="goToStep(3)">
+              <div class="step-circle" style="background-color: {{ section.settings.step_background_color }};">
+                <span class="step-number">{% if section.settings.show_step_numbers %}3{% endif %}</span>
+              </div>
+              <div class="step-label">{{ step3_title }}</div>
+            </div>
+
+            <div class="step-connector">
+              <div class="connector-line"></div>
+            </div>
+            
+            <div class="step-item" data-step="4" onclick="goToStep(4)">
+              <div class="step-circle" style="background-color: {{ section.settings.step_background_color }};">
+                <span class="step-number">{% if section.settings.show_step_numbers %}4{% endif %}</span>
+              </div>
+              <div class="step-label">{{ step4_title }}</div>
+            </div>
+
+            <div class="step-connector">
+              <div class="connector-line"></div>
+            </div>
+            
+            <div class="step-item" data-step="5" onclick="goToStep(5)">
+              <div class="step-circle" style="background-color: {{ section.settings.step_background_color }};">
+                <span class="step-number">{% if section.settings.show_step_numbers %}5{% endif %}</span>
+              </div>
+              <div class="step-label">
+                {{ step5_title }}
+                <div class="step-total">
+                  <span class="selected-price">$0.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 1 Content -->
+      <div class="step-content active" data-step="1">
+        <h2>{{ step1_title }}</h2>
+        <div class="products-grid">
+          <div class="products-row">
+            {% for product in section.settings.step1_products %}
+              <div class="product-wrapper">
+                <div class="product-card">
+                  <div class="product-image-container">
+                    <img src="{{ product.featured_image | img_url: '800x800' }}" alt="{{ product.title }}" class="product-image-main">
+                  </div>
+                  <div class="product-info">
+                    <h4 class="product-title">{{ product.title }}</h4>
+                    <div class="price-container">
+                      <span class="product-price">{{ product.price | money }}</span>
+                      {% if product.compare_at_price > product.price %}
+                        <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                      {% endif %}
+                    </div>
+                    {% if product.variants.size > 1 %}
+                    <div class="variant-selection">
+                      <div class="variant-row">
+                        <label for="variant-select-{{ product.id }}" class="variant-label">Select Variant:</label>
+                        <div class="custom-select">
+                          <select id="variant-select-{{ product.id }}" class="variant-select" data-product-id="{{ product.id }}" onchange="handleVariantChange(this)">
+                            {% for variant in product.variants %}
+                              <option value="{{ variant.id }}" 
+                                      data-variant-price="{{ variant.price }}"
+                                      data-variant-compare-price="{{ variant.compare_at_price }}"
+                                      data-variant-image="{{ variant.image | img_url: '800x800' }}"
+                                      {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>
+                                {{ variant.title }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    {% endif %}
+                    <div class="button-container">
+                      <button class="choose-btn" 
+                              data-product-id="{{ product.id }}" 
+                              data-product-title="{{ product.title }}" 
+                              data-product-price="{{ product.price }}" 
+                              data-product-compare-price="{{ product.compare_at_price }}"
+                              data-product-image="{{ product.featured_image | img_url: '150x150' }}"
+                              style="background-color: #000000; /* Changed to black */
+                                     color: white;
+                                     font-size: {{ section.settings.choose_button_size }}px;
+                                     border-radius: {{ section.settings.choose_button_radius }}px;
+                                     padding: 12px 20px;
+                                     margin-top: 15px;
+                                     cursor: pointer;
+                                     transition: all 0.3s ease;">
+                        Choose Now <span class="arrow">→</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="skip-step-container">
+          <button class="skip-step-btn" onclick="skipToNextStep()">
+            Skip this step →
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2 Content -->
+      <div class="step-content" data-step="2" style="display: none;">
+        <h2>{{ step2_title }}</h2>
+        <div class="products-grid">
+          <div class="products-row">
+            {% for product in section.settings.step2_products %}
+              <div class="product-wrapper">
+                <div class="product-card">
+                  <div class="product-image-container">
+                    <img src="{{ product.featured_image | img_url: '800x800' }}" alt="{{ product.title }}" class="product-image-main">
+                  </div>
+                  <div class="product-info">
+                    <h4 class="product-title">{{ product.title }}</h4>
+                    <div class="price-container">
+                      <span class="product-price">{{ product.price | money }}</span>
+                      {% if product.compare_at_price > product.price %}
+                        <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                      {% endif %}
+                    </div>
+                    {% if product.variants.size > 1 %}
+                    <div class="variant-selection">
+                      <div class="variant-row">
+                        <label for="variant-select-{{ product.id }}" class="variant-label">Select Variant:</label>
+                        <div class="custom-select">
+                          <select id="variant-select-{{ product.id }}" class="variant-select" data-product-id="{{ product.id }}" onchange="handleVariantChange(this)">
+                            {% for variant in product.variants %}
+                              <option value="{{ variant.id }}" 
+                                      data-variant-price="{{ variant.price }}"
+                                      data-variant-compare-price="{{ variant.compare_at_price }}"
+                                      data-variant-image="{{ variant.image | img_url: '800x800' }}"
+                                      {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>
+                                {{ variant.title }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    {% endif %}
+                    <div class="button-container">
+                      <button class="choose-btn" 
+                              data-product-id="{{ product.id }}" 
+                              data-product-title="{{ product.title }}" 
+                              data-product-compare-price="{{ product.compare_at_price }}"
+                              data-product-image="{{ product.featured_image | img_url: '150x150' }}"
+                              style="background-color: #000000; /* Changed to black */
+                                     color: white;
+                                     font-size: {{ section.settings.choose_button_size }}px;
+                                     border-radius: {{ section.settings.choose_button_radius }}px;
+                                     padding: 12px 20px;
+                                     margin-top: 15px;
+                                     cursor: pointer;
+                                     transition: all 0.3s ease;">
+                        Choose Now <span class="arrow">→</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="skip-step-container">
+          <button class="skip-step-btn" onclick="skipToNextStep()">
+            Skip this step →
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3 Content -->
+      <div class="step-content" data-step="3" style="display: none;">
+        <h2>{{ step3_title }}</h2>
+        <div class="products-grid">
+          <div class="products-row">
+            {% for product in section.settings.step3_products %}
+              <div class="product-wrapper">
+                <div class="product-card">
+                  <div class="product-image-container">
+                    <img src="{{ product.featured_image | img_url: '800x800' }}" alt="{{ product.title }}" class="product-image-main">
+                  </div>
+                  <div class="product-info">
+                    <h4 class="product-title">{{ product.title }}</h4>
+                    <div class="price-container">
+                      <span class="product-price">{{ product.price | money }}</span>
+                      {% if product.compare_at_price > product.price %}
+                        <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                      {% endif %}
+                    </div>
+                    {% if product.variants.size > 1 %}
+                    <div class="variant-selection">
+                      <div class="variant-row">
+                        <label for="variant-select-{{ product.id }}" class="variant-label">Select Variant:</label>
+                        <div class="custom-select">
+                          <select id="variant-select-{{ product.id }}" class="variant-select" data-product-id="{{ product.id }}" onchange="handleVariantChange(this)">
+                            {% for variant in product.variants %}
+                              <option value="{{ variant.id }}" 
+                                      data-variant-price="{{ variant.price }}"
+                                      data-variant-compare-price="{{ variant.compare_at_price }}"
+                                      data-variant-image="{{ variant.featured_image | default: product.featured_image | img_url: '800x800' }}"
+                                      {% if forloop.first %}selected{% endif %}>
+                                {{ variant.title }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    {% endif %}
+                    <div class="button-container">
+                      <button class="choose-btn" 
+                              data-product-id="{{ product.id }}" 
+                              data-product-title="{{ product.title }}" 
+                              data-product-compare-price="{{ product.compare_at_price }}"
+                              data-product-image="{{ product.featured_image | img_url: '150x150' }}"
+                              style="background-color: #000000;
+                                     color: white;
+                                     font-size: {{ section.settings.choose_button_size }}px;
+                                     border-radius: {{ section.settings.choose_button_radius }}px;
+                                     padding: 12px 20px;
+                                     margin-top: 15px;
+                                     cursor: pointer;
+                                     transition: all 0.3s ease;">
+                        Choose Now <span class="arrow">→</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="skip-step-container">
+          <button class="skip-step-btn" onclick="skipToNextStep()">
+            Skip this step →
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 4 Content -->
+      <div class="step-content" data-step="4" style="display: none;">
+        <h2>{{ step4_title }}</h2>
+        <div class="products-grid">
+          <div class="products-row">
+            {% for product in section.settings.step4_products %}
+              <div class="product-wrapper">
+                <div class="product-card">
+                  <div class="product-image-container">
+                    <img src="{{ product.featured_image | img_url: '800x800' }}" alt="{{ product.title }}" class="product-image-main">
+                  </div>
+                  <div class="product-info">
+                    <h4 class="product-title">{{ product.title }}</h4>
+                    <div class="price-container">
+                      <span class="product-price">{{ product.price | money }}</span>
+                      {% if product.compare_at_price > product.price %}
+                        <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                      {% endif %}
+                    </div>
+                    {% if product.variants.size > 1 %}
+                    <div class="variant-selection">
+                      <div class="variant-row">
+                        <label for="variant-select-{{ product.id }}" class="variant-label">Select Variant:</label>
+                        <div class="custom-select">
+                          <select id="variant-select-{{ product.id }}" class="variant-select" data-product-id="{{ product.id }}" onchange="handleVariantChange(this)">
+                            {% for variant in product.variants %}
+                              <option value="{{ variant.id }}" 
+                                      data-variant-price="{{ variant.price }}"
+                                      data-variant-compare-price="{{ variant.compare_at_price }}"
+                                      data-variant-image="{{ variant.featured_image | default: product.featured_image | img_url: '800x800' }}"
+                                      {% if forloop.first %}selected{% endif %}>
+                                {{ variant.title }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    {% endif %}
+                    <div class="button-container">
+                      <button class="choose-btn" 
+                              data-product-id="{{ product.id }}" 
+                              data-product-title="{{ product.title }}" 
+                              data-product-compare-price="{{ product.compare_at_price }}"
+                              data-product-image="{{ product.featured_image | img_url: '150x150' }}"
+                              style="background-color: #000000;
+                                     color: white;
+                                     font-size: {{ section.settings.choose_button_size }}px;
+                                     border-radius: {{ section.settings.choose_button_radius }}px;
+                                     padding: 12px 20px;
+                                     margin-top: 15px;
+                                     cursor: pointer;
+                                     transition: all 0.3s ease;">
+                        Choose Now <span class="arrow">→</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="skip-step-container">
+          <button class="skip-step-btn" onclick="skipToCheckout()">
+            Skip this step →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side: Fixed Cart Summary -->
+    <div class="bundle-cart-sidebar">
+      <div class="cart-summary">
+        <div class="cart-header">
+          <h3>Your Bundle Summary</h3>
+          <span class="total-items">0 items</span>
+        </div>
+        
+        <!-- Base Product Selection -->
+        <div class="cart-section">
+          <h4>Base Product</h4>
+          <div class="step1-selection cart-items">
+            <div class="empty-state">
+              <p>No base product selected</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add-ons Selection -->
+        <div class="cart-section">
+          <h4>Add-ons</h4>
+          <div class="step2-selection cart-items">
+            <div class="empty-state">
+              <p>No add-ons selected</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Optional Add-ons -->
+        <div class="cart-section">
+          <h4>Optional Add-ons</h4>
+          <div class="step3-selection cart-items">
+            <div class="empty-state">
+              <p>No optional add-ons selected</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Optional Add-ons -->
+        <div class="cart-section">
+          <h4>Additional Optional Add-ons</h4>
+          <div class="step4-selection cart-items">
+            <div class="empty-state">
+              <p>No additional optional add-ons selected</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cart Totals -->
+        <div class="cart-totals">
+          <div class="savings-display" style="display: none;">
+            <span>Your Savings:</span>
+            <span class="savings-amount">$0.00</span>
+          </div>
+          <div class="subtotal">
+            <span>Subtotal</span>
+            <span class="price-amount">$0.00</span>
+          </div>
+          <div class="shipping-note">Taxes and shipping calculated at checkout</div>
+          <button class="checkout-btn" disabled
+            style="background-color: {{ section.settings.checkout_button_color }}; 
+                   color: {{ section.settings.checkout_button_text_color }};">
+            Proceed to Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let cartTotal = 0;
+let currentStep = 1;
+let selectedProducts = {
+  step1: null,
+  step2: [],
+  step3: [],
+  step4: []
+};
+
+function updateProductImage(swatch, imageUrl) {
+  const productWrapper = swatch.closest('.product-wrapper');
+  const productImage = productWrapper.querySelector('.product-image-main');
+  
+  if (productImage && imageUrl) {
+    productImage.src = imageUrl;
+  }
+  
+  const allSwatches = productWrapper.querySelectorAll('.color-swatch');
+  allSwatches.forEach(s => s.classList.remove('selected'));
+  swatch.classList.add('selected');
+  
+  const variantId = swatch.getAttribute('data-variant-id');
+  const select = productWrapper.querySelector('.variant-select');
+  if (select && variantId) {
+    select.value = variantId;
+    // Trigger variant change to update cart image
+    handleVariantChange(select);
+  }
+}
+
+function updateCartTotal(price) {
+  cartTotal = price / 100;
+  document.querySelector('.selected-price').textContent = `$${cartTotal.toFixed(2)}`;
+}
+
+function handleVariantChange(select) {
+  const selectedOption = select.options[select.selectedIndex];
+  const imageUrl = selectedOption.getAttribute('data-variant-image');
+  const price = selectedOption.getAttribute('data-variant-price');
+  const productWrapper = select.closest('.product-wrapper');
+  const productImage = productWrapper.querySelector('.product-image-main');
+  const productPrice = productWrapper.querySelector('.product-price');
+  
+  if (productImage && imageUrl) {
+    productImage.src = imageUrl;
+    
+    // Update cart image if this is the selected product
+    const step = productWrapper.closest('.step-content').dataset.step;
+    if (step === '1' && selectedProducts.step1) {
+      selectedProducts.step1.image = imageUrl;
+      updateStep1Selection();
+    } else if (step === '2') {
+      const productId = select.id.replace('variant-select-', '');
+      const addonIndex = selectedProducts.step2.findIndex(p => p.id === productId);
+      if (addonIndex >= 0) {
+        selectedProducts.step2[addonIndex].image = imageUrl;
+        updateStep2Selection();
+      }
+    } else if (step === '3') {
+      const productId = select.id.replace('variant-select-', '');
+      const fixtureIndex = selectedProducts.step3.findIndex(p => p.id === productId);
+      if (fixtureIndex >= 0) {
+        selectedProducts.step3[fixtureIndex].image = imageUrl;
+        updateStep3Selection();
+      }
+    } else if (step === '4') {
+      const productId = select.id.replace('variant-select-', '');
+      const addonIndex = selectedProducts.step4.findIndex(p => p.id === productId);
+      if (addonIndex >= 0) {
+        selectedProducts.step4[addonIndex].image = imageUrl;
+        updateStep4Selection();
+      }
+    }
+  }
+  
+  if (price && productPrice) {
+    productPrice.textContent = `$${(price/100).toFixed(2)}`;
+  }
+  
+  if (price) {
+    updateCartTotal(price);
+  }
+}
+
+function goToStep(step) {
+  currentStep = step;
+  updateStepProgress(currentStep);
+  updateProgress(currentStep);
+}
+
+function updateStepProgress(currentStep) {
+  document.querySelectorAll('.step-item').forEach((item, index) => {
+    const stepNumber = index + 1;
+    const circle = item.querySelector('.step-circle');
+    const label = item.querySelector('.step-label');
+    const connector = item.nextElementSibling?.querySelector('.connector-line');
+    
+    if (stepNumber < currentStep) {
+      circle.classList.add('completed', 'active');
+      label.classList.add('active');
+      if (connector) connector.parentElement.classList.add('completed');
+    } else if (stepNumber === currentStep) {
+      circle.classList.add('active');
+      label.classList.add('active');
+      if (connector) connector.parentElement.classList.remove('completed');
+    } else {
+      circle.classList.remove('completed', 'active');
+      label.classList.remove('active');
+      if (connector) connector.parentElement.classList.remove('completed');
+    }
+  });
+}
+
+function updateProgress(step) {
+  document.querySelectorAll('.step-content').forEach(content => {
+    content.style.display = 'none';
+    content.classList.remove('active');
+  });
+
+  const currentContent = document.querySelector(`.step-content[data-step="${step}"]`);
+  if (currentContent) {
+    currentContent.style.display = 'block';
+    currentContent.classList.add('active');
+  }
+}
+
+function skipToNextStep() {
+  currentStep++;
+  if (currentStep > 5) currentStep = 5;
+  updateStepProgress(currentStep);
+  updateProgress(currentStep);
+}
+
+function skipToCheckout() {
+  currentStep = 5;
+  updateStepProgress(currentStep);
+  updateProgress(currentStep);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateStepProgress(currentStep);
+  
+  document.querySelectorAll('.choose-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const step = parseInt(this.closest('.step-content').dataset.step);
+      const productId = this.dataset.productId;
+      const productTitle = this.dataset.productTitle;
+      const variantSelect = document.querySelector(`#variant-select-${productId}`);
+      const selectedVariant = variantSelect ? variantSelect.options[variantSelect.selectedIndex] : null;
+      const variantPrice = selectedVariant ? selectedVariant.dataset.variantPrice : this.dataset.productPrice;
+      const variantComparePrice = selectedVariant ? selectedVariant.dataset.variantComparePrice : this.dataset.productComparePrice;
+      const variantImage = selectedVariant ? selectedVariant.dataset.variantImage : this.dataset.productImage;
+      
+      const productData = {
+        id: selectedVariant ? selectedVariant.value : productId,
+        title: selectedVariant ? `${productTitle} - ${selectedVariant.text}` : productTitle,
+        price: variantPrice,
+        compare_at_price: variantComparePrice,
+        image: variantImage
+      };
+      
+      if (step === 1) {
+        selectedProducts.step1 = productData;
+        updateStep1Selection();
+      } else if (step === 2) {
+        selectedProducts.step2.push(productData);
+        updateStep2Selection();
+      } else if (step === 3) {
+        selectedProducts.step3.push(productData);
+        updateStep3Selection();
+      } else if (step === 4) {
+        selectedProducts.step4.push(productData);
+        updateStep4Selection();
+      }
+      
+      updateTotal();
+      skipToNextStep();
+    });
+  });
+  
+  document.querySelector('.checkout-btn').addEventListener('click', handleCheckout);
+});
+
+function updateStep1Selection() {
+  if (!selectedProducts.step1) return;
+  
+  document.querySelector('.step1-selection').innerHTML = `
+    <div class="product-info">
+      <img src="${selectedProducts.step1.image}" alt="${selectedProducts.step1.title}" class="product-image">
+      <span>${selectedProducts.step1.title}</span>
+      <div class="price-info">
+        <div>$${(parseFloat(selectedProducts.step1.price)/100).toFixed(2)}</div>
+        ${selectedProducts.step1.compare_at_price > selectedProducts.step1.price ? 
+          `<div class="cart-compare-price">$${(parseFloat(selectedProducts.step1.compare_at_price)/100).toFixed(2)}</div>` 
+          : ''}
+      </div>
+      <div class="quantity-selector">
+        <button onclick="updateQuantity('step1', -1)">-</button>
+        <input type="number" class="quantity-input" value="1" min="1" onchange="updateTotal()">
+        <button onclick="updateQuantity('step1', 1)">+</button>
+      </div>
+    </div>
+  `;
+}
+
+function updateStep2Selection() {
+  const step2Selection = document.querySelector('.step2-selection');
+  if (selectedProducts.step2.length === 0) {
+    step2Selection.innerHTML = `
+      <div class="empty-state">
+        <p>No add-ons selected</p>
+      </div>
+    `;
+    return;
+  }
+  
+  step2Selection.innerHTML = selectedProducts.step2.map((addon, index) => `
+    <div class="product-info" data-addon-index="${index}">
+      <img src="${addon.image}" alt="${addon.title}" class="product-image">
+      <span>${addon.title}</span>
+      <div class="price-info">
+        <div>$${(parseFloat(addon.price)/100).toFixed(2)}</div>
+        ${addon.compare_at_price > addon.price ? 
+          `<div class="cart-compare-price">$${(parseFloat(addon.compare_at_price)/100).toFixed(2)}</div>` 
+          : ''}
+      </div>
+      <div class="quantity-selector">
+        <button onclick="updateQuantity('step2', -1, ${index})">-</button>
+        <input type="number" class="quantity-input" value="1" min="1" onchange="updateTotal()">
+        <button onclick="updateQuantity('step2', 1, ${index})">+</button>
+      </div>
+      <button class="remove-addon" onclick="removeAddon(${index})">Remove</button>
+    </div>
+  `).join('');
+}
+
+function updateStep3Selection() {
+  const step3Selection = document.querySelector('.step3-selection');
+  if (selectedProducts.step3.length === 0) {
+    step3Selection.innerHTML = `
+      <div class="empty-state">
+        <p>No optional add-ons selected</p>
+      </div>
+    `;
+    return;
+  }
+  
+  step3Selection.innerHTML = selectedProducts.step3.map((fixture, index) => `
+    <div class="product-info" data-fixture-index="${index}">
+      <img src="${fixture.image}" alt="${fixture.title}" class="product-image">
+      <span>${fixture.title}</span>
+      <div class="price-info">
+        <div>$${(parseFloat(fixture.price)/100).toFixed(2)}</div>
+        ${fixture.compare_at_price > fixture.price ? 
+          `<div class="cart-compare-price">$${(parseFloat(fixture.compare_at_price)/100).toFixed(2)}</div>` 
+          : ''}
+      </div>
+      <div class="quantity-selector">
+        <button onclick="updateQuantity('step3', -1, ${index})">-</button>
+        <input type="number" class="quantity-input" value="1" min="1" onchange="updateTotal()">
+        <button onclick="updateQuantity('step3', 1, ${index})">+</button>
+      </div>
+      <button class="remove-addon" onclick="removeFixture(${index})">Remove</button>
+    </div>
+  `).join('');
+}
+
+function updateStep4Selection() {
+  const step4Selection = document.querySelector('.step4-selection');
+  if (selectedProducts.step4.length === 0) {
+    step4Selection.innerHTML = `
+      <div class="empty-state">
+        <p>No additional optional add-ons selected</p>
+      </div>
+    `;
+    return;
+  }
+  
+  step4Selection.innerHTML = selectedProducts.step4.map((addon, index) => `
+    <div class="product-info" data-additional-addon-index="${index}">
+      <img src="${addon.image}" alt="${addon.title}" class="product-image">
+      <span>${addon.title}</span>
+      <div class="price-info">
+        <div>$${(parseFloat(addon.price)/100).toFixed(2)}</div>
+        ${addon.compare_at_price > addon.price ? 
+          `<div class="cart-compare-price">$${(parseFloat(addon.compare_at_price)/100).toFixed(2)}</div>` 
+          : ''}
+      </div>
+      <div class="quantity-selector">
+        <button onclick="updateQuantity('step4', -1, ${index})">-</button>
+        <input type="number" class="quantity-input" value="1" min="1" onchange="updateTotal()">
+        <button onclick="updateQuantity('step4', 1, ${index})">+</button>
+      </div>
+      <button class="remove-addon" onclick="removeAdditionalAddon(${index})">Remove</button>
+    </div>
+  `).join('');
+}
+
+function updateQuantity(productType, change, index) {
+  const quantityInput = document.querySelector(
+    index !== undefined 
+      ? `.${productType}-selection [data-${productType === 'step3' ? 'fixture' : productType === 'step4' ? 'additional-addon' : 'addon'}-index="${index}"] .quantity-input`
+      : `.${productType}-selection .quantity-input`
+  );
+  
+  if (!quantityInput) return;
+  
+  let quantity = parseInt(quantityInput.value) + change;
+  quantity = Math.max(1, quantity);
+  quantityInput.value = quantity;
+  
+  updateTotal();
+}
+
+function updateTotal() {
+  let total = 0;
+  let compareTotal = 0;
+  let hasProducts = false;
+  
+  if (selectedProducts.step1) {
+    hasProducts = true;
+    const quantity = parseInt(document.querySelector('.step1-selection .quantity-input')?.value) || 1;
+    total += parseFloat(selectedProducts.step1.price) * quantity;
+    compareTotal += parseFloat(selectedProducts.step1.compare_at_price || selectedProducts.step1.price) * quantity;
+  }
+  
+  selectedProducts.step2.forEach((addon, index) => {
+    const quantity = parseInt(document.querySelector(`.step2-selection [data-addon-index="${index}"] .quantity-input`)?.value) || 1;
+    total += parseFloat(addon.price) * quantity;
+    compareTotal += parseFloat(addon.compare_at_price || addon.price) * quantity;
+  });
+  
+  selectedProducts.step3.forEach((fixture, index) => {
+    const quantity = parseInt(document.querySelector(`.step3-selection [data-fixture-index="${index}"] .quantity-input`)?.value) || 1;
+    total += parseFloat(fixture.price) * quantity;
+    compareTotal += parseFloat(fixture.compare_at_price || fixture.price) * quantity;
+  });
+  
+  selectedProducts.step4.forEach((addon, index) => {
+    const quantity = parseInt(document.querySelector(`.step4-selection [data-additional-addon-index="${index}"] .quantity-input`)?.value) || 1;
+    total += parseFloat(addon.price) * quantity;
+    compareTotal += parseFloat(addon.compare_at_price || addon.price) * quantity;
+  });
+  
+  const savings = compareTotal - total;
+  const savingsDisplay = document.querySelector('.savings-display');
+  
+  if (hasProducts && savings > 0) {
+    savingsDisplay.style.display = 'flex';
+    document.querySelector('.savings-amount').textContent = `-$${(savings/100).toFixed(2)}`;
+  } else {
+    savingsDisplay.style.display = 'none';
+  }
+  
+  document.querySelector('.price-amount').textContent = `$${(total/100).toFixed(2)}`;
+  document.querySelector('.selected-price').textContent = `$${(total/100).toFixed(2)}`;
+  
+  const totalItems = (selectedProducts.step1 ? 1 : 0) + 
+                    selectedProducts.step2.length + 
+                    selectedProducts.step3.length +
+                    selectedProducts.step4.length;
+  document.querySelector('.total-items').textContent = `${totalItems} item${totalItems !== 1 ? 's' : ''}`;
+  
+  const checkoutBtn = document.querySelector('.checkout-btn');
+  checkoutBtn.disabled = !hasProducts;
+  checkoutBtn.style.opacity = hasProducts ? '1' : '0.5';
+  checkoutBtn.style.cursor = hasProducts ? 'pointer' : 'not-allowed';
+}
+
+function removeAddon(index) {
+  selectedProducts.step2.splice(index, 1);
+  updateStep2Selection();
+  updateTotal();
+}
+
+function removeFixture(index) {
+  selectedProducts.step3.splice(index, 1);
+  updateStep3Selection();
+  updateTotal();
+}
+
+function removeAdditionalAddon(index) {
+  selectedProducts.step4.splice(index, 1);
+  updateStep4Selection();
+  updateTotal();
+}
+
+async function handleCheckout() {
+  if (!document.querySelector('.checkout-btn').disabled) {
+    try {
+      await fetch('/cart/clear.js', { method: 'POST' });
+      
+      if (selectedProducts.step1) {
+        const step1Quantity = parseInt(document.querySelector('.step1-selection .quantity-input').value) || 1;
+        await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            id: selectedProducts.step1.id,
+            quantity: step1Quantity,
+            properties: { 'Bundle': 'Base Product' }
+          })
+        });
+      }
+      
+      for (const [index, addon] of selectedProducts.step2.entries()) {
+        const quantityInput = document.querySelector(`.step2-selection [data-addon-index="${index}"] .quantity-input`);
+        const quantity = parseInt(quantityInput?.value) || 1;
+        await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            id: addon.id,
+            quantity: quantity,
+            properties: { 'Bundle': 'Add-on Product' }
+          })
+        });
+      }
+      
+      for (const [index, fixture] of selectedProducts.step3.entries()) {
+        const quantityInput = document.querySelector(`.step3-selection [data-fixture-index="${index}"] .quantity-input`);
+        const quantity = parseInt(quantityInput?.value) || 1;
+        await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            id: fixture.id,
+            quantity: quantity,
+            properties: { 'Bundle': 'Optional Add-on' }
+          })
+        });
+      }
+      
+      for (const [index, addon] of selectedProducts.step4.entries()) {
+        const quantityInput = document.querySelector(`.step4-selection [data-additional-addon-index="${index}"] .quantity-input`);
+        const quantity = parseInt(quantityInput?.value) || 1;
+        await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            id: addon.id,
+            quantity: quantity,
+            properties: { 'Bundle': 'Additional Optional Add-on' }
+          })
+        });
+      }
+      
+      window.location.href = '/checkout';
+    } catch (error) {
+      console.error('Cart Error:', error);
+    }
+  }
+}
+</script>
+
+{% schema %}
+{
+  "name": "5 Steps Bundle",
+  "class": "bundle-subscription-section",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "bundle_title",
+      "label": "Bundle Title",
+      "default": "Build Your Bundle"
+    },
+    {
+      "type": "text",
+      "id": "step1_title",
+      "label": "Step 1 Title",
+      "default": "Step 1: Choose Your Base Product"
+    },
+    {
+      "type": "text",
+      "id": "step2_title",
+      "label": "Step 2 Title", 
+      "default": "Step 2: Select Add-ons"
+    },
+    {
+      "type": "text",
+      "id": "step3_title",
+      "label": "Step 3 Title",
+      "default": "Fixtures (Add-On)"
+    },
+    {
+      "type": "text",
+      "id": "step4_title",
+      "label": "Step 4 Title",
+      "default": "Additional Optional Add-ons"
+    },
+    {
+      "type": "text",
+      "id": "step5_title",
+      "label": "Step 5 Title",
+      "default": "Step 5: Checkout"
+    },
+    {
+      "type": "range",
+      "id": "step_size",
+      "min": 30,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Step Circle Size",
+      "default": 40
+    },
+    {
+      "type": "checkbox",
+      "id": "show_step_numbers",
+      "label": "Show Step Numbers",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "step_number_color",
+      "label": "Step Number Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "step_background_color",
+      "label": "Step Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color", 
+      "id": "step_border_color",
+      "label": "Step Circle Border Color",
+      "default": "#dcdcdc"
+    },
+    {
+      "type": "range",
+      "id": "step_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Step Border Radius",
+      "default": 50
+    },
+    {
+      "type": "color",
+      "id": "active_step_number_color",
+      "label": "Active Step Number Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "active_step_background_color",
+      "label": "Active Step Background Color",
+      "default": "#2c3e50"
+    },
+    {
+      "type": "color",
+      "id": "active_step_border_color",
+      "label": "Active Step Border Color",
+      "default": "#2c3e50"
+    },
+    {
+      "type": "range",
+      "id": "step_title_size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Step Title Font Size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "step_title_color",
+      "label": "Step Title Color",
+      "default": "#2c3e50"
+    },
+    {
+      "type": "color",
+      "id": "active_step_title_color",
+      "label": "Active Step Title Color",
+      "default": "#2c3e50"
+    },
+    {
+      "type": "color",
+      "id": "step_title_background_color",
+      "label": "Step Title Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "active_step_title_background_color",
+      "label": "Active Step Title Background Color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "select",
+      "id": "step_title_alignment",
+      "label": "Step Title Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "step_title_border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Step Title Border Width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "step_title_border_color",
+      "label": "Step Title Border Color",
+      "default": "#dcdcdc"
+    },
+    {
+      "type": "range",
+      "id": "step_title_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Step Title Border Radius",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "product_title_size",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Product Title Size",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "product_title_color",
+      "label": "Product Title Color",
+      "default": "#2c3e50"
+    },
+    {
+      "type": "select",
+      "id": "product_title_alignment",
+      "label": "Product Title Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "choose_button_alignment",
+      "label": "Choose Button Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "choose_button_color",
+      "label": "Choose Button Color",
+      "default": "#2c3e50"
+    },
+    {
+      "type": "color",
+      "id": "choose_button_text_color",
+      "label": "Choose Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "choose_button_hover_color",
+      "label": "Choose Button Hover Color",
+      "default": "#34495e"
+    },
+    {
+      "type": "range",
+      "id": "choose_button_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Choose Button Font Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "choose_button_border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Choose Button Border Width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "choose_button_border_color",
+      "label": "Choose Button Border Color",
+      "default": "#2c3e50"
+    },
+    {
+      "type": "range",
+      "id": "choose_button_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Choose Button Border Radius",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "checkout_button_color",
+      "label": "Checkout Button Color",
+      "default": "#2c3e50"
+    },
+    {
+      "type": "color",
+      "id": "checkout_button_text_color",
+      "label": "Checkout Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "checkout_button_alignment",
+      "label": "Checkout Button Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "checkout_button_border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Checkout Button Border Width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "checkout_button_border_color",
+      "label": "Checkout Button Border Color",
+      "default": "#2c3e50"
+    },
+    {
+      "type": "product_list",
+      "id": "step1_products",
+      "label": "Step 1 Products",
+      "limit": 6
+    },
+    {
+      "type": "product_list",
+      "id": "step2_products",
+      "label": "Step 2 Products",
+      "limit": 6
+    },
+    {
+      "type": "product_list",
+      "id": "step3_products",
+      "label": "Optional Add-on Products",
+      "limit": 6
+    },
+    {
+      "type": "product_list",
+      "id": "step4_products",
+      "label": "Additional Optional Add-on Products",
+      "limit": 6
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundle Subscription",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.bundle-steps-container {
+  padding: 40px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.bundle-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.bundle-main-content {
+  width: 100%;
+}
+
+/* Cart Sidebar Styles */
+.bundle-cart-sidebar {
+  position: sticky;
+  top: 120px; /* Increased from 20px to account for header height */
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  max-height: calc(100vh - 140px); /* Ensure cart doesn't overflow viewport */
+  overflow-y: auto; /* Allow scrolling within cart if content is too tall */
+}
+
+.cart-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  scroll-behavior: smooth;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.cart-header h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.total-items {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.cart-section {
+  padding: 16px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.cart-section h4 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin: 0 0 16px;
+}
+
+.cart-items {
+  min-height: 60px;
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  color: #888;
+  font-size: 14px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.cart-item-info {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.cart-item-image {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.cart-item-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.quantity-selector button {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #e5e5e5;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.quantity-selector button:hover {
+  background: #f5f5f5;
+}
+
+.quantity-selector input {
+  width: 40px;
+  height: 28px;
+  text-align: center;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.product-total {
+  font-weight: 500;
+  color: #1a1a1a;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.cart-totals {
+  padding-top: 20px;
+  margin-top: auto;
+}
+
+.savings-display {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 14px;
+  color: #ff0000;
+  margin-bottom: 8px;
+}
+
+.savings-amount {
+  color: #ff0000;
+  font-weight: 700;
+}
+
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 16px;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.shipping-note {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.checkout-btn:not(:disabled):hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.checkout-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Product Grid Styles */
+.products-grid {
+  width: 100%;
+  padding: 20px 0;
+  overflow: visible; /* Allow content to flow naturally */
+}
+
+.products-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Show 2 products per row */
+  gap: 20px;
+  padding: 0 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-wrapper {
+  width: 100%; /* Allow product to fill grid cell */
+  max-width: 450px; /* Maximum width for each card */
+  padding: 10px;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.product-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+}
+
+.product-image-main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-info {
+  padding: 16px;
+}
+
+.product-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  height: 2.8em; /* 2 lines * 1.4 line-height */
+}
+
+.price-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.product-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+}
+
+.compare-price {
+  font-size: 16px;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.variant-selection {
+  margin-bottom: 20px;
+}
+
+.variant-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+  box-shadow: none !important;
+}
+
+.variant-select {
+  width: 100%;
+  padding: 12px 16px;
+  padding-right: 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.variant-select:focus,
+.variant-select:hover,
+.variant-select:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #999;
+}
+
+/* Remove any potential browser-specific shadows */
+.variant-select::-moz-focus-inner {
+  border: 0;
+}
+
+.variant-select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.choose-btn {
+  width: 100%;
+  background-color: #000000 !important; /* Changed to black */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.choose-btn:hover {
+  background-color: #333333 !important; /* Slightly lighter black on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.choose-btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+.arrow {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+/* Mobile Styles */
+@media (max-width: 1200px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .products-row {
+    grid-template-columns: 1fr; /* Stack on mobile */
+    gap: 15px;
+  }
+  
+  .product-wrapper {
+    max-width: 100%;
+  }
+
+  .product-title {
+    font-size: 15px;
+  }
+
+  .product-price {
+    font-size: 18px;
+  }
+}
+
+/* Smooth Scrolling */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Remove input number arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Modern Progress Bar Styles */
+.steps-progress {
+  margin: 40px 0;
+  padding: 20px;
+}
+
+.step-indicators {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 0 20px;
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+/* Add cursor pointer only when on step 4 for previous steps */
+.step-4-active .step-item[data-step="1"],
+.step-4-active .step-item[data-step="2"],
+.step-4-active .step-item[data-step="3"],
+.step-4-active .step-item[data-step="4"] {
+  cursor: pointer;
+}
+
+/* Add class to container when on step 4 */
+.steps-progress.on-step-4 {
+  cursor: pointer;
+}
+
+.step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #666;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.step-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  line-height: 1;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.step-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+
+.step-label.active {
+  color: {{ section.settings.step_background_color }};
+  font-weight: 600;
+}
+
+.step-connector {
+  flex: 1;
+  height: 2px;
+  position: relative;
+  z-index: 1;
+  margin: 0 -20px;
+}
+
+.connector-line {
+  height: 2px;
+  background-color: #e0e0e0;
+  width: 100%;
+  position: absolute;
+  top: -19px;
+}
+
+.step-total {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-top: 4px;
+}
+
+/* Completed step styling */
+.step-circle.completed {
+  background-color: {{ section.settings.step_background_color }};
+  border-color: {{ section.settings.step_background_color }};
+}
+
+.step-connector.completed .connector-line {
+  background-color: {{ section.settings.step_background_color }};
+}
+
+/* Hover effects */
+.step-item:hover .step-circle:not(.active) {
+  transform: scale(1.05);
+  background-color: #e8e8e8;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 600px) {
+  .step-label {
+    font-size: 12px;
+  }
+
+  .step-circle {
+    width: 32px;
+    height: 32px;
+  }
+
+  .connector-line {
+    top: -15px;
+  }
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 968px) {
+  .bundle-cart-sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto; /* Reset top positioning */
+    z-index: 1000;
+    border-radius: 16px 16px 0 0;
+    max-height: 70vh;
+    margin: 0;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .bundle-steps-container {
+    padding-bottom: calc(70vh + 20px); /* Add padding to prevent cart overlap */
+  }
+}
+
+.remove-addon {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.remove-addon:hover {
+  background-color: #cc0000;
+}
+
+/* Consistent cart item styling for all product types */
+.step1-selection .product-info,
+.step2-selection .product-info,
+.step3-selection .product-info,
+.step4-selection .product-info {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: 20px;
+  align-items: center;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.step1-selection .product-image,
+.step2-selection .product-image,
+.step3-selection .product-image,
+.step4-selection .product-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.step1-selection .product-info span,
+.step2-selection .product-info span,
+.step3-selection .product-info span,
+.step4-selection .product-info span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 200px;
+  line-height: 1.2;
+  height: 2.4em;
+}
+
+/* Quantity selector styling for all product types */
+.step1-selection .quantity-selector,
+.step2-selection .quantity-selector,
+.step3-selection .quantity-selector,
+.step4-selection .quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.quantity-selector button {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #e5e5e5;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.quantity-selector button:hover { 
+  background: #f5f5f5;
+}
+
+.quantity-selector input {
+  width: 40px;
+  height: 28px;
+  text-align: center;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Remove button styling for all product types */
+.remove-addon {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.remove-addon:hover {
+  background-color: #cc0000;
+}
+
+.skip-step-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.skip-step-btn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.skip-step-btn:hover {
+  color: #333;
+  transform: translateX(5px);
+}
+
+.bundle-title {
+  text-align: left;
+  font-size: 32px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+}
+
+.step-content h2 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  padding: 0 30px; /* Increased left/right padding from 20px to 30px */
+}
+
+/* Remove color swatch related styles */
+.color-swatch-container,
+.color-swatch,
+.more-variants {
+  display: none;
+}
+
+.price-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.price-info > div:first-child {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ff0000;  /* Changed to red */
+}
+
+.cart-compare-price {
+  font-size: 14px;  /* Increased from 12px */
+  color: #666;      /* Changed from #999 for better visibility */
+  text-decoration: line-through;
+  margin-top: 2px;
+}
+</style>

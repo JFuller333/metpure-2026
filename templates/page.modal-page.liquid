@@ -1,0 +1,241 @@
+
+
+
+<div id="popup1" class="overlay">
+	<div class="popup">
+    <div class="page page-1">
+    <h3 class="text-center py-10 font-bold"> MET PRO MEMBERSHIP <br> BENEFITS</h3>
+    <img class="pop-up-img1"src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/discount-icon.svg?v=1678825682" width=10%>
+		<h4 class="text-center font-bold"> WHOLESALE PRICE <h4>
+      <a class="close" href="#">&times;</a>
+		<div class="content">
+			<h4> Met Pro is a FREE membership that offer wholesale price to trade professionals.</h4>
+		</div>
+    <div class="flex flex-row ">
+      <div class="btm-btn1"><a href="https://www.metpure.com/pages/met-pro-redesign"><h4>Try Met Pro!<h5></a></div>
+      <div class="btm-btn2"><p> 1/5</div>
+      <div class="btm-btn3"><button class="pop-up-next-btn" onclick="showPage(2)">Next</button></div>
+    </div>
+	</div>
+  <div class="page page-2" style="display:none">
+    <h3 class="text-center py-10 font-bold"> MET PRO MEMBERSHIP <br> BENEFITS</h3>
+    <img class="pop-up-img1"src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/discount-icon.svg?v=1678825682" width=10%>
+		<h4 class="text-center font-bold"> BULK ORDER <h4>
+      <a class="close" href="#">&times;</a>
+		<div class="content">
+			<h4> Met Pro is a FREE membership that offer wholesale price to trade professionals.</h4>
+		</div>
+    <div class="flex flex-row">
+      <div class="btm-btn1"><a href="https://www.metpure.com/pages/met-pro-redesign"><h4>TRY MET PRO!<h5></a></div>
+      <div class="btm-btn2"><p> 2/5</p></div>
+      <div class="btm-btn3"><button class="pop-up-next-btn" onclick="showPage(3)">NEXT</button></div>
+    </div>
+  </div>
+  <div class="page page-3" style="display:none">
+    <h3 class="text-center py-10 font-bold"> MET PRO MEMBERSHIP <br> BENEFITS</h3>
+    <img class="pop-up-img1"src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/discount-icon.svg?v=1678825682" width=10%>
+		<h4 class="text-center font-bold"> CUSTOMER SUPPORT <h4>
+      <a class="close" href="#">&times;</a>
+		<div class="content">
+			<h4> Met Pro is a FREE membership that offer wholesale price to trade professionals.</h4>
+		</div>
+    <div class="flex flex-row">
+      <div class="btm-btn1"><a href="https://www.metpure.com/pages/met-pro-redesign"><h4>TRY MET PRO!<h5></a></div>
+      <div class="btm-btn2"><p> 3/5</p></div>
+      <div class="btm-btn3"><button class="pop-up-next-btn" onclick="showPage(4)">PREVIOUS</button></div>
+    </div>
+  </div>
+  <div class="page page-4" style="display:none">
+    <h3 class="text-center py-10 font-bold"> MET PRO MEMBERSHIP <br> BENEFITS</h3>
+    <img class="pop-up-img1"src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/discount-icon.svg?v=1678825682" width=10%>
+		<h4 class="text-center font-bold"> CUSTOMER SUPPORT <h4>
+      <a class="close" href="#">&times;</a>
+		<div class="content">
+			<h4> Met Pro is a FREE membership that offer wholesale price to trade professionals.</h4>
+		</div>
+    <div class="flex flex-row">
+      <div class="btm-btn1"><a href="https://www.metpure.com/pages/met-pro-redesign"><h4>TRY MET PRO!<h5></a></div>
+      <div class="btm-btn2"><p> 3/5</p></div>
+      <div class="btm-btn3"><button class="pop-up-next-btn" onclick="showPage(5)">PREVIOUS</button></div>
+    </div>
+  </div>
+  <div class="page page-5" style="display:none">
+      <a class="close" href="#">&times;</a>
+		<div class="content">
+      <h3 class="text-center py-10 font-bold"> TRY MET PRO MEMBERSHIP TODAY!</h3>
+		</div>
+    <button class="mp-btn justify-center">TRY MET PRO NOW!</button>
+  </div>
+</div>
+</div>
+
+<style>
+
+body {
+font-family: Arial, sans-serif;
+background: #ffff no-repeat;
+background-size: cover;
+height: 1800px;
+}
+
+h1 {
+text-align: center;
+font-family: Tahoma, Arial, sans-serif;
+color: #06D85F;
+margin: 80px 0;
+}
+
+.box {
+width: 40%;
+margin: 0 auto;
+background: rgba(255,255,255,0.2);
+padding: 35px;
+border: 2px solid #fff;
+border-radius: 20px/50px;
+background-clip: padding-box;
+text-align: center;
+}
+
+.button {
+font-size: 1em;
+padding: 10px;
+color: #107755;
+border: 2px solid #09886c;
+border-radius: 20px/50px;
+text-decoration: none;
+cursor: pointer;
+transition: all 0.3s ease-out;
+}
+.button:hover {
+background: #06D85F;
+}
+
+.overlay {
+position: fixed;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+background: rgba(0, 0, 0, 0.7);
+transition: opacity 500ms;
+visibility: hidden;
+}
+.overlay:target {
+visibility: visible;
+opacity: ;
+}
+
+.popup {
+margin: 7% auto;
+padding: 20px;
+background: #fff;
+border-radius: 5px;
+width: 30%;
+height: 75%;
+position: relative;
+transition: all 5s ease-in-out;
+z-index: -4; 
+}
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #09886c;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+  padding: 2% 25% 15% 25%;
+  text-align: center;
+}
+
+.flex.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.pop-up-img1 {
+  margin: auto;
+  padding: 3% 0 7% 0;
+}
+.btm-btn1 {
+  padding: 5% 5% 3% 5%;
+  justify-content: center;
+}
+
+.btm-btn2 {
+  color: rgb(151, 148, 148);
+  padding: 5% 5% 5% 5%;
+  justify-content: center;
+
+}
+.btm-btn3 {
+  padding: 5% 5% 3% 5%;
+  justify-content: center;
+}
+.pop-up-next-btn {
+  background-color: rgb(233, 233, 233);
+  font: #ffff;
+  border-radius: 5%;
+  padding: 7px;
+}
+.mp-btn {
+  background-color: #09886c;
+  color: #ffff;
+  padding: 20px;
+  height: 100px;
+  width: 200px;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+.pop-up-next-btn:hover {
+  background-color: #06D85F;
+}
+
+/* hide all but first page */
+.popup .page:not(:first-of-type) {
+  display: none;
+}
+
+/* show next page on button click */
+.popup .pop-up-next-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+.popup .pop-up-next-btn:focus + .page {
+  display: none;
+}
+.popup .pop-up-next-btn:focus + .page + .pop-up-next
+
+</style>
+
+
+<script>
+  function showPage(pageNumber) {
+    // hide all pages
+    var pages = document.getElementsByClassName("page");
+    for (var i = 0; i < pages.length; i++) {
+      pages[i].style.display = "none";
+    }
+    // show the selected page
+    var page = document.querySelector(".page-" + pageNumber);
+    if (page) {
+      page.style.display = "block";
+    }
+  }
+</script>  

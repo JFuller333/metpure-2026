@@ -1,0 +1,124 @@
+{% if template == 'product.faucets' %}
+<div style="padding: 10px 10px 10px 0;"><b>Select a style:</b> <span id="style-title">{{ product.metafields.custom.faucet_style_name }}</span></div>
+{% endif %}
+
+<div class="product-styles">
+    <!-- Image 1 -->
+    <div class="current-variant" data-style="Vase ">
+      <a href="https://www.metpure.com/products/test-water-filtration-faucet-vase-style-brushed-nickel-reverse-osmosis-non-air-gap-certified-by-nsf-copy">
+        <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/FA-05-BN-NAG-1_3944cdc6-3cc0-4594-9713-d6c7399abb13_3.png?v=1721851446" alt="Metpure Vase Style RO Faucets" />
+      </a>
+    </div>
+
+    <!-- Image 2 -->
+    <div class="current-variant" data-style="Small Euro ">
+      <a href="https://www.metpure.com/products/test-water-filtration-faucet-brushed-nickel-euro-style-reverse-osmosis-non-air-gap-certified-by-nsf-copy">
+        <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/FA-08-BN-NAG-1_3be12210-c19e-4f5a-960e-3b3c413d037b_1.png?v=1721851445" alt="Metpure Small Euro Style Faucet" />
+      </a>
+    </div>
+
+    <!-- Image 3 -->
+    <div class="current-variant" data-style="Large Euro">
+      <a href="https://www.metpure.com/products/test-water-filtration-faucet-brushed-nickel-large-euro-style-reverse-osmosis-non-air-gap-certified-by-nsf-copy">
+        <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/FA-09-BN-NAG-1_6894e56e-39dc-47c6-b77b-abe888831dc4_1.png?v=1721851446" alt="Metpure Large Euro Style Faucet" />
+      </a>
+    </div>
+
+    <!-- Image 4 -->
+    <div class="current-variant" data-style="Long Reach">
+      <a href="https://www.metpure.com/products/test-water-filtration-faucet-brushed-nickel-long-reach-style-reverse-osmosis-non-air-gap-certified-by-nsf-copy">
+        <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/FA-07-BN-NAG-1_1.png?v=1721851445" alt="Metpure Long Reach Style Faucet" />
+      </a>
+    </div>
+</div>
+
+<style>
+  .product-styles {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 10px; /* add some vertical spacing */
+    margin-bottom: 30px;
+  }
+
+  /* Circular variant container */
+  .product-styles .current-variant {
+    width: clamp(60px, 10vw, 80px);   /* scales from 60px to 80px based on viewport */
+    height: clamp(60px, 10vw, 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    border: solid 1px transparent;
+    flex-shrink: 0; /* prevent shrinking too much */
+  }
+
+  /* Make links fill the circle */
+  .product-styles a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Circular images inside */
+  .product-styles img {
+    width: 80%;   /* stays relative to parent circle */
+    height: 80%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  /* Optional: horizontal scroll on very small screens */
+  @media screen and (max-width: 480px) {
+    .product-styles {
+      flex-wrap: nowrap;          /* all images in one line */
+      overflow-x: auto;           /* enable horizontal scrolling */
+      -webkit-overflow-scrolling: touch;
+      column-gap: 8px;
+      row-gap: 0;                 /* optional: remove vertical gap */
+    }
+
+    .product-styles .current-variant {
+      width: clamp(50px, 15vw, 70px); /* smaller on mobile */
+      height: clamp(50px, 15vw, 70px);
+    }
+
+    .product-styles img {
+      width: 80%;
+      height: 80%;
+    }
+  }
+</style>
+
+<script>
+  function displayStyleTitle(styleName) {
+    var styleTitle = document.getElementById('style-title');
+    if (styleTitle) {
+      styleTitle.textContent = styleName;
+    }
+  }
+
+  function resetStyleTitle() {
+    var styleTitle = document.getElementById('style-title');
+    if (styleTitle) {
+      styleTitle.textContent = "{{ product.metafields.custom.faucet_style_name }}";
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var variants = document.querySelectorAll('.current-variant');
+    variants.forEach(function(variant) {
+      variant.addEventListener('mouseover', function() {
+        displayStyleTitle(variant.getAttribute('data-style'));
+      });
+      variant.addEventListener('mouseout', function() {
+        resetStyleTitle();
+      });
+    });
+  });
+</script>
+ 

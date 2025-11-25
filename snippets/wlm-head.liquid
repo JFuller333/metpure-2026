@@ -1,0 +1,202 @@
+<script type='text/javascript' src='/apps/wlm/js/wlm-1.1.js?v=2.0'></script>
+{% assign wlmEnabled = true %}
+{% assign wlmLockON = false %}
+{% assign wlmRedirectURL = '' %} 
+{% assign wlmPnfHead = '' %} 
+{% assign wlmPnfMsg = '' %}
+{% assign wlmPwdForm = false %}
+{% assign wlmPwdMsg = '' %}
+{% assign wlmSuperPage = false %}
+
+{% if template == 'customers/login' or template == 'customers/activate_account' or template == 'customers/reset_password' or canonical_url contains 'challenge' %}
+
+{% unless canonical_url contains '/products/' or canonical_url contains '/collection/' or canonical_url contains '/collections/' or canonical_url contains '/search' %} {% assign wlmSuperPage = true %}
+ {% endunless %}{% endif %}
+
+{% capture wlm_check %}{% include 'super_page_access' %}{% endcapture %}{% unless wlm_check contains 'Liquid error' %}{% include 'super_page_access' %}{% endunless %}
+{% if wlmEnabled %}
+<style type="text/css">.wlm-message-pnf{text-align:center}#wlm-pwd-form{padding:30px 0;text-align:center}#wlm-wrapper{display:inline-block}#wlm-pwd-error{display:none;color:#FB8077;text-align:left;margin-top:10px;font-size:1.3rem}#wlm-pwd-error.wlm-error{border:1px solid #FB8077}#wlm-pwd-form-button{display:inline-block !important;height:auto !important;padding:8px 15px !important;background:black;border-radius:0 !important;color:#fff !important;text-decoration:none !important;vertical-align:top}.wlm-instantclick-fix,.wlm-item-selector{position:absolute;z-index:-999;display:none;height:0;width:0;font-size:0;line-height:0}#wlm-pwd-msg{margin-bottom:20px;text-align:left}#wlm-pwd-msg>p{margin-top:0;margin-bottom:0}.wlm-form-holder{display:flex}#wlm-pwd{border-color:black;border-width:1px;border-right:0;padding:0 10px}#wlm-pwd:focus-visible{outline:0}</style>
+
+{% assign wlmLockedTags152208 = false %}
+{% assign wlmLockedTags154065 = false %}
+{% assign wlmLockedTags154066 = false %}
+{% assign wlmLockedTags265819 = false %}
+{% assign wlmLockedTags312760 = false %}
+{% assign wlmLockedTags274171 = false %}
+{% assign wlmLockedTags351256 = false %}
+{% assign wlmLockedTags351257 = false %}
+{% assign wlmLockedTags350153 = false %}
+{% for tag in customer.tags %}
+{% if tag == 'TAP369' %}{% assign wlmLockedTags152208 = true %}{% endif %}
+{% if tag == 'b2b' %}{% assign wlmLockedTags154065 = true %}{% endif %}
+{% if tag == 'b2b' %}{% assign wlmLockedTags154066 = true %}{% endif %}
+{% if tag == 'retail customer MV filter' %}{% assign wlmLockedTags265819 = true %}{% endif %}
+{% if tag == 'WLMTest' %}{% assign wlmLockedTags312760 = true %}{% endif %}
+{% if tag == 'staff' %}{% assign wlmLockedTags274171 = true %}{% endif %}
+{% if tag == 'b2b' %}{% assign wlmLockedTags351256 = true %}{% endif %}
+{% if tag == 'b2b' %}{% assign wlmLockedTags351257 = true %}{% endif %}
+{% if tag == 'staff' %}{% assign wlmLockedTags350153 = true %}{% endif %}
+{% endfor %}
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains "product" and product %} {% if product.id == 7391036539071 or product.id == 7391768445119 or product.id == 7391005343935 or product.id == 7391040045247 %} {% assign wlmLockedContent = true %}{% endif %}{% endif %}{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/met-pro-members-only{% endcapture %}
+{% else %}
+{% unless wlmLockedTags152208 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/met-pro-members-only{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/met-pro-members-only{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% assign LockURL='metpure.com/pages/apply-for-credit-terms' %}
+{% if canonical_url contains LockURL %}{% assign wlmLockedContent = true %}{% endif %}
+{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/met-pro-only-apply-for-credit{% endcapture %}
+{% else %}
+{% unless wlmLockedTags154065 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/met-pro-only-apply-for-credit{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/met-pro-only-apply-for-credit{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains 'page' and page %}{% if page.id == 92156657855 %}{% assign wlmLockedContent = true %}{% endif %}{% endif %}
+{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/met-pro-returns{% endcapture %}
+{% else %}
+{% unless wlmLockedTags154066 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/met-pro-returns{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/met-pro-returns{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains "product" and product %} {% if product.id == 7942082134207 or product.id == 7945880404159 or product.id == 7875945758911 or product.id == 7875944546495 or product.id == 7953961975999 or product.id == 7953963712703 or product.id == 8085950070975 or product.id == 8236210847935 %} {% assign wlmLockedContent = true %}{% endif %}{% endif %}{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}https://www.metpure.com/pages/not-sold-separately{% endcapture %}
+{% else %}
+{% unless wlmLockedTags350153 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}https://www.metpure.com/pages/not-sold-separately{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}https://www.metpure.com/pages/not-sold-separately{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains "product" and product %} {% if product.id == 7294415896767 or product.id == 7294339547327 or product.id == 7294396661951 or product.id == 7305550135487 or product.id == 7305551806655 or product.id == 7305546989759 or product.id == 7305546793151 or product.id == 7436006883519 or product.id == 7436004425919 or product.id == 7494557434047 or product.id == 7494553305279 or product.id == 7438603976895 or product.id == 7438600372415 or product.id == 7305580773567 or product.id == 7433952067775 or product.id == 7305580806335 or product.id == 7265328955583 or product.id == 7265332691135 or product.id == 7265329709247 or product.id == 7265332494527 or product.id == 7438463664319 or product.id == 7318158639295 or product.id == 7265325973695 or product.id == 7265332789439 or product.id == 7434228727999 or product.id == 7305580871871 or product.id == 7394724348095 or product.id == 7305579462847 or product.id == 7294391189695 or product.id == 7394751611071 or product.id == 7294391255231 or product.id == 7294391320767 or product.id == 7294391353535 or product.id == 7294391550143 or product.id == 7294391091391 or product.id == 7265328201919 or product.id == 7265329184959 or product.id == 7265328332991 or product.id == 7265328136383 or product.id == 7305560916159 or product.id == 7305550168255 or product.id == 7294414520511 or product.id == 7294340923583 or product.id == 7294340956351 or product.id == 7305551839423 or product.id == 7305547153599 or product.id == 7294340169919 or product.id == 7294335713471 or product.id == 7294335123647 or product.id == 7294334697663 or product.id == 7294334763199 or product.id == 7294334664895 or product.id == 7265325842623 or product.id == 7294334632127 or product.id == 7265326137535 or product.id == 7305560785087 or product.id == 7265326104767 or product.id == 7305560883391 or product.id == 7294417305791 or product.id == 7294417109183 or product.id == 7294417240255 or product.id == 7294417076415 or product.id == 7294416945343 or product.id == 7294416912575 or product.id == 7294416552127 or product.id == 7294416453823 or product.id == 7294416388287 or product.id == 7294415831231 or product.id == 7294414946495 or product.id == 7294415798463 or product.id == 7294414880959 or product.id == 7294414717119 or product.id == 7294414815423 or product.id == 7294414684351 or product.id == 7294414651583 or product.id == 7294414487743 or product.id == 7294412259519 or product.id == 7294414422207 or product.id == 7294411800767 or product.id == 7294396793023 or product.id == 7294411669695 or product.id == 7294396694719 or product.id == 7294396530879 or product.id == 7294396465343 or product.id == 7294392139967 or product.id == 7305551872191 or product.id == 7305550069951 or product.id == 7305550233791 or product.id == 7305550266559 or product.id == 7305551741119 or product.id == 7305551773887 or product.id == 7294358192319 or product.id == 7294358683839 or product.id == 7294351048895 or product.id == 7294348984511 or product.id == 7294348820671 or product.id == 7294348886207 or product.id == 7294348951743 or product.id == 7294348755135 or product.id == 7294348689599 or product.id == 7294348656831 or product.id == 7294348165311 or product.id == 7294340268223 or product.id == 7294339743935 or product.id == 7294339416255 or product.id == 7294343086271 or product.id == 7294343250111 or product.id == 7294343610559 or product.id == 7294339612863 or product.id == 7294348099775 or product.id == 7294343807167 or product.id == 7294344167615 or product.id == 7294343905471 or product.id == 7294344233151 or product.id == 7294344069311 or product.id == 7294343872703 or product.id == 7294344036543 or product.id == 7294343971007 or product.id == 7294344298687 or product.id == 7294343708863 or product.id == 7294343676095 or product.id == 7294343512255 or product.id == 7294343348415 or product.id == 7265329119423 or product.id == 7294340825279 or product.id == 7294339514559 or product.id == 7265328169151 or product.id == 7305546858687 or product.id == 7305547284671 or product.id == 7305546924223 or product.id == 7305546727615 or product.id == 8063947505855 or product.id == 7438444298431 or product.id == 7318161981631 or product.id == 7434230661311 or product.id == 7265332953279 or product.id == 7434234855615 or product.id == 7265332986047 or product.id == 7434239344831 or product.id == 7397520998591 or product.id == 7768124391615 or product.id == 7438576550079 or product.id == 7318162866367 or product.id == 7435509694655 or product.id == 7435550884031 or product.id == 7435502387391 or product.id == 7434270802111 or product.id == 7305580839103 or product.id == 7265329545407 or product.id == 7936375161023 or product.id == 7265331675327 or product.id == 7265332560063 or product.id == 7433412739263 or product.id == 7305580445887 or product.id == 7607055909055 or product.id == 7436172230847 or product.id == 7607091167423 or product.id == 7265332920511 or product.id == 7265329610943 or product.id == 7305580478655 or product.id == 7265332723903 or product.id == 7434206904511 or product.id == 7265332887743 or product.id == 7434299474111 or product.id == 7265325547711 or product.id == 7435360534719 or product.id == 7265332854975 or product.id == 7435557044415 or product.id == 7435555930303 or product.id == 7436048269503 or product.id == 7436042862783 or product.id == 7493456167103 or product.id == 7265329676479 or product.id == 7493421105343 or product.id == 7265332592831 or product.id == 7265327644863 or product.id == 7265332756671 or product.id == 7436064817343 or product.id == 7436059639999 or product.id == 7265325580479 or product.id == 7265332822207 or product.id == 7434293313727 or product.id == 7305580642495 or product.id == 7436055150783 or product.id == 7436053217471 or product.id == 7265331708095 or product.id == 7265332527295 or product.id == 8136778350783 or product.id == 7305579757759 or product.id == 7265330725055 or product.id == 7265325678783 or product.id == 7305579626687 or product.id == 8178625839295 %} {% assign wlmLockedContent = true %}{% endif %}{% endif %}{% if wlmLockedContent %}
+{% unless customer %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/met-pro-members-only{% endcapture %}
+{% else %}
+{% unless wlmLockedTags351257 %}{% assign wlmLockON = true %}{% endunless %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/met-pro-members-only{% endcapture %}
+{% endif %}
+{% else %}
+{% assign wlmLockON = true %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/met-pro-members-only{% endcapture %}
+{% endunless %}
+{% endif %}
+{% endunless %}
+
+
+{% unless wlmLockON or wlmSuperPage or template == 'customers/register' %}
+{% assign wlmLockedContent = false %}
+{% if template contains "product" and product %} {% if product.id == 7265329447103 or product.id == 7989190066367 or product.id == 7265325646015 or product.id == 7265330823359 or product.id == 7265327677631 or product.id == 7265327710399 or product.id == 7265331806399 or product.id == 7265330757823 or product.id == 7305579233471 or product.id == 7265329774783 or product.id == 7925749022911 or product.id == 7925749547199 or product.id == 7925728903359 or product.id == 7920915382463 or product.id == 7920914399423 or product.id == 7920915054783 or product.id == 7923126108351 or product.id == 7920912662719 or product.id == 7265332101311 or product.id == 7265328201919 or product.id == 7438603976895 or product.id == 7438463664319 or product.id == 7438444298431 or product.id == 7438576550079 or product.id == 7435550884031 or product.id == 7435531387071 or product.id == 7436006883519 or product.id == 7265329709247 or product.id == 7434228727999 or product.id == 7434234855615 or product.id == 7433952067775 or product.id == 7265328955583 or product.id == 7265325973695 or product.id == 7434230661311 or product.id == 7434239344831 or product.id == 7434270802111 or product.id == 7330866233535 or product.id == 7265327808703 or product.id == 7265326170303 or product.id == 7265326891199 or product.id == 7265301037247 or product.id == 7429261394111 or product.id == 7265329545407 or product.id == 7265331675327 or product.id == 7265332297919 or product.id == 7433412739263 or product.id == 7436172230847 or product.id == 7265329610943 or product.id == 7265328431295 or product.id == 7434206904511 or product.id == 7434299474111 or product.id == 7265325547711 or product.id == 7435557044415 or product.id == 7265331937471 or product.id == 7265329676479 or product.id == 7436048269503 or product.id == 7265327644863 or product.id == 7436064817343 or product.id == 7265325580479 or product.id == 7434293313727 or product.id == 7436055150783 or product.id == 7265331708095 or product.id == 7265332428991 or product.id == 7265330528447 or product.id == 7265325514943 or product.id == 7265330036927 or product.id == 7265330462911 or product.id == 7265330430143 or product.id == 7265332363455 or product.id == 7265301299391 or product.id == 7265326235839 or product.id == 7265328169151 or product.id == 7265329119423 or product.id == 7265300218047 or product.id == 7265331249343 or product.id == 7265328038079 or product.id == 7265299955903 or product.id == 7265331282111 or product.id == 7265330561215 or product.id == 7265331347647 or product.id == 7265331380415 or product.id == 7294422712511 or product.id == 7265326137535 or product.id == 7265326858431 or product.id == 7265325744319 or product.id == 7317907439807 or product.id == 7265329184959 or product.id == 7265328005311 or product.id == 7265327841471 or product.id == 7265327939775 or product.id == 7265299792063 or product.id == 7265300086975 or product.id == 7265326071999 or product.id == 7265328332991 or product.id == 7265331151039 or product.id == 7265331183807 or product.id == 7265300349119 or product.id == 7265328988351 or product.id == 7265332330687 or product.id == 7265332396223 or product.id == 7265328136383 or product.id == 7265330495679 or product.id == 7265330987199 or product.id == 7265326923967 or product.id == 7265326825663 or product.id == 7265332166847 or product.id == 7265330954431 or product.id == 7265331773631 or product.id == 7265300578495 or product.id == 7265332461759 or product.id == 8101839700159 or product.id == 7453277847743 or product.id == 7265329250495 or product.id == 8087033610431 or product.id == 8102705103039 or product.id == 8046862008511 or product.id == 7925064204479 or product.id == 8046862532799 or product.id == 7453258547391 or product.id == 7265329316031 or product.id == 7483358347455 or product.id == 7285652750527 or product.id == 8068588470463 or product.id == 7285238300863 or product.id == 7621942771903 or product.id == 7561575006399 or product.id == 8016910483647 or product.id == 8094492524735 or product.id == 8101839077567 or product.id == 7305579299007 or product.id == 8094035574975 or product.id == 8101775474879 or product.id == 7305579135167 or product.id == 7305579167935 or product.id == 7485912842431 or product.id == 7494553305279 or product.id == 7607055909055 or product.id == 7493456167103 or product.id == 8087032922303 or product.id == 8086984392895 or product.id == 8087006118079 or product.id == 8085950070975 or product.id == 7265327775935 or product.id == 7294421860543 or product.id == 7294361829567 or product.id == 7265301135551 or product.id == 7549031022783 %} {% assign wlmLockedContent = true %}{% endif %}{% endif %}{% if wlmLockedContent %}
+{% if customer %}
+{% if wlmLockedTags351256 %}{% assign wlmLockON = true %}{% else %}{% assign wlmLockON = false %}{% endif %}
+{% if wlmLockON %}
+{% capture wlmPnfHead %}Page not found{% endcapture %}
+{% capture wlmPnfMsg %}<p>Sorry, we couldn't find this page.</p>{% endcapture %}
+{% capture wlmRedirectURL %}/pages/not-available-for-reseller{% endcapture %}
+{% endif %}
+{% endif %}
+{% endif %}
+{% endunless %}
+
+
+{% endif %}
+
+{% capture wlm_check_hide %}{% include 'wlm-hideByLink' %}{% endcapture %}{% unless wlm_check_hide contains 'Liquid error' %}{% include 'wlm-hideByLink' %}{% endunless %}
+
+{% if wlmLockON %}<meta name='robots' content='NOINDEX,NOFOLLOW,NOARCHIVE,NOSNIPPET,NOODP,NOYDIR' />{% endif %}
+<script type='text/javascript'>
+{% if wlmLockON %}
+wlm.navigate('{{ wlmRedirectURL}}');
+{% else %}
+wlm.navigateByLocation();
+{% endif %}
+wlm.jq(document).ready(function(){
+wlm.removeLinks();
+});
+</script>
+{% capture wlm_hide_price_check %}{% include "wlm-hide-price" %}{% endcapture %}
+{% unless wlm_hide_price_check contains 'Liquid error' %}
+{% include "wlm-hide-price" %}
+{% endunless %}

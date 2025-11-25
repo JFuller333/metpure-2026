@@ -1,0 +1,38 @@
+{%- assign w_continue = 'no' -%}
+{% assign wlmHideItem_Collection = false %}{% assign wlmLockedTags152208 = false %}
+{% assign wlmLockedTags154065 = false %}
+{% assign wlmLockedTags154066 = false %}
+{% assign wlmLockedTags265819 = false %}
+{% assign wlmLockedTags312760 = false %}
+{% assign wlmLockedTags274171 = false %}
+{% assign wlmLockedTags351256 = false %}
+{% assign wlmLockedTags351257 = false %}
+{% assign wlmLockedTags350153 = false %}
+
+
+{% assign wlmLockedTags152208 = false %}
+{% assign wlmLockedTags154065 = false %}
+{% assign wlmLockedTags154066 = false %}
+{% assign wlmLockedTags265819 = false %}
+{% assign wlmLockedTags312760 = false %}
+{% assign wlmLockedTags274171 = false %}
+{% assign wlmLockedTags351256 = false %}
+{% assign wlmLockedTags351257 = false %}
+{% assign wlmLockedTags350153 = false %}
+{% for tag in customer.tags %}
+{% if tag == 'TAP369' %}{% assign wlmLockedTags152208 = true %}{% endif %}
+{% if tag == 'b2b' %}{% assign wlmLockedTags154065 = true %}{% endif %}
+{% if tag == 'b2b' %}{% assign wlmLockedTags154066 = true %}{% endif %}
+{% if tag == 'retail customer MV filter' %}{% assign wlmLockedTags265819 = true %}{% endif %}
+{% if tag == 'WLMTest' %}{% assign wlmLockedTags312760 = true %}{% endif %}
+{% if tag == 'staff' %}{% assign wlmLockedTags274171 = true %}{% endif %}
+{% if tag == 'b2b' %}{% assign wlmLockedTags351256 = true %}{% endif %}
+{% if tag == 'b2b' %}{% assign wlmLockedTags351257 = true %}{% endif %}
+{% if tag == 'staff' %}{% assign wlmLockedTags350153 = true %}{% endif %}
+{% endfor %}
+
+
+
+{% if wlmHideItem_Collection == true %}{% continue %}{% endif %}
+
+{%- if wlm_is_render == 'yes' -%}{{- w_continue -}}{%-endif-%}

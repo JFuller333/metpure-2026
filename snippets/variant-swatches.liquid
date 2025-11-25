@@ -1,0 +1,53 @@
+{% if template == 'product.faucets' %}
+  <div class="my-4"><b>Select a color:</b> <span id="swatch-title">{{ product.metafields.custom.swatch_color_name }}</span></div> 
+{% endif %}
+
+{% assign array = product.metafields.custom.product_variant_list.value %}
+
+<div class="product-swatches my-2">
+  {% for item in array limit:7 %}
+    <span class="{% if product.handle == item.handle %} current-variant{% endif %}">
+      <a href="{{ item.url }}" data-color="{{ item.metafields.custom.swatch_color }}" 
+         style="background: {% if item.metafields.custom.swatch_color_gradient != blank %}{{ item.metafields.custom.swatch_color_gradient }}{% else %}{{ item.metafields.custom.swatch_color }}{% endif %}"
+         onmouseover="displaySwatchTitle('{{ item.metafields.custom.swatch_color_name }}')"
+         onmouseout="resetSwatchTitle()" target="_blank"></a>
+    </span>
+  {% endfor %}
+</div>
+
+<style>
+  .product-swatches a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  .product-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    margin-bottom: 30px;
+  }
+  .product-swatches span {
+    display: flex;
+    padding: 3px;
+  }
+  .current-variant {
+    border: solid 1px var(--color-border);
+    border-radius: 50%;
+  }
+  .product-swatches:empty {
+    display: none;
+  }
+</style>
+
+<script>
+  function displaySwatchTitle(colorName) {
+    var swatchTitle = document.getElementById('swatch-title');
+    swatchTitle.textContent = colorName;
+  }
+
+  function resetSwatchTitle() {
+    var swatchTitle = document.getElementById('swatch-title');
+    swatchTitle.textContent = "{{ product.metafields.custom.swatch_color_name }}";
+  }
+</script> 

@@ -1,0 +1,81 @@
+{% if template == 'product.kitchen-faucets-euro' or template == 'product.kitchen-faucets-vase' %}
+<div style="padding: 10px 10px 10px 0;"><b>Select a style:</b> <span id="style-title">{{ product.metafields.custom.faucet_style_name }}</span></div>
+{% endif %}
+
+<div class="product-styles">
+    <!-- Image 1 -->
+    <div class="current-variant" data-style="Euro">
+      <a href="https://www.metpure.com/products/test-metpure-stainless-steel-kitchen-faucet-with-pull-down-single-handle-hose-in-brushed-nickel-finish-euro-style-lead-free-copy">
+        <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/kf6020-bn.webp?v=1728672530" alt="Metpure Euro Kitchen Faucet" />
+      </a>
+    </div>
+
+    <!-- Image 2 -->
+    <div class="current-variant" data-style="Vase ">
+      <a href="https://www.metpure.com/products/test-metpure-stainless-steel-kitchen-faucet-with-pull-down-single-handle-hose-in-brushed-nickel-finish-vase-style-lead-free-copy">
+        <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/kf6016-bn.webp?v=1728672530" alt="Metpure Vase Kitchen Faucet" />
+      </a>
+    </div>
+</div>
+
+<style>
+  .product-styles {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    margin-bottom: 30px;
+  }
+  .product-styles .current-variant {
+    width: 80px; /* Image size */
+    height: 80px; /* Image size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Circular background */
+    overflow: hidden;
+    background-color: #f0f0f0; /* Very light grey background */
+    border: solid 1px transparent; /* Border color */
+  }
+  .product-styles a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .product-styles img {
+    width: 80%; /* Adjusted to fit within the circle */
+    height: 80%; /* Adjusted to fit within the circle */
+    object-fit: cover;
+    border-radius: 50%; /* Ensure images are circular inside the circle background */
+  }
+</style>
+
+<script>
+  function displayStyleTitle(styleName) {
+    var styleTitle = document.getElementById('style-title');
+    if (styleTitle) {
+      styleTitle.textContent = styleName;
+    }
+  }
+
+  function resetStyleTitle() {
+    var styleTitle = document.getElementById('style-title');
+    if (styleTitle) {
+      styleTitle.textContent = "{{ product.metafields.custom.faucet_style_name }}";
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var variants = document.querySelectorAll('.current-variant');
+    variants.forEach(function(variant) {
+      variant.addEventListener('mouseover', function() {
+        displayStyleTitle(variant.getAttribute('data-style'));
+      });
+      variant.addEventListener('mouseout', function() {
+        resetStyleTitle();
+      });
+    });
+  });
+</script>
+ 

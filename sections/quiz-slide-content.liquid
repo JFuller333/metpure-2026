@@ -1,0 +1,956 @@
+{% schema %}
+{
+  "name": "Quiz Slider Content",
+  "max_blocks": 10,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "slider_content_section",
+      "name": "Slider Content Section", 
+      "settings": [
+        {
+          "type": "select",
+          "id": "slider_layout",
+          "label": "Layout",
+          "options": [
+            {
+              "value": "image_left",
+              "label": "Image Left, Content Right"
+            },
+            {
+              "value": "image_right", 
+              "label": "Content Left, Image Right"
+            }
+          ],
+          "default": "image_left"
+        },
+        {
+          "type": "range", 
+          "id": "slider_left_width",
+          "min": 30,
+          "max": 70,
+          "step": 5,
+          "unit": "%",
+          "label": "Left Section Width",
+          "default": 40
+        },
+        {
+          "type": "range",
+          "id": "sections_gap",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "label": "Gap Between Sections",
+          "default": 30
+        },
+        {
+          "type": "text",
+          "id": "top_heading",
+          "label": "Top Heading",
+          "default": "Top Heading"
+        },
+        {
+          "type": "color",
+          "id": "top_heading_color",
+          "label": "Top Heading Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "top_heading_size",
+          "min": 20,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "label": "Top Heading Size",
+          "default": 36
+        },
+        {
+          "type": "select",
+          "id": "top_heading_align",
+          "label": "Top Heading Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "select",
+          "id": "slider_text_align",
+          "label": "Text Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "text",
+          "id": "slider_heading",
+          "label": "Heading",
+          "default": "Section Heading"
+        },
+        {
+          "type": "color",
+          "id": "slider_heading_color",
+          "label": "Heading Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "slider_heading_size",
+          "min": 20,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "label": "Heading Size",
+          "default": 36
+        },
+        {
+          "type": "richtext",
+          "id": "slider_paragraph",
+          "label": "Paragraph Text"
+        },
+        {
+          "type": "color",
+          "id": "slider_text_color",
+          "label": "Text Color",
+          "default": "#666666"
+        },
+        {
+          "type": "range",
+          "id": "slider_text_size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Text Size",
+          "default": 16
+        },
+        {
+          "type": "url",
+          "id": "slider_button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "text",
+          "id": "slider_button_text",
+          "label": "Button Text",
+          "default": "Learn More"
+        },
+        {
+          "type": "select",
+          "id": "slider_button_align",
+          "label": "Button Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "color",
+          "id": "slider_button_color",
+          "label": "Button Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "slider_button_background",
+          "label": "Button Background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "slider_button_hover_background",
+          "label": "Button Hover Background",
+          "default": "#333333"
+        },
+        {
+          "type": "range",
+          "id": "slider_button_radius",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "label": "Button Border Radius",
+          "default": 8
+        },
+        {
+          "type": "color",
+          "id": "slider_arrow_color",
+          "label": "Arrow Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "slider_arrow_background",
+          "label": "Arrow Background Color",
+          "default": "#000000"
+        },
+        {
+          "type": "image_picker",
+          "id": "slider_right_image",
+          "label": "Right Side Image"
+        },
+        {
+          "type": "range",
+          "id": "slider_right_image_radius",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "%",
+          "label": "Right Image Border Radius",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "slider_right_image_padding",
+          "min": 0,
+          "max": 50,
+          "step": 5,
+          "unit": "px",
+          "label": "Right Image Padding",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "slider_right_image_border",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Right Image Border Width",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "slider_right_image_border_color",
+          "label": "Right Image Border Color",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Quiz Options"
+        },
+        {
+          "type": "text",
+          "id": "option_1_text",
+          "label": "Option 1 Text",
+          "default": "Option 1"
+        },
+        {
+          "type": "number",
+          "id": "option_1_destination",
+          "label": "Option 1 Goes to Slide Number",
+          "default": 1
+        },
+        {
+          "type": "text",
+          "id": "option_2_text",
+          "label": "Option 2 Text",
+          "default": "Option 2"
+        },
+        {
+          "type": "number",
+          "id": "option_2_destination",
+          "label": "Option 2 Goes to Slide Number",
+          "default": 2
+        },
+        {
+          "type": "text",
+          "id": "option_3_text",
+          "label": "Option 3 Text",
+          "default": "Option 3"
+        },
+        {
+          "type": "number",
+          "id": "option_3_destination",
+          "label": "Option 3 Goes to Slide Number",
+          "default": 3
+        }
+      ]
+    },
+    {
+      "type": "product_section",
+      "name": "Product Section",
+      "settings": [
+        {
+          "type": "text",
+          "id": "top_heading",
+          "label": "Top Heading",
+          "default": "Top Heading"
+        },
+        {
+          "type": "color",
+          "id": "top_heading_color",
+          "label": "Top Heading Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "top_heading_size",
+          "min": 20,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "label": "Top Heading Size",
+          "default": 36
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Text Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description Text"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#666666"
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Text Size",
+          "default": 16
+        },
+        {
+          "type": "header",
+          "content": "Product 1"
+        },
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Select Product 1"
+        },
+        {
+          "type": "text",
+          "id": "product_1_button",
+          "label": "Product 1 Button Text",
+          "default": "Select Product"
+        },
+        {
+          "type": "header",
+          "content": "Product 2"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Select Product 2"
+        },
+        {
+          "type": "text",
+          "id": "product_2_button",
+          "label": "Product 2 Button Text",
+          "default": "Select Product"
+        },
+        {
+          "type": "header",
+          "content": "Product 3"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Select Product 3"
+        },
+        {
+          "type": "text",
+          "id": "product_3_button",
+          "label": "Product 3 Button Text",
+          "default": "Select Product"
+        },
+        {
+          "type": "header",
+          "content": "Button Settings"
+        },
+        {
+          "type": "color",
+          "id": "button_color",
+          "label": "Button Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_background",
+          "label": "Button Background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_background",
+          "label": "Button Hover Background",
+          "default": "#333333"
+        },
+        {
+          "type": "range",
+          "id": "button_radius",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "label": "Button Border Radius",
+          "default": 8
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quiz Slider Content",
+      "blocks": [
+        {
+          "type": "slider_content_section"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+{% for block in section.blocks %}
+  {% assign blockId = block.id %}
+  
+  .quiz-slider-section-{{ blockId }} {
+    padding: 40px 20px;
+    display: none;
+    position: relative;
+  }
+
+  .quiz-slider-section-{{ blockId }}.active {
+    display: block;
+  }
+
+  .quiz-slider-container-{{ blockId }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: {{ block.settings.sections_gap }}px;
+    align-items: stretch;
+    min-height: 100%;
+  }
+
+  .quiz-slider-container-{{ blockId }}.slider-image-right {
+    flex-direction: row-reverse;
+  }
+
+  .quiz-slider-left-{{ blockId }} {
+    width: {{ block.settings.slider_left_width }}%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .quiz-slider-right-{{ blockId }} {
+    width: calc(100% - {{ block.settings.slider_left_width }}%);
+    display: flex;
+    align-items: stretch;
+    padding: {{ block.settings.slider_right_image_padding }}px;
+  }
+
+  .quiz-slider-top-heading-{{ blockId }} {
+    font-size: {{ block.settings.top_heading_size }}px;
+    color: {{ block.settings.top_heading_color }};
+    margin-bottom: 30px;
+    text-align: {{ block.settings.top_heading_align }};
+  }
+
+  .quiz-slider-content-heading-{{ blockId }} {
+    font-size: {{ block.settings.slider_heading_size }}px;
+    color: {{ block.settings.slider_heading_color }}; 
+    margin-bottom: 20px;
+    text-align: {{ block.settings.slider_text_align }};
+  }
+
+  .quiz-slider-content-text-{{ blockId }} {
+    font-size: {{ block.settings.slider_text_size }}px;
+    color: {{ block.settings.slider_text_color }};
+    margin-bottom: 30px;
+    text-align: {{ block.settings.slider_text_align }};
+  }
+
+  .quiz-slider-cta-button-{{ blockId }} {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 30px;
+    background-color: {{ block.settings.slider_button_background }};
+    color: {{ block.settings.slider_button_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.slider_button_radius }}px;
+    transition: background-color 0.3s ease;
+    {% if block.settings.slider_button_align == 'left' %}
+      margin-right: auto;
+    {% elsif block.settings.slider_button_align == 'right' %}
+      margin-left: auto;
+    {% else %}
+      margin-left: auto;
+      margin-right: auto;
+    {% endif %}
+  }
+
+  .quiz-slider-cta-button-{{ blockId }}:hover {
+    background-color: {{ block.settings.slider_button_hover_background }};
+  }
+
+  .quiz-slider-navigation {
+    display: none;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .quiz-slider-section-{{ blockId }}.has-prev .quiz-slider-navigation {
+    display: block;
+  }
+
+  .quiz-slider-nav-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: {{ block.settings.slider_arrow_background }};
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.3s ease;
+  }
+
+  .quiz-slider-nav-button:hover {
+    transform: scale(1.1);
+  }
+
+  .quiz-slider-nav-button svg {
+    width: 20px;
+    height: 20px;
+    fill: {{ block.settings.slider_arrow_color }};
+  }
+
+  .quiz-slider-nav-button.prev svg {
+    transform: rotate(180deg);
+  }
+
+  .quiz-slider-right-image-{{ blockId }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: {{ block.settings.slider_right_image_radius }}%;
+    border: {{ block.settings.slider_right_image_border }}px solid {{ block.settings.slider_right_image_border_color }};
+  }
+
+  .quiz-options-container-{{ blockId }} {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .quiz-option-button {
+    padding: 12px 20px;
+    background-color: {{ block.settings.slider_button_background }};
+    color: {{ block.settings.slider_button_color }};
+    border: none;
+    border-radius: {{ block.settings.slider_button_radius }}px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .quiz-option-button:hover {
+    background-color: {{ block.settings.slider_button_hover_background }};
+  }
+
+  .quiz-option-button.correct {
+    background-color: #4CAF50;
+  }
+
+  .quiz-option-button.incorrect {
+    background-color: #f44336;
+  }
+
+  @media screen and (max-width: 768px) {
+    .quiz-slider-section-{{ blockId }} {
+      padding: 30px 15px;
+    }
+
+    .quiz-slider-container-{{ blockId }},
+    .quiz-slider-container-{{ blockId }}.slider-image-right {
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .quiz-slider-left-{{ blockId }},
+    .quiz-slider-right-{{ blockId }} {
+      width: 100%;
+      padding: 0;
+    }
+    
+    .quiz-slider-content-heading-{{ blockId }} {
+      font-size: calc({{ block.settings.slider_heading_size }}px * 0.8);
+    }
+
+    .quiz-slider-right-image-{{ blockId }} {
+      max-width: 100%;
+      margin: 0 auto;
+      height: auto;
+    }
+
+    .quiz-slider-navigation {
+      bottom: 10px;
+      left: 50%;
+      top: auto;
+      transform: translateX(-50%);
+    }
+  }
+
+  .product-section-{{ blockId }} {
+    padding: 40px 20px;
+    display: none;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .product-section-{{ blockId }}.active {
+    display: block;
+  }
+
+  .product-section-content-{{ blockId }} {
+    text-align: {{ block.settings.text_align }};
+    margin-bottom: 40px;
+  }
+
+  .product-section-heading-{{ blockId }} {
+    font-size: {{ block.settings.top_heading_size }}px;
+    color: {{ block.settings.top_heading_color }};
+    margin-bottom: 20px;
+  }
+
+  .product-section-description-{{ blockId }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    margin-bottom: 30px;
+  }
+
+  .product-grid-{{ blockId }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin: 0 auto;
+    max-width: 900px;
+    margin-bottom: 30px;
+  }
+
+  .product-card-{{ blockId }} {
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+
+  .product-card-{{ blockId }}:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  .product-image-{{ blockId }} {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin: 0 auto 15px;
+  }
+
+  .product-title-{{ blockId }} {
+    font-size: 16px;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .product-price-{{ blockId }} {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+  }
+
+  .product-button-{{ blockId }} {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 20px;
+    font-size: 14px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_radius }}px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+
+  .product-button-{{ blockId }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .product-section-{{ blockId }} {
+      padding: 30px 15px;
+    }
+
+    .product-grid-{{ blockId }} {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .product-grid-{{ blockId }} {
+      grid-template-columns: 1fr;
+    }
+
+    .product-card-{{ blockId }} {
+      max-width: 200px;
+    }
+  }
+{% endfor %}
+</style>
+
+<div class="quiz-slider-wrapper">
+  {% for block in section.blocks %}
+    {% assign blockId = block.id %}
+    {% if block.type == 'slider_content_section' %}
+      <div class="quiz-slider-section-{{ blockId }} {% if forloop.first %}active{% endif %}">
+        <div class="quiz-slider-container-{{ blockId }} {% if block.settings.slider_layout == 'image_right' %}slider-image-right{% endif %}">
+          <div class="quiz-slider-left-{{ blockId }}">
+            {% if block.settings.top_heading != blank %}
+              <h1 class="quiz-slider-top-heading-{{ blockId }}">{{ block.settings.top_heading }}</h1>
+            {% endif %}
+            
+            {% if block.settings.slider_heading != blank %}
+              <h2 class="quiz-slider-content-heading-{{ blockId }}">{{ block.settings.slider_heading }}</h2>
+            {% endif %}
+            
+            {% if block.settings.slider_paragraph != blank %}
+              <div class="quiz-slider-content-text-{{ blockId }}">{{ block.settings.slider_paragraph }}</div>
+            {% endif %}
+            
+            {% if block.settings.option_1_text != blank %}
+              <div class="quiz-options-container-{{ blockId }}">
+                <button class="quiz-option-button" data-option="1" data-destination="{{ block.settings.option_1_destination }}">{{ block.settings.option_1_text }}</button>
+                {% if block.settings.option_2_text != blank %}
+                  <button class="quiz-option-button" data-option="2" data-destination="{{ block.settings.option_2_destination }}">{{ block.settings.option_2_text }}</button>
+                {% endif %}
+                {% if block.settings.option_3_text != blank %}
+                  <button class="quiz-option-button" data-option="3" data-destination="{{ block.settings.option_3_destination }}">{{ block.settings.option_3_text }}</button>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="quiz-slider-right-{{ blockId }}">
+            {% if block.settings.slider_right_image %}
+              <img src="{{ block.settings.slider_right_image | img_url: 'master' }}" alt="Right side image" class="quiz-slider-right-image-{{ blockId }}">
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="quiz-slider-navigation">
+          <button class="quiz-slider-nav-button prev" aria-label="Previous slide">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    {% elsif block.type == 'product_section' %}
+      <div class="product-section-{{ blockId }} {% if forloop.first %}active{% endif %}">
+        <div class="product-section-content-{{ blockId }}">
+          {% if block.settings.top_heading != blank %}
+            <h2 class="product-section-heading-{{ blockId }}">{{ block.settings.top_heading }}</h2>
+          {% endif %}
+          
+          {% if block.settings.description != blank %}
+            <div class="product-section-description-{{ blockId }}">{{ block.settings.description }}</div>
+          {% endif %}
+        </div>
+
+        <div class="product-grid-{{ blockId }}">
+          {% if block.settings.product_1 != blank %}
+            {% assign product = all_products[block.settings.product_1] %}
+            <div class="product-card-{{ blockId }}">
+              <img src="{{ product.featured_image | img_url: 'medium' }}" 
+                   alt="{{ product.title }}" 
+                   class="product-image-{{ blockId }}">
+              <h3 class="product-title-{{ blockId }}">{{ product.title }}</h3>
+              <div class="product-price-{{ blockId }}">{{ product.price | money }}</div>
+              <a href="{{ product.url }}" class="product-button-{{ blockId }}">
+                {{ block.settings.product_1_button }}
+              </a>
+            </div>
+          {% endif %}
+
+          {% if block.settings.product_2 != blank %}
+            {% assign product = all_products[block.settings.product_2] %}
+            <div class="product-card-{{ blockId }}">
+              <img src="{{ product.featured_image | img_url: 'medium' }}" 
+                   alt="{{ product.title }}" 
+                   class="product-image-{{ blockId }}">
+              <h3 class="product-title-{{ blockId }}">{{ product.title }}</h3>
+              <div class="product-price-{{ blockId }}">{{ product.price | money }}</div>
+              <a href="{{ product.url }}" class="product-button-{{ blockId }}">
+                {{ block.settings.product_2_button }}
+              </a>
+            </div>
+          {% endif %}
+
+          {% if block.settings.product_3 != blank %}
+            {% assign product = all_products[block.settings.product_3] %}
+            <div class="product-card-{{ blockId }}">
+              <img src="{{ product.featured_image | img_url: 'medium' }}" 
+                   alt="{{ product.title }}" 
+                   class="product-image-{{ blockId }}">
+              <h3 class="product-title-{{ blockId }}">{{ product.title }}</h3>
+              <div class="product-price-{{ blockId }}">{{ product.price | money }}</div>
+              <a href="{{ product.url }}" class="product-button-{{ blockId }}">
+                {{ block.settings.product_3_button }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="quiz-slider-navigation">
+          <button class="quiz-slider-nav-button prev" aria-label="Previous slide">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('[class^="quiz-slider-section-"], [class^="product-section-"]');
+    let currentIndex = 0;
+    let previousIndex = -1;
+    const history = [];
+
+    function showSlide(index, isPrevious = false) {
+      sections.forEach((section, idx) => {
+        if (idx === index) {
+          section.classList.add('active');
+          if (index > 0) {
+            section.classList.add('has-prev');
+          }
+          
+          // Reset option buttons when going back
+          if (isPrevious) {
+            const optionButtons = section.querySelectorAll('.quiz-option-button');
+            optionButtons.forEach(btn => {
+              btn.style.backgroundColor = '';
+              btn.disabled = false;
+            });
+          }
+        } else {
+          section.classList.remove('active');
+        }
+      });
+
+      if (!isPrevious) {
+        history.push(currentIndex);
+        previousIndex = currentIndex;
+      }
+      currentIndex = index;
+    }
+
+    sections.forEach(section => {
+      const optionButtons = section.querySelectorAll('.quiz-option-button');
+      const prevButton = section.querySelector('.quiz-slider-nav-button.prev');
+
+      if (prevButton) {
+        prevButton.addEventListener('click', () => {
+          if (history.length > 0) {
+            const prevIndex = history.pop();
+            showSlide(prevIndex, true);
+          }
+        });
+      }
+
+      optionButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const destination = parseInt(button.dataset.destination) - 1;
+          
+          button.style.backgroundColor = '#6BC2FD';
+          
+          optionButtons.forEach(btn => {
+            btn.disabled = true;
+          });
+
+          if (destination >= 0 && destination < sections.length) {
+            setTimeout(() => {
+              showSlide(destination);
+            }, 500);
+          }
+        });
+      });
+    });
+  });
+</script> 

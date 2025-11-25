@@ -1,0 +1,34 @@
+<script>
+const observer = new MutationObserver(mutationsList => {
+    for (let mutation of mutationsList) {
+        if (wlm.arrHideLinks.length > 0) {
+            const hiddenHandles = window.wlm.arrHideLinks
+            if (hiddenHandles.length > 0) {
+                hiddenHandles.filter((handle) => {
+                    if (handle.includes("/products/")) {
+                        const regixHandle = handle.match(/\/products\/([^\/,?"#\]]+)(?![\]?#])/g)
+                        regixHandle.map(newHandle => {
+                            if (document.querySelector(`.m-product-card__media a[href*="${newHandle}"]`)) {
+                                document.querySelector(` .m-product-card__media a[href*="${newHandle}"]`).parentNode.parentNode.parentNode.style.display = "none";
+                            }
+                                if (document.querySelector(`.swiper-slide .m-product-card__media a[href*="${newHandle}"]`)) {
+                                document.querySelector(`.swiper-slide .m-product-card__media a[href*="${newHandle}"]`).parentNode.parentNode.parentNode.style.display = "none";
+                            }
+                        })
+
+
+                    }
+                })
+
+            }
+
+        }
+    }
+});
+
+observer.observe(document.body, {
+    childList: true,
+    subtree: true
+});
+
+</script>

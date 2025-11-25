@@ -1,0 +1,725 @@
+{%- style -%}
+  .product-tabs {
+    margin: {{ section.settings.margin_top }}px auto {{ section.settings.margin_bottom }}px auto;
+    max-width: 1400px;
+    padding: 0 5px;
+    position: relative;
+    z-index: 1;
+  }
+  .tabs-container {
+    background: {{ section.settings.content_bg_color }};
+    border-radius: {{ section.settings.content_border_radius }}px;
+    padding: 15px;
+    margin-top: -150px;
+  }
+  .tab-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: {{ section.settings.tab_text_color }};
+  }
+  .tab-buttons {
+    display: flex;
+    justify-content: {{ section.settings.tab_alignment }};
+    gap: 20px;
+    margin-bottom: 15px;
+  }
+  .tab-button {
+    font-size: {{ section.settings.tab_font_size }}px;
+    color: {{ section.settings.tab_text_color }};
+    background: {{ section.settings.tab_bg_color }};
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: {{ section.settings.tab_border_radius }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+  }
+  .tab-button::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: {{ section.settings.tab_active_bg_color }};
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  .tab-button.active::after {
+    transform: scaleX(1);
+  }
+  .tab-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .tab-button.active {
+    background: {{ section.settings.tab_active_bg_color }};
+    color: {{ section.settings.tab_active_text_color }};
+    border-color: {{ section.settings.tab_active_bg_color }};
+  }
+  .tab-content {
+    display: none;
+    position: relative;
+  }
+  .tab-content.active {
+    display: block;
+  }
+  .product-grid {
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  /* Modified product-card for top image and bottom info */
+  .product-card {
+    width: calc(50% - 10px); /* Show 2 products at a time */
+    height: 0;
+    padding-bottom: calc(50% - 10px);
+    flex: 0 0 calc(50% - 10px); /* Fixed width, no shrinking */
+    background: {{ section.settings.card_bg_color }};
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+  }
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+  .product-info {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+  .product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+  }
+  
+  .product-card:hover .product-image {
+    transform: scale(1.05);
+  }
+  .product-details {
+    width: 100%;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
+  }
+  .product-title {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-align: left;
+    color: #ffffff;
+  }
+  .variant-title {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 4px 0;
+  }
+  .product-price {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #ffffff;
+  }
+  .product-rating {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .star {
+    color: #FFD700;
+    font-size: 14px;
+    text-shadow: none;
+  }
+  .rating-number {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .product-vendor {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Updated scroll button styles */
+  .scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: {{ section.settings.arrow_bg_color }};
+    color: {{ section.settings.arrow_color }};
+    border: none;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 50%;
+    font-size: 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+  }
+  .scroll-button:hover {
+    background: {{ section.settings.arrow_hover_bg_color }};
+    transform: translateY(-50%) scale(1.1);
+  }
+  .prev-button {
+    left: -25px;
+  }
+  .next-button {
+    right: -25px;
+  }
+  .scroll-button svg {
+    width: 24px;
+    height: 24px;
+    fill: {{ section.settings.arrow_color }};
+  }
+
+  .tab-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+  }
+  .tab-shop-button {
+    background: {{ section.settings.button_bg_color }};
+    color: #ffffff;
+    padding: {{ section.settings.button_padding }}px;
+    font-size: {{ section.settings.button_font_size }}px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin: {{ block.settings.button_alignment }};
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tab-shop-button:hover {
+    background: {{ section.settings.button_hover_bg_color }};
+  }
+
+  .floating-product-details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .product-card:hover .floating-product-details {
+    transform: translateY(0);
+  }
+
+  @media screen and (max-width: 768px) {
+    .product-card {
+      width: 100%;
+      padding-bottom: 100%;
+      flex: 0 0 100%;
+    }
+    
+    .product-image {
+      height: 350px;
+    }
+    
+    .product-details {
+      padding: 15px;
+    }
+    
+    .tab-buttons {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .scroll-button {
+      width: 40px;
+      height: 40px;
+    }
+
+    .prev-button {
+      left: -20px;
+    }
+
+    .next-button {
+      right: -20px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="product-tabs">
+  <div class="tabs-container">
+    <h2 class="tab-title">{{ section.settings.section_title }}</h2>
+    <div class="tab-buttons">
+      {% for block in section.blocks %}
+        {% if block.type == 'tab' or block.type == 'product_tab' %}
+          <button class="tab-button {% if forloop.first %}active{% endif %}" 
+                  data-tab="{{ block.id }}">
+            {{ block.settings.tab_title }}
+          </button>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% for block in section.blocks %}
+      {% if block.type == 'tab' or block.type == 'product_tab' %}
+        <div class="tab-content {% if forloop.first %}active{% endif %}" id="{{ block.id }}">
+          <button class="scroll-button prev-button" onclick="handleScroll(this, -1)">
+            <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+          </button>
+          <button class="scroll-button next-button" onclick="handleScroll(this, 1)">
+            <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          </button>
+          <div class="product-grid">
+            {% if block.type == 'tab' and block.settings.product != blank %}
+              {% assign product = block.settings.product %}
+              {% assign selected_variants = block.settings.variant_selection | split: ',' %}
+              
+              {% for variant in product.variants %}
+                {% assign variant_title_clean = variant.title | strip %}
+                {% assign should_show = false %}
+                
+                {% if block.settings.variant_selection == blank or block.settings.variant_selection == "All Variants" %}
+                  {% assign should_show = true %}
+                {% else %}
+                  {% for selected_variant in selected_variants %}
+                    {% assign selected_clean = selected_variant | strip %}
+                    {% if variant_title_clean == selected_clean %}
+                      {% assign should_show = true %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+                
+                {% if should_show %}
+                  <div class="product-card" onclick="window.location.href='{{ product.url }}?variant={{ variant.id }}'">
+                    {% if variant.image %}
+                      <img class="product-image" 
+                           src="{{ variant.image | img_url: '2000x2000', crop: 'center' }}" 
+                           alt="{{ variant.title }}">
+                    {% else %}
+                      <img class="product-image" 
+                           src="{{ product.featured_image | img_url: '2000x2000', crop: 'center' }}" 
+                           alt="{{ product.title }}">
+                    {% endif %}
+                    <div class="floating-product-details">
+                      <h3 class="product-title">{{ product.title }}</h3>
+                      <p class="variant-title">{{ variant.title }}</p>
+                      <p class="product-price">{{ variant.price | money }}</p>
+                      {% if product.metafields.reviews.rating %}
+                        <div class="product-rating">
+                          {% assign rating = product.metafields.reviews.rating.value | round %}
+                          {% assign rating_count = product.metafields.reviews.rating_count.value %}
+                          {% for i in (1..5) %}
+                            <span class="star">★</span>
+                          {% endfor %}
+                          <span class="rating-number">({{ rating_count }})</span>
+                        </div>
+                      {% endif %}
+                      <p class="product-vendor">{{ product.vendor }}</p>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+
+            {% if block.type == 'product_tab' and block.settings.products != blank %}
+              {% assign products = block.settings.products %}
+              {% for product in products %}
+                {% capture wlm_check %}{% include 'wlm-product' with product %}{% endcapture %}{% unless wlm_check contains "Liquid error" %}{% include 'wlm-product' with product %}{% endunless %}
+                <div class="product-card" onclick="window.location.href='{{ product.url }}'">
+                  <img class="product-image" 
+                       src="{{ product.featured_image | img_url: '2000x2000', crop: 'center' }}" 
+                       alt="{{ product.title }}">
+                  <div class="floating-product-details">
+                    <h3 class="product-title">{{ product.title }}</h3>
+                    <p class="product-price">{{ product.price | money }}</p>
+                    {% if product.metafields.reviews.rating %}
+                      <div class="product-rating">
+                        {% assign rating = product.metafields.reviews.rating.value | round %}
+                        {% assign rating_count = product.metafields.reviews.rating_count.value %}
+                        {% for i in (1..5) %}
+                          <span class="star">★</span>
+                        {% endfor %}
+                        <span class="rating-number">({{ rating_count }})</span>
+                      </div>
+                    {% endif %}
+                    <p class="product-vendor">{{ product.vendor }}</p>
+                  </div>
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+          <div class="tab-button-container">
+            {% if block.settings.button_link != blank and block.settings.button_text != blank %}
+              <a href="{{ block.settings.button_link }}" class="tab-shop-button">
+                {{ block.settings.button_text }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tabId = button.dataset.tab;
+        
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        button.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+  });
+
+  function handleScroll(button, direction) {
+    const currentTab = button.closest('.tab-content');
+    const grid = currentTab.querySelector('.product-grid');
+    const cardWidth = grid.querySelector('.product-card').offsetWidth;
+    const scrollAmount = cardWidth + 20; // 20 is the gap between cards
+    const maxScroll = grid.scrollWidth - grid.clientWidth;
+    
+    // Calculate the next scroll position
+    const nextScrollPosition = grid.scrollLeft + (scrollAmount * direction);
+    
+    // Only scroll if we're within bounds
+    if ((direction > 0 && nextScrollPosition <= maxScroll) || 
+        (direction < 0 && nextScrollPosition >= 0)) {
+      grid.scrollBy({
+        left: scrollAmount * direction,
+        behavior: 'smooth'
+      });
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Selected Variants Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Selected Variants"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Top Margin",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Bottom Margin",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "tab_alignment",
+      "label": "Tab Alignment", 
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "tab_font_size",
+      "label": "Tab Font Size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "tab_border_radius",
+      "label": "Tab Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "content_border_radius",
+      "label": "Content Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "color",
+      "id": "tab_text_color",
+      "label": "Tab Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_bg_color",
+      "label": "Tab Background Color",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_text_color",
+      "label": "Active Tab Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_bg_color",
+      "label": "Active Tab Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "content_bg_color",
+      "label": "Content Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Product Card Background Color",
+      "default": "#52A09E"
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg_color",
+      "label": "Arrow Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_bg_color",
+      "label": "Arrow Hover Background Color",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color", 
+      "id": "button_hover_bg_color",
+      "label": "Button Hover Background Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color", 
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Button Font Size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding",
+      "label": "Button Padding",
+      "min": 5,
+      "max": 40,
+      "step": 5,
+      "default": 15
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Selected Variants Tab",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "Selected Variants"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        },
+        {
+          "type": "textarea",
+          "id": "variant_selection",
+          "label": "Variant Selection",
+          "info": "Leave blank to show all variants, or enter specific variant titles separated by commas (e.g., 'Small / Red, Medium / Blue')",
+          "default": "All Variants"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "select",
+          "id": "button_alignment",
+          "label": "Button Alignment",
+          "options": [
+            {
+              "value": "0 auto",
+              "label": "Center"
+            },
+            {
+              "value": "0 0 0 auto",
+              "label": "Right"
+            },
+            {
+              "value": "0 auto 0 0",
+              "label": "Left"
+            }
+          ],
+          "default": "0 auto"
+        }
+      ]
+    },
+    {
+      "type": "product_tab",
+      "name": "Products Tab",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "Products"
+        },
+        {
+          "type": "product_list",
+          "id": "products",
+          "label": "Select Products",
+          "limit": 20
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "select",
+          "id": "button_alignment",
+          "label": "Button Alignment",
+          "options": [
+            {
+              "value": "0 auto",
+              "label": "Center"
+            },
+            {
+              "value": "0 0 0 auto",
+              "label": "Right"
+            },
+            {
+              "value": "0 auto 0 0",
+              "label": "Left"
+            }
+          ],
+          "default": "0 auto"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Selected Variants Slider",
+      "blocks": [
+        {
+          "type": "tab"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

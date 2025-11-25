@@ -1,0 +1,171 @@
+<div class="system-picker">
+  <h2 class="system-picker__title">Select System</h2>
+
+  {%- comment -%}
+    Define your 3 products as: Title|handle|headline|icon-key 
+    icon-key options used below: water, speed, ph
+  {%- endcomment -%}
+  {% assign product_tiles = "
+  Water Purification Kit | /4-stage-mv4-rogb-quick-twist-reverse-osmosis-water-filtration-system-perfect-match-bundle,
+  High-Speed Filtration Kit| /4-stage-mv4-rolb-quick-twist-reverse-osmosis-water-filtration-system-perfect-match-bundle,
+  Alkaline Water Filtration Kit| /4-stage-mv4-rags-alkaline-quick-twist-reverse-osmosis-water-filtration-system-perfect-match-bundle
+  " | strip | split: "," %}
+
+  {% assign current_handle = product.handle | default: '' %}
+
+  <div class="sys-grid">
+    {% for entry in product_tiles %}
+      {% assign parts = entry | strip | split: "|" %}
+      {% assign tile_title = parts[0] | strip %}
+      {% assign tile_handle = parts[1] | strip %}
+      {% assign tile_headline = parts[2] | strip %}
+      {% assign tile_icon = parts[3] | strip %}
+
+      <a class="sys-card{% if tile_handle == current_handle %} is-current{% endif %}"
+         href="/products/{{ tile_handle | escape }}"
+         aria-label="{{ tile_title | escape }}"
+         {% if tile_handle == current_handle %}aria-current="page"{% endif %}>
+        <div class="sys-card__kicker">
+          {% case tile_icon %}
+            {% when 'water' %}
+              <svg class="sys-card__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 2s6 7 6 11a6 6 0 1 1-12 0C6 9 12 2 12 2zM9 13a3 3 0 1 0 6 0" fill="currentColor" fill-rule="evenodd"/>
+              </svg>
+            {% when 'speed' %}
+              <svg class="sys-card__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 4a9 9 0 0 0-9 9h2a7 7 0 1 1 14 0h2a9 9 0 0 0-9-9zm5.6 6.2-4.2 4.2a2 2 0 1 1-2.8-2.8l4.2-4.2" fill="currentColor"/>
+              </svg>
+            {% when 'ph' %}
+              <svg class="sys-card__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M7 2h10l-1 3h-8L7 2zm1 5h8l-1.5 10.5A3 3 0 0 1 11.5 20h1a3 3 0 0 1-2 .5A3 3 0 0 1 7.5 18.5L8 7zM5 7h2l-.5 8a4.5 4.5 0 1 0 9 0L15 7h2" fill="currentColor"/>
+              </svg>
+          {% endcase %}
+          <span class="sys-card__kicker-text">{{ tile_headline }}</span>
+        </div>
+
+        <h3 class="sys-card__title">{{ tile_title }}</h3>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  :root {
+    --sys-accent: #0d6efd;
+    --sys-border: #e5e7eb;
+    --sys-border-hover: #cfd6e4;
+    --sys-text: #111827;
+    --sys-title:#rgb(102,102,102);
+
+    --sys-radius: 12px;
+    --sys-pad-y: 18px;
+    --sys-pad-x: 16px;
+    --sys-gap: 22px;
+  }
+
+  .system-picker { padding: 8px 0; }
+  .system-picker__title {
+    margin: 0 0 15px 0;
+    font-size: clamp(1.05rem, 0.9vw + 0.9rem, 1.35rem);
+    color: #rgb(102,102,102);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+
+  .sys-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--sys-gap);
+  }
+
+  .sys-card {
+    display: block;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--sys-border);
+    border-radius: var(--sys-radius);
+    padding: var(--sys-pad-y) var(--sys-pad-x);
+    background: #fff;
+    transition: box-shadow .25s ease, transform .08s ease, border-color .25s ease, background-color .25s ease;
+    outline: none;
+    will-change: transform, box-shadow;
+  }
+  .sys-card:hover {
+    border-color: var(--sys-border-hover);
+    background: #ffffff;
+    box-shadow: 0 8px 22px rgba(0,0,0,.06);
+  }
+  .sys-card:active { transform: translateY(1px); }
+  .sys-card:focus-visible { box-shadow: 0 0 0 3px rgba(13,110,253,.35); }
+
+  /* Active/current = blue border */
+  .sys-card.is-current {
+    border-color: var(--sys-accent);
+    box-shadow: 0 0 0 2px rgba(13,110,253,.20);
+  }
+
+  /* Kicker (centered blue text + icon) */
+  .sys-card__kicker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+    padding: 0;
+    background: transparent;
+    color: var(--sys-accent);
+    border-radius: 0;
+    font-weight: 700;
+    font-size: clamp(.82rem, .6vw + .6rem, .96rem);
+    line-height: 1.1;
+    letter-spacing: .02em;
+    text-align: center;
+  }
+  .sys-card__icon {
+    width: clamp(16px, 1.2vw + 10px, 20px);
+    height: clamp(16px, 1.2vw + 10px, 20px);
+    display: inline-block;
+    flex: 0 0 auto;
+  }
+  .sys-card__title {
+    margin: 8px 0 0;
+    color: var(--sys-title);
+    font-size: clamp(1.06rem, .9vw + .85rem, 1.25rem);
+    line-height: 1.28;
+    font-weight: 700;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  @media (min-width: 700px) and (max-width: 1024px) {
+    .sys-grid { grid-template-columns: repeat(2, minmax(280px, 1fr)); }
+  }
+  @media (max-width: 699px) {
+    :root {
+      --sys-radius: 12px;
+      --sys-pad-y: 16px;
+      --sys-pad-x: 14px;
+      --sys-gap: 14px;
+    }
+    .system-picker__title { margin-bottom: 6px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sys-card,
+    .sys-card:hover { transition: none; }
+    .sys-card:active { transform: none; }
+  }
+</style>
+
+<script>
+  // Optional: quick visual feedback before navigation (adds blue border on pointerdown)
+  document.addEventListener('DOMContentLoaded', function () {
+    const cards = document.querySelectorAll('.sys-card');
+    cards.forEach(card => {
+      card.addEventListener('pointerdown', function () {
+        cards.forEach(c => c.classList.remove('is-current'));
+        this.classList.add('is-current');
+      });
+    });
+  });
+</script>

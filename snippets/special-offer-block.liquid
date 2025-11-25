@@ -1,0 +1,136 @@
+<!-- Begin Modern Special Offer Snippet -->
+<div class="special-offer gradient-background">
+    <div class="offer-header">
+        <h5 class="offer-title">
+            Enjoy <span class="yellow-underline">FREE Perks</span> with every purchase.
+        </h5>
+    </div>
+    <h6 class="offer-subtitle">
+        This amazing deal is only available at our official Metpure website!
+    </h6>
+    <ul class="offer-list">
+        <li>
+            <span class="flash-ribbon">FREE</span> Shipping on Orders Over $79
+        </li>
+        <li>
+            <span class="flash-ribbon">FREE</span> 30 Day Returns or Exchange
+        </li>
+    </ul>
+</div>
+
+<style>
+/* Gradient container */
+.gradient-background {
+    background: linear-gradient(45deg, #0AAFA2, #33CFC9, #089B91);
+    background-size: 200% 200%;
+    animation: gradient-glide 5s linear infinite;
+    border-radius: clamp(8px, 3vw, 15px);
+    padding: clamp(10px, 4vw, 20px);
+    max-width: 95%;
+    color: #ffffff;
+    text-align: left;
+}
+
+/* Gradient animation */
+@keyframes gradient-glide {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Header and title */
+.offer-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
+}
+
+.offer-title {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.3;
+    color: #ffffff;
+}
+
+.offer-subtitle {
+    font-size: clamp(0.85rem, 3.5vw, 1rem);
+    margin: 0.5em 0 1em 0;
+    color: #ffffff;
+}
+
+/* Flash ribbon (FREE text) */
+.flash-ribbon {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: clamp(0.85rem, 3vw, 1rem); /* smaller */
+    padding: 0;
+    border-radius: 0;
+    margin-right: 0.2em; /* reduced spacing */
+    white-space: nowrap;
+    background: none;
+}
+
+/* Yellow underline */
+.yellow-underline {
+    position: relative;
+    color: #ffffff;
+}
+
+.yellow-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: clamp(1.5px, 0.3vw, 2px);
+    background-color: #ACF6F4;
+}
+
+/* List styling */
+.offer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.offer-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: clamp(0.75rem, 3vw, 1rem);
+    color: #ffffff;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 480px) {
+    .gradient-background {
+        padding: clamp(8px, 5vw, 12px);
+        border-radius: clamp(6px, 5vw, 12px);
+    }
+
+    .offer-title {
+        font-size: clamp(0.9rem, 4vw, 1rem);
+    }
+
+    .offer-subtitle {
+        font-size: clamp(0.75rem, 3.5vw, 0.9rem);
+    }
+
+    .flash-ribbon {
+        font-size: clamp(0.75rem, 3.5vw, 0.85rem); /* smaller on mobile */
+        margin-right: 0.15em; /* less spacing */
+        padding: 0;
+    }
+
+    .offer-list li {
+        font-size: clamp(0.7rem, 3.5vw, 0.85rem);
+        gap: 0.3em;
+    }
+}
+</style>
+<!-- End Modern Special Offer Snippet -->

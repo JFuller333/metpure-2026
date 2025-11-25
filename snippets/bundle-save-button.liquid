@@ -1,0 +1,75 @@
+<style>
+  .animated-btn {
+    position: relative;
+    display: inline-block;
+    width: 100%; /* Make the button take full width of its container */
+    padding: 12px 0; /* Adjust padding for full width */
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff; /* Text color */
+    background-color: #6BC2FD; /* Button color */
+    border: 2px solid #6BC2FD; /* Button border color */
+    border-radius: 5px; /* Border radius set to 5px */
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: hidden;
+    transition: color 0.4s, background-color 0.4s, border-color 0.4s; /* Increased duration */
+    text-decoration: none;
+    text-align: center; /* Center text inside the button */
+    position: relative;
+    outline: none; /* Remove outline */
+  }
+
+  .animated-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #85C8FD; /* Lighter hover background color */
+    transition: left 0.6s ease; /* Increased duration for smoother effect */
+  }
+
+  .animated-btn:hover::before {
+    left: 0;
+  }
+
+  .animated-btn:hover {
+    color: #fff; /* Ensure text color remains white on hover */
+    background-color: transparent;
+    border-color: #7CC5F9; /* Lighter border color on hover */
+  }
+
+  .animated-btn:focus {
+    outline: none; /* Remove focus outline */
+    border-color: #7CC5F9; /* Lighter border color on focus */
+  }
+
+  .animated-btn:hover .arrow {
+    transform: translateX(8px); /* Move the arrow to the right on hover */
+    transition: transform 0.6s ease; /* Increased duration for smoother arrow movement */
+  }
+
+  .animated-btn span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .arrow {
+    display: inline-block;
+    margin-left: 10px;
+    transition: transform 0.6s ease; /* Smoother arrow transition */
+  }
+
+  .arrow::before {
+    content: '→';
+    font-size: 18px;
+    color: #fff;
+  }
+</style>
+
+<a href="https://www.metpure.com/pages/build-your-water-filtration-bundle" class="animated-btn">
+  <span>Add to Cart</span> <!-- Updated text -->
+  <span class="arrow"></span> <!-- Added arrow -->
+</a> 

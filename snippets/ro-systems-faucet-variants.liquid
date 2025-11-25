@@ -1,0 +1,100 @@
+{% if template == 'product.mv4-system' or template == 'product.mv2-system' %}
+<div style="padding: 10px 10px 10px 0;">
+  <b>Select System Stage:</b> <span id="style-title">{{ product.metafields.custom.faucet_style_name }}</span>
+</div>
+{% endif %}
+
+<div class="product-styles-toggle">
+  <button id="two-stage" class="toggle-option" onclick="updateStyle('2 Stage', 'https://www.metpure.com/products/2-stage-quick-twist-water-filtration-system-metpure-versatile-customizable-non-reverse-osmosis-water-filtration-system-complete-system-with-hardware-filters-and-faucet-select-your-system-type-and-faucet-copy')">
+    <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/metpure-mv2--icon_5c2fae3f-8374-4632-91d4-c68c619c6a5a.png?v=1748459705" alt="2 Stage" style="width: 60px; height: auto; margin-right: 8px;" />
+    2 Stage Water Filtration System
+  </button>
+  <button id="four-stage" class="toggle-option" onclick="updateStyle('4 Stage (Reverse Osmosis)', 'https://www.metpure.com/products/4-stage-quick-twist-whole-house-water-filtration-system-metpure-versatile-customizable-reverse-osmosis-ro-water-filtration-system-complete-system-with-hardware-filters-storage-tank-and-faucet-select-your-system-type-and-faucet-copy')">
+    <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/metpure-mv4-icon_4e2ff710-89ca-4d33-81c0-2a0811c62a37.png?v=1748459706" alt="4 Stage" style="width: 80px; height: auto; margin-right: 8px;" />
+    4 Stage Reverse Osmosis (RO) System
+  </button>
+</div>
+
+<style>
+  .product-styles-toggle {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .toggle-option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    min-width: 150px;
+    max-width: 300px;
+    background-color: transparent;
+    color: #6BC2FD;
+    transition: border-color 0.3s, color 0.3s, background-color 0.3s, transform 0.3s;
+  }
+
+  /* Add hover effect */
+  .toggle-option:hover {
+    background-color: #F0F0F0;
+    border-color: #6BC2FD;
+    transform: translateY(-2px);
+  }
+
+  .toggle-option.active {
+    background-color: #e6e6e6 !important;
+    color: #6BC2FD !important;
+  }
+
+  @media (max-width: 600px) {
+    .toggle-option {
+      min-width: 120px;
+      font-size: 14px;
+    }
+  }
+</style>
+
+<script>
+  function updateStyle(styleName, url) {
+    // Update the displayed style name
+    displayStyleTitle(styleName);
+
+    // Redirect to the selected product URL
+    if (url) {
+      window.location.href = url;
+    }
+
+    // Toggle active class between buttons
+    document.querySelectorAll('.toggle-option').forEach(button => button.classList.remove('active'));
+    if (styleName === '2 Stage') {
+      document.getElementById('two-stage').classList.add('active');
+    } else if (styleName === '4 Stage (Reverse Osmosis)') {
+      document.getElementById('four-stage').classList.add('active');
+    }
+  }
+
+  function displayStyleTitle(styleName) {
+    var styleTitle = document.getElementById('style-title');
+    if (styleTitle) {
+      styleTitle.textContent = styleName;
+    }
+  }
+
+  // Set initial style title display based on the default selected option
+  window.onload = function() {
+    const currentURL = window.location.href;
+    
+    if (currentURL.includes('2-stage')) {
+      // Set the 2-Stage button as active if URL includes '2-stage'
+      displayStyleTitle('2 Stage');
+      document.getElementById('two-stage').classList.add('active');
+    } else if (currentURL.includes('4-stage')) {
+      // Set the 4-Stage button as active if URL includes '4-stage'
+      displayStyleTitle('4 Stage (Reverse Osmosis)');
+      document.getElementById('four-stage').classList.add('active');
+    }
+  };
+</script>

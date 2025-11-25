@@ -1,0 +1,17 @@
+<div> 
+
+  
+{% if customer.tags contains "b2b" or customer.tags contains "B2B" %}
+<img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Metpro-Logo.png?v=1663969352" alt="{{ shop.name }}" width="{{ shop.email_logo_width }}">
+{% else %}
+{%- if shop.email_logo_url %}
+<img src="{{shop.email_logo_url}}" alt="{{ shop.name }}" width="{{ shop.email_logo_width }}">
+{%- else %}
+<h1 class="shop-name__text">
+<a href="{{shop.url}}">{{ shop.name }}</a>
+</h1>
+{%- endif %}
+{% endif %}
+
+</div>
+

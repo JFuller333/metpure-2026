@@ -1,0 +1,50 @@
+<!-- Begin Combined Discount Box Snippet -->
+<div class="combined-discount-container">
+
+<div class="bfcm-header">
+  <h2 class="bfcm-title">Black Friday Cyber Monday Sale</h2>
+</div>
+
+  <!-- Render Product Card Feature -->
+  <div class="product-card-section">
+    {% render 'free-product-feature' %}
+  </div>
+</div>
+
+<style>
+  .combined-discount-container {
+    border: 1.5px solid black; /* Thin border around entire container */
+    border-radius: 10px;
+    background-color: black;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    margin: 20px auto;
+    max-width: 650px; /* Limit width on larger screens */
+    padding: 20px;
+  }
+
+  .bfcm-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .bfcm-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: gold;
+  }
+  
+  .discount-section,
+  .product-card-section {
+    margin-bottom: 20px; /* Space between sections */
+  }
+
+  /* Responsive styles for container */
+  @media (max-width: 768px) {
+    .combined-discount-container {
+      padding: 10px;
+    }
+
+  }
+</style>
+<!-- End Combined Discount Box Snippet -->

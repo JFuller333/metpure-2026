@@ -1,0 +1,195 @@
+{% layout none %}
+
+{% capture wpd_discounted_prices %}{%- render 'wcp_discount'  wcp_discount:product , wpd_is_render:'yes' -%}{% endcapture %}
+    
+    {%- capture wcp_price -%}{%- render 'wcp_render_discount' , wpd_discounted_prices:wpd_discounted_prices, price_variable:'wcp_price' -%}{%- endcapture -%}
+    {% assign  wcp_price = wcp_price | minus: 0 %}
+    
+    {%- capture wcp_compare_at_price  -%}{%- render 'wcp_render_discount', wpd_discounted_prices:wpd_discounted_prices, price_variable:'wcp_compare_at_price' -%}{%- endcapture -%}
+    {% if wcp_compare_at_price != blank %}
+        {% assign  wcp_compare_at_price = wcp_compare_at_price | minus: 0 %}
+    {% else %}
+    {% assign  wcp_compare_at_price = nil %}
+    {% endif %}
+    
+    {%- capture wcp_compare_at_price_min  -%}{%- render 'wcp_render_discount' , wpd_discounted_prices:wpd_discounted_prices, price_variable:'wcp_compare_at_price_min' -%}{%- endcapture -%}
+    {% assign  wcp_compare_at_price_min = wcp_compare_at_price_min | minus: 0 %}
+    
+    {%- capture wcp_compare_at_price_max  -%}{%- render 'wcp_render_discount', wpd_discounted_prices:wpd_discounted_prices, price_variable:'wcp_compare_at_price_max' -%}{%- endcapture -%}
+    {% assign  wcp_compare_at_price_max = wcp_compare_at_price_max | minus: 0 %}
+    
+    {%- capture wcp_price_min -%}{%- render 'wcp_render_discount' , wpd_discounted_prices:wpd_discounted_prices, price_variable:'wcp_price_min' -%}{%- endcapture -%}
+    {% assign  wcp_price_min = wcp_price_min | minus: 0 %}
+    
+    {%- capture wcp_price_max -%}{%- render 'wcp_render_discount' , wpd_discounted_prices:wpd_discounted_prices, price_variable:'wcp_price_max' -%}{%- endcapture -%}
+    {% assign  wcp_price_max = wcp_price_max | minus: 0 %}
+    
+    
+    {%- capture v_discount_tag -%}{%-render 'wcp_render_discount' , wpd_discounted_prices:wpd_discounted_prices, price_variable:'v_discount_tag'-%}{%- endcapture -%}
+    {% assign v_discount_tag = v_discount_tag | strip %}
+    
+    {%- capture p_discount_tag -%}{%- render 'wcp_render_discount' , wpd_discounted_prices:wpd_discounted_prices, price_variable:'p_discount_tag' -%}{%- endcapture -%}
+    {% assign p_discount_tag = p_discount_tag | strip %}
+    
+    {% assign raw_set_prices = product.metafields.wcp_set_prices.wcp_set_prices %}
+    {% assign set_prices_array = blank %}
+    {% if raw_set_prices %}
+        {% assign set_prices_array = raw_set_prices | split: ',' %}
+    {% endif %}
+    
+    {%- capture wcp_discount_value -%}{%- render 'wcp_render_discount' , wpd_discounted_prices:wpd_discounted_prices, price_variable:'wcp_discount_value' -%}{%- endcapture -%}
+    
+    {% capture wcp_v_discounted_prices %}{%- render 'wcp_variant' , wcp_variant:product.selected_or_first_available_variant , set_prices_array:set_prices_array , wpd_is_render:'yes', v_discount_tag : v_discount_tag , wcp_discount_value : wcp_discount_value -%}{%- endcapture -%}
+    
+    {%- capture wcp_v_price -%}{%- render 'wcp_render_discount' , wpd_discounted_prices:wcp_v_discounted_prices, price_variable:'wcp_v_price' -%}{%- endcapture -%}
+    {% assign  wcp_v_price = wcp_v_price | minus: 0 %}
+    
+    {%- capture wcp_v_compare_at_price -%}{%- render 'wcp_render_discount' , wpd_discounted_prices:wcp_v_discounted_prices, price_variable:'wcp_v_compare_at_price' -%}{%- endcapture -%}
+    {% if wcp_v_compare_at_price != blank %}
+        {% assign  wcp_v_compare_at_price = wcp_v_compare_at_price | minus: 0 %}
+    {% else %}
+    {% assign  wcp_v_compare_at_price = nil %}
+    {% endif %}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign selected_variant = product.selected_or_first_available_variant
+  if use_variant
+    assign target = selected_variant
+  else
+    assign target = product
+  endif
+
+    if use_variant
+        assign compare_at_price = wcp_v_compare_at_price
+    else
+        assign compare_at_price = wcp_compare_at_price
+    endif
+
+   if use_variant
+        assign price = wcp_v_price | default: 1999
+    else
+       assign price = wcp_price | default: 1999
+    endif
+
+  if settings.pcard_show_lowest_prices
+    assign price = wcp_price 
+    assign compare_at_price = wcp_compare_at_price 
+  endif
+
+  assign available = target.available | default: false
+  assign money_price = price | money
+
+  if settings.currency_code_enabled
+    assign money_price = price | money_with_currency
+  endif
+ 
+
+  assign sale_badge_type = sale_badge_type | default: 'percentage'
+-%}
+
+<div
+  class="
+    m-price m:inline-flex m:items-center m:flex-wrap
+    {%- if alignment %} m-price--{{ alignment }}{% endif -%}
+    {%- if price_class %} {{ price_class }}{% endif -%}
+    {%- if available == false %} m-price--sold-out {% endif -%}
+    {%- if compare_at_price > price %} m-price--on-sale {% endif -%}
+    {%- if target.price_varies == false and target.compare_at_price_varies %} m-price--no-compare{% endif -%}
+  "
+  data-sale-badge-type="{{ sale_badge_type }}"
+>
+  <div class="m-price__regular 11"> 
+    <span class="m:visually-hidden m:visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+    <span class="m-price-item m-price-item--regular {{ price_text_size }} 11">
+      {{ money_price }}
+    </span>
+  </div>
+  <div class="m-price__sale">
+    <span class="m:visually-hidden m:visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
+    <span class="m-price-item m-price-item--sale m-price-item--last {{ price_text_size }}" style=" font-size: 22px; ">
+      {{ money_price }}
+    </span>
+    {%- unless target.price_varies == false and target.compare_at_price_varies %}
+      <span class="m:visually-hidden m:visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+      <s class="m-price-item m-price-item--regular">
+        {% if settings.currency_code_enabled %}
+          {{ compare_at_price | money_with_currency }}
+        {% else %}
+          {{ compare_at_price | money }}
+        {% endif %}
+      </s>
+    {%- endunless -%}
+  </div>
+  <div class="m-price__unit-wrapper{% if selected_variant.unit_price_measurement == nil %} m:hidden{% endif %}">
+    <span class="m:visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+    <div class="m-price__unit">
+      {%- capture unit_price_separator -%}
+        <span aria-hidden="true">/</span>
+      {%- endcapture -%}
+      {%- capture unit_price_base_unit -%}
+        <span data-unit-price-base-unit>
+            {%- if selected_variant.unit_price_measurement -%}
+              {%- if selected_variant.unit_price_measurement.reference_value != 1 -%}
+                {{- selected_variant.unit_price_measurement.reference_value -}}
+              {%- endif -%}
+              {{ selected_variant.unit_price_measurement.reference_unit }}
+            {%- endif -%}
+          </span>
+      {%- endcapture -%}
+      <span data-unit-price>{{ selected_variant.unit_price | money }}</span>
+      {{- unit_price_separator -}}
+      {{- unit_price_base_unit -}}
+    </div>
+  </div>
+
+  {% if show_sale_badge %}
+    <div class="m-price__badges">
+      {% if show_sale_badge %}
+        {% liquid
+          assign save_amount = 0
+          if compare_at_price > price
+            assign save_amount = compare_at_price | minus: price
+          endif
+
+          assign discount = ''
+          if sale_badge_type == 'percentage'
+            assign discount = save_amount | times: 100.0 | divided_by: compare_at_price | round | append: '%'
+          elsif sale_badge_type == 'fixed_amount'
+            if settings.currency_code_enabled
+              assign discount = save_amount | money_with_currency
+            else
+              assign discount = save_amount | money
+            endif
+          endif
+        %}
+        <div class="m-price__badge-sale" data-type="{{ sale_badge_type }}">
+          <span class="m-product-tag m-product-tag--sale m-gradient m-color-{{ settings.sale_badge_color_scheme }}">
+            {% unless sale_badge_type == 'text' %}
+              {% render 'new-locale', key: 'products.product.save_html', param: '{{ amount }}', value: discount %}
+            {% else %}
+              {% render 'new-locale', key: 'products.product.sale_text' %}
+            {% endunless %}
+          </span>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
+
+{% comment %}
+{% if product.tags contains '' %}
+  <span style="color: white; background-color: red; border-radius: 3px; padding: 2px 7px; font-weight: bold;"> 
+    GET EXTRA {{ product.metafields.custom.percent_off }} OFF 
+  </span>&nbsp;
+{% endif %}
+{% endcomment %}
+
+
+{%- assign wcp_prd_var = product -%}
+{%- unless wcp_prd_var == empty -%}
+            <script type='application/json' class='{%- for wcp_v in wcp_prd_var.variants -%} wcp_json_{{wcp_v.id}} {%- endfor -%} wcp_json_{{ wcp_prd_var.id }} wcp_json' id='wcp_json_{{ wcp_prd_var.id }}' > 
+                {%- render 'wcp_product_json' with wcp_prd_var -%}
+            </script>
+{%- endunless -%}

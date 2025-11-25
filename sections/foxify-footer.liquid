@@ -1,0 +1,42 @@
+
+{% liquid
+  
+    assign locales = shop.metafields.foxify.locales.value
+    assign current_locale = request.locale.iso_code
+    assign primary_locale = current_locale
+    for locale in shop.published_locales
+    if locale.primary
+        assign primary_locale = locale.iso_code
+        break
+    endif
+    endfor
+    assign translation = locales[current_locale] | default: locales[primary_locale]
+
+    assign theme_settings = shop.metafields.foxify.theme_settings.value
+    assign productCard = theme_settings.productCard
+  
+  
+%}
+
+<div class="f-app f:content">
+{{ 'foxify-footer.css' | asset_url | stylesheet_tag }}
+{{ 'foxify-section-footer.css' | asset_url | stylesheet_tag }}<div id="f-1679354336c4G0w" class="f:sections f:footer f-1679354336c4G0w f:section--no-margin"><div class="f:container"><div class="f:footer__top"><div class="f:blocks f:grid f-1679354336fYnqz" id="f-1679354336fYnqz" style="--f-grid-columns-sm:12fr;--f-grid-columns-md:6fr 6fr;--f-grid-columns-lg:4fr 4fr 4fr;--f-grid-columns-xl:4fr 4fr 4fr"><div class="f:blocks f:col f-1679354336kWcve f:column" id="f-1679354336kWcve"><h3 id="f-1679354336HaoEF" class="f:blocks f:heading f-1679354336HaoEF f:content-block"><span>Information</span></h3><div class="f:blocks f:menu-block f-1679354336ZUg5m" id="f-1679354336ZUg5m"><ul class="f:list-none"><li><a href="#">Menu item label</a></li><li><a href="#">Menu item label</a></li><li><a href="#">Menu item label</a></li><li><a href="#">Menu item label</a></li></ul></div></div><div class="f:blocks f:col f-16793543368c8mD f:column" id="f-16793543368c8mD"><h3 id="f-1679354336NsB3l" class="f:blocks f:heading f-1679354336NsB3l f:content-block"><span>Quick links</span></h3><div class="f:blocks f:menu-block f-16793543363EVN3" id="f-16793543363EVN3"><ul class="f:list-none"><li><a href="#">Menu item label</a></li><li><a href="#">Menu item label</a></li><li><a href="#">Menu item label</a></li><li><a href="#">Menu item label</a></li></ul></div></div><div class="f:blocks f:col f-16793543368Tv3A f:column" id="f-16793543368Tv3A"><h3 id="f-1679354336Con0L" class="f:blocks f:heading f-1679354336Con0L f:content-block"><span>Subscribe to our emails</span></h3><div id="f-1679354336ktgNU" class="f:blocks f:richtext f-1679354336ktgNU f:content-block f:rte"><p>You deserve to feel good. Subscribe to our newsletter.</p></div><div class="f:blocks f:subscribe-form f-1679354336vvxCx f:content-block" id="f-1679354336vvxCx">{{ 'foxify-newsletter.css' | asset_url | stylesheet_tag }}<div class="f:newsletter-form f:newsletter-form--btn-text">{% form 'customer', id: ContactSubscribe-f-1679354336vvxCx %}<input type="hidden" name="contact[tags]" value="newsletter"/><label class="f:block f:newsletter-form__label f:visually-hidden" for="ContactSubscribe-f-1679354336vvxCx-email">{{ 'foxify.newsletter.label' | t }}</label><div class="f:newsletter-form__wrapper f:flex"><input type="email" name="contact[email]" id="ContactSubscribe-f-1679354336vvxCx-email" value="{% if customer.email != blank %}{{ customer.email }}{% endif %}" placeholder="Enter your email" autoCorrect="off" autoCapitalize="off" class="f:form-control" required=""/><button type="submit" aria-label="" class="f:newsletter-form__submit f:btn "><span>Subscribe</span></button></div>{%- if form.posted_successfully? -%}<div class="f:form-status"><div class="f:form-message--success" data-form-status="true" tabindex="-1" autofocus="">{{ 'foxify.newsletter.success' | t }}</div></div>{%- endif -%}<!-- -->{%- if form.errors -%}<div class="f:form-status"><div class="f:form-status__error f:form-message--error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</div></div>{% endif %}<!-- -->{% endform %}</div></div></div></div></div><div class="f:footer__bottom f:footer__bottom--show-divider"><div class="f:footer__copyright">&copy; 2022, Foxify Powered by Shopify</div></div></div></div>
+
+</div>
+{% schema %}
+  {
+  "name": "Foxify footer",
+  "class": "foxify-footer f-app",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Customize footer",
+      "info": "Go to [Foxify app](https://admin.shopify.com/store/metpure/apps/foxify-builder) to edit this section."
+    }
+  ],
+  "locales": {
+    "en": {}
+  }
+}
+{% endschema %}
+  

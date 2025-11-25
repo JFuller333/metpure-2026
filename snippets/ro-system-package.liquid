@@ -1,0 +1,179 @@
+<style>
+    .container2 {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 20px;
+        border-radius: 20px;
+        text-align: center;
+    }
+
+    .title {
+        color: #52A09E;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        padding: 0 20px;
+        justify-content: center;
+    }
+
+    .product {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.3s;
+        text-align: center;
+    }
+
+    .product img {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        transition: transform 0.3s;
+    }
+
+    .product:hover img {
+        transform: scale(1.1);
+    }
+
+    .product-title {
+        color: black;
+        font-size: 1rem;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    /* Custom layout for 10 items: 4 in the first row, 4 in the second row, and centered 2 in the third row */
+    .product-grid > .product:nth-child(9),
+    .product-grid > .product:nth-child(10) {
+        grid-column: span 2;
+        margin: 0; /* Remove any margin */
+        padding: 0; /* Remove any padding */
+    }
+
+    /* Center-align third row */
+    .product-grid {
+        grid-gap: 16px;
+    }
+
+    .product-grid > .product:nth-child(9) {
+        justify-self: end; /* Align the 9th item to the right */
+    }
+
+    .product-grid > .product:nth-child(10) {
+        justify-self: start; /* Align the 10th item to the left */
+    }
+
+    /* Responsive styles */
+    @media (max-width: 1200px) {
+        .product-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .product img {
+            width: 200px;
+            height: 200px;
+        }
+
+        /* Reset layout for smaller screens */
+        .product-grid > .product:nth-child(9),
+        .product-grid > .product:nth-child(10) {
+            grid-column: span 1;
+            margin: 0;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .product-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .product img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .title {
+            font-size: 1.2rem;
+        }
+
+        /* Reset layout for smaller screens */
+        .product-grid > .product:nth-child(9),
+        .product-grid > .product:nth-child(10) {
+            grid-column: span 1;
+            margin: 0;
+        }
+    }
+</style>
+
+
+
+<div class="container2">
+    <h5 class="title">What's Included with Metpure Versatile System!</h5>
+    <div class="product-grid">
+        <div class="product">
+            <a href="https://www.metpure.com/products/vase-style-water-filtration-faucets-products-water-filtration-faucet-non-air-gap-certified-by-nsf?variant=43569774264511" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Designer_Faucet.png?v=1688754559" alt="Metpure Versatile Faucet">
+                <span class="product-title">Metpure Versatile Faucet</span>
+            </a>
+        </div>
+        <div class="product">
+            <a href="https://www.metpure.com/collections/metpure-versatile-water-filters" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Filter_set.png?v=1688754560" alt="MV4 Filter Set">
+                <span class="product-title">MV4 Filter Set</span>
+            </a>
+        </div>
+        <div class="product">
+            <a href="https://www.metpure.com/products/1-4-quick-connect-water-drain-saddle-valve" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Drain_Saddle_775d1cc2-7f62-4b1f-93b4-0372a5c5686d.webp?v=1730745814" alt="Drain Saddle">
+                <span class="product-title">Drain Saddle</span>
+            </a>
+        </div>
+        <div class="product">
+            <a href="https://www.metpure.com/products/heavy-duty-ez-ro-reverse-osmosis-ro-filtration-ice-maker-refrigerator-universal-feed-water-supply-adapter-with-3-8-quick-connect-ball-valve-solid-brass?_pos=1&_psq=ez+adapter&_ss=e&_v=1.0" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/EZ_RO_Adapter.webp?v=1730745814" alt="EZ RO Adapter">
+                <span class="product-title">EZ RO Adapter</span>
+            </a>
+        </div>
+        <div class="product">
+            <a href="https://www.metpure.com/products/ro-132-reverse-osmosis-system-expansion-storage-white-tank-4-4-gallon-actual-volume-3-2-gallon-11-x-15-1-4-fpt-nsf-certified?_pos=1&_psq=storage&_ss=e&_v=1.0" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Storage_Tank.png?v=1688754580" alt="3.2 Gallon Water Storage Tank">
+                <span class="product-title">3.2 Gallon Water Storage Tank</span>
+            </a>
+        </div>
+        <div class="product">
+            <a href="https://example.com/faucet-wrench" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Wrench.png?v=1688754579" alt="Faucet Wrench">
+                <span class="product-title">Faucet Wrench</span>
+            </a>
+        </div>
+        <div class="product">
+            <a href="https://www.metpure.com/products/metpure-ro-color-tubing-for-reverse-osmosis-de-ionized-water-filtration-systems-1-4-od-replacement-red-yellow-blue-black-4-color-coded-tubings-5-feet-each?_pos=1&_psq=code&_ss=e&_v=1.0" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Tubing.png?v=1688754580" alt="Color Coded Tubing">
+                <span class="product-title">Color Coded Tubing</span>
+            </a>
+        </div>
+        <div class="product">
+            <a href="https://www.metpure.com/products/1-4-female-x-3-8-quick-connect-tank-ball-valve" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Tank_ball.png?v=1688754580" alt="Tank Ball Valve">
+                <span class="product-title">Tank Ball Valve</span>
+            </a>
+        </div>
+        <div class="product">
+            <a href="https://www.metpure.com/products/1-4-universal-reverse-osmosis-quick-connect-faucet-adapter" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Faucet_Adapter.png?v=1688754561" alt="Faucet Adapter">
+                <span class="product-title">Faucet Adapter</span>
+            </a>
+        </div>
+        <div class="product">
+            <a href="www.metpure.com/#" target="_blank">
+                <img src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/Screws.png?v=1688754560" alt="Mounting Screws">
+                <span class="product-title">Mounting Screws</span>
+            </a>
+        </div>
+    </div>
+</div> 
