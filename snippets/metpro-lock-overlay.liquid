@@ -1,0 +1,171 @@
+{%- liquid
+  assign metpro_required_tags = lock_tags | default: ''
+  assign metpro_has_access = false
+
+  if customer
+    if metpro_required_tags == ''
+      assign metpro_has_access = true
+    else
+      assign metpro_required_tags = metpro_required_tags | split: ','
+      for tag in metpro_required_tags
+        assign clean_tag = tag | strip
+        if clean_tag != '' and customer.tags contains clean_tag
+          assign metpro_has_access = true
+          break
+        endif
+      endfor
+    endif
+  endif
+-%}
+
+{%- if metpro_has_access == false -%}
+  <div class="metpro-lock-modal" data-metpro-lock>
+    <div class="metpro-lock-backdrop" aria-hidden="true"></div>
+
+    <div class="metpro-lock-dialog" role="dialog" aria-modal="true" aria-labelledby="metproLockTitle">
+      <img class="metpro-lock-logo" src="https://cdn.shopify.com/s/files/1/0620/0016/9151/files/login-members-metpro-logo.svg?v=1682021671" alt="Met Pro members only">
+
+      <div class="metpro-lock-form" data-login-form>
+        {% form 'customer_login' %}
+          {% render 'form__error', form: form %}
+          <h5 id="metproLockTitle" class="metpro-lock-heading">
+            To access this content, please sign in with your Met Pro credentials.
+          </h5>
+          <input type="email" name="customer[email]" placeholder="{{ 'customer.login.email' | t }}" class="metpro-lock-input" autocomplete="email">
+          <input type="password" name="customer[password]" placeholder="{{ 'customer.login.password' | t }}" class="metpro-lock-input" autocomplete="current-password">
+          <input type="hidden" name="return_to" value="{{ request.path }}">
+
+          <a class="metpro-lock-reset" href="#recover">{{ 'customer.login.forgot_password' | t }}</a>
+          <button class="metpro-lock-submit" type="submit">
+            {{ 'customer.login.sign_in' | t }}
+          </button>
+
+          <div class="metpro-lock-extra">
+            <p>Not a member? <a href="https://www.metpure.com/pages/metpro">Join Met Pro for free.</a></p>
+          </div>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+
+  <style>
+  :root {
+    --metpro-lock-backdrop: rgba(0, 14, 25, 0.65);
+    --metpro-lock-accent: #000;
+  }
+
+  body.metpro-lock-active {
+    overflow: hidden;
+  }
+
+  body.metpro-lock-active #MainContent,
+  body.metpro-lock-active main {
+    filter: blur(6px) saturate(80%);
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.4;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+  }
+
+  .metpro-lock-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+  }
+
+  .metpro-lock-backdrop {
+    position: absolute;
+    inset: 0;
+    background: var(--metpro-lock-backdrop);
+    backdrop-filter: blur(6px);
+  }
+
+  .metpro-lock-dialog {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+
+  .metpro-lock-logo {
+    max-width: 170px;
+    margin-bottom: 1.25rem;
+  }
+
+  .metpro-lock-form {
+    width: min(420px, 90vw);
+    background: #fff;
+    border-radius: 18px;
+    padding: 2rem;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .metpro-lock-heading {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .metpro-lock-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d4d7dd;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+
+  .metpro-lock-reset {
+    display: inline-block;
+    text-align: right;
+    font-size: 0.9rem;
+    text-decoration: underline;
+  }
+
+  .metpro-lock-submit {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--metpro-lock-accent);
+    color: #fff;
+    transition: background-color 0.2s ease;
+  }
+
+  .metpro-lock-submit:hover {
+    background-color: #333;
+  }
+
+  .metpro-lock-extra {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .metpro-lock-form {
+      padding: 1.5rem;
+      border-radius: 14px;
+    }
+  }
+  </style>
+
+  <script>
+    (function() {
+      if (sessionStorage.getItem('wcp_account_login') !== null) {
+        sessionStorage.removeItem('wcp_account_login');
+      }
+      document.documentElement.classList.add('metpro-lock-active');
+      if (document.body) {
+        document.body.classList.add('metpro-lock-active');
+      }
+    }());
+  </script>
+{%- endif -%}
