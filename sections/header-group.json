@@ -1,1 +1,62 @@
-{"type":"header","name":"Header","sections":{"annoucement":{"type":"annoucement","blocks":{"item_6Ycmkw":{"type":"item","settings":{"message":"🏷️ Get 10% Off your FIRST ORDER - Discount automatically applied at checkout","message_link":"https:\/\/www.metpure.com\/pages\/metpure-versatile-landing-page-1"}}},"block_order":["item_6Ycmkw"],"disabled":true,"custom_css":[".m-announcement-bar__container {--container-width: 600px;}"],"settings":{"container":"container","color_scheme":"badge-hot","show_announcement":true,"homepage_only":false,"show_close":true,"show_divider":false,"show_nav":true,"autorotate":true,"autorotate_speed":3}},"header":{"type":"header","custom_css":[".m-topbar a[href*=\"facebook\"] {order: 2;}",".social-media-links {column-gap: 30px;}",".m-logo__image {width: 230px; padding: 20px;}"],"settings":{"color_scheme":"","color_scheme_menu":"default","header_design":"logo-center-menu-left","container":"container-fluid","sticky_header":"always","transparent_on_top":false,"transparent_text_color":"#ffffff","logo_text":"","logo":"shopify:\/\/shop_images\/metpure-logo-w-r-2_d76ce69e-61d6-4209-a8f8-5577f34898eb.svg","logo_mobile":"shopify:\/\/shop_images\/logo.png","logo_transparent":"shopify:\/\/shop_images\/logo.png","logo_svg":"","logo_mobile_svg":"","logo_transparent_svg":"","logo_max_width":145,"sticky_logo_max_width":145,"mobile_logo_max_width":110,"main_menu":"main-menu","secondary_menu":"","mobile_menu":"","uppercase_parent_level":false,"show_menu_column_divider":true,"search":"show_icon","show_account_icon":true,"show_cart_icon":true,"show_wishlist_icon":true,"show_compare_icon":false,"show_currency_switcher":false,"show_country_selector":false,"show_language_switcher":false,"mb_show_currency_switcher":false,"mb_show_country_selector":true,"mb_show_language_switcher":true}},"scrolling_promotion_Ut9WKH":{"type":"scrolling-promotion","blocks":{"announcement_7LqD8w":{"type":"announcement","settings":{"custom_svg":"","icon_size":"medium","text":"FREE shipping on orders over $79","text_size":18,"text_link":""}}},"block_order":["announcement_7LqD8w"],"disabled":true,"settings":{"container":"w-full","direction":"left","speed":30,"item_gap":50,"item_gap_mobile":30,"color_scheme":"scheme-9dcb951e-59b6-476d-b938-1f876875ca5b","padding_top":20,"padding_bottom":20,"custom_class":""}},"shipping_bar_WHh8tc":{"type":"shipping-bar","blocks":{"announcement_HfMT6T":{"type":"announcement","settings":{"title":"FREE Shipping","annc_text":"on your FIRST ORDER, automatically applied at checkout.","est_arrival_text":""}},"announcement_f6QzmU":{"type":"announcement","settings":{"title":"10% Off FIRST ORDER","annc_text":"Use promo code \"FIRSTORDER\" at checkout.","est_arrival_text":""}}},"block_order":["announcement_HfMT6T","announcement_f6QzmU"],"disabled":true,"settings":{"bg_color":"#52a09e","text_color":"#ffffff","metpro__disabled":false}},"shipping_bar_RG8gTc":{"type":"shipping-bar","blocks":{"announcement_hV3EL3":{"type":"announcement","settings":{"title":"<a href=\"https:\/\/www.metpure.com\/products\/metpure-4-stage-reverse-osmosis-water-filtration-system\" target=\"_self\">BLACK FRIDAY & CYBER MONDAY: FREE GIFT <\/a>","annc_text":"<a href=\"https:\/\/www.metpure.com\/products\/metpure-4-stage-reverse-osmosis-water-filtration-system\" target=\"_self\">with the purchase of any Metpure Versatile System <\/a>","est_arrival_text":""}},"announcement_xXtr6J":{"type":"announcement","settings":{"title":"<a href=\"https:\/\/www.metpure.com\/products\/metpure-4-stage-reverse-osmosis-water-filtration-system\" target=\"_self\">BLACK FRIDAY & CYBER MONDAY: 15% OFF <\/a>","annc_text":"<a href=\"https:\/\/www.metpure.com\/products\/metpure-4-stage-reverse-osmosis-water-filtration-system\" target=\"_self\">on any Metpure Versatile System<\/a>","est_arrival_text":""}},"announcement_mL97H8":{"type":"announcement","settings":{"title":"<a href=\"https:\/\/www.metpure.com\/products\/metpure-4-stage-reverse-osmosis-water-filtration-system\" target=\"_self\">FREE Shipping<\/a>","annc_text":"<a href=\"https:\/\/www.metpure.com\/products\/metpure-4-stage-reverse-osmosis-water-filtration-system\" target=\"_self\">on your FIRST ORDER, automatically applied at checkout.<\/a>","est_arrival_text":""}}},"block_order":["announcement_hV3EL3","announcement_xXtr6J","announcement_mL97H8"],"disabled":true,"custom_css":[],"settings":{"bg_color":"#000000","text_color":"#ffffff","metpro__disabled":true}}},"order":["annoucement","header","scrolling_promotion_Ut9WKH","shipping_bar_WHh8tc","shipping_bar_RG8gTc"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement-bar-0"
+      ],
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "scheme-1",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_position": "middle-left",
+        "mobile_logo_position": "center",
+        "menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": true,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "enable_customer_avatar": true,
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

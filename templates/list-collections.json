@@ -1,1 +1,26 @@
-{"sections":{"main":{"type":"collection-list-template","blocks":{"06786fde-900d-4048-b2a7-2f1af4b4963e":{"type":"collection_item","settings":{"collection":"water-filtration","image":"shopify:\/\/shop_images\/Water-Filtration_System.png"}},"c3c7dd10-c393-458e-a903-3de238b2e424":{"type":"collection_item","settings":{"collection":"water-filtration-faucets","image":"shopify:\/\/shop_images\/Water-Filtration-System-Transparent_4ab7b9ab-36b2-48fa-8b6c-864bf1bf1cce.png"}},"b43bcd47-6305-4507-86b2-397dcbb3cdfc":{"type":"collection_item","settings":{"collection":"water-filters","image":"shopify:\/\/shop_images\/Water-Filters-Transparent.png"}},"17b453d1-b173-4aed-8571-7dc75d2ec6ca":{"type":"collection_item","settings":{"collection":"plumbing-1","image":"shopify:\/\/shop_images\/Plumbing-Transparent_b4affa95-ad8f-45ec-aa23-b8aec3e0a301.png"}},"3aedbb94-935a-4d80-865f-7c7fbbbddb39":{"type":"collection_item","settings":{"collection":"pex-1","image":"shopify:\/\/shop_images\/PEX-Transparent.png"}},"9f522d89-c840-47c9-8a40-d4aac351169e":{"type":"collection_item","settings":{"collection":"fittings-main","image":"shopify:\/\/shop_images\/Fittings-Transparent.png"}},"9494087b-5411-4d5d-bfcb-9e4aa687505f":{"type":"collection_item","settings":{"collection":"valves-1","image":"shopify:\/\/shop_images\/Valve-Transparent.png"}},"b5cfd4b4-b8c2-416c-b260-80b763b3c3bd":{"type":"collection_item","settings":{"collection":"supply-lines-and-hoses-1","image":"shopify:\/\/shop_images\/Supply-Lines-And-Hoses.png"}}},"block_order":["06786fde-900d-4048-b2a7-2f1af4b4963e","c3c7dd10-c393-458e-a903-3de238b2e424","b43bcd47-6305-4507-86b2-397dcbb3cdfc","17b453d1-b173-4aed-8571-7dc75d2ec6ca","3aedbb94-935a-4d80-865f-7c7fbbbddb39","9f522d89-c840-47c9-8a40-d4aac351169e","9494087b-5411-4d5d-bfcb-9e4aa687505f","b5cfd4b4-b8c2-416c-b260-80b763b3c3bd"],"settings":{"container":"container-fluid","display_type":"selected","title":"Categories","description":"<p>We provide a variety of water filtration and plumbing products.<\/p>"}}},"order":["main"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-list-collections",
+      "settings": {
+        "title": "Collections",
+        "sort": "alphabetical",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "columns_mobile": "2"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

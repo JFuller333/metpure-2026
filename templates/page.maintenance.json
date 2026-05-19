@@ -1,0 +1,172 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "salon_header": {
+      "type": "salon-header",
+      "blocks": {
+        "nav_1": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Home",
+            "url": "/"
+          }
+        },
+        "nav_2": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Suites",
+            "url": "/#suites"
+          }
+        },
+        "nav_3": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Amenities",
+            "url": "/#amenities"
+          }
+        },
+        "nav_4": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Apply",
+            "url": "/#apply"
+          }
+        },
+        "nav_5": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Maintenance",
+            "url": "/pages/maintenance"
+          }
+        },
+        "nav_6": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Contact",
+            "url": "/#contact"
+          }
+        }
+      },
+      "block_order": [
+        "nav_1",
+        "nav_2",
+        "nav_3",
+        "nav_4",
+        "nav_5",
+        "nav_6"
+      ],
+      "settings": {
+        "logo_line1": "Stacked",
+        "logo_line2": "with Style",
+        "logo_link": "",
+        "cta_label": "Tour a Suite",
+        "cta_link": "/",
+        "maintenance_label": "Maintenance",
+        "maintenance_url": ""
+      }
+    },
+    "salon_maintenance_hero": {
+      "type": "salon-maintenance-hero",
+      "settings": {
+        "label": "Suite Maintenance",
+        "title": "Request service for your suite",
+        "lead": "For non-emergency repairs and building issues, we route requests to our maintenance team and confirm by email. Contact the management office to submit a work order."
+      }
+    },
+    "salon_maintenance_info": {
+      "type": "salon-maintenance-info",
+      "blocks": {
+        "b1": {
+          "type": "bullet",
+          "settings": {
+            "text": "— We respond within one business day for routine requests."
+          }
+        },
+        "b2": {
+          "type": "bullet",
+          "settings": {
+            "text": "— For water, power, or safety emergencies, use the number posted in your suite or the building directory."
+          }
+        },
+        "b3": {
+          "type": "bullet",
+          "settings": {
+            "text": "— Include your suite number and clear details so we can dispatch the right vendor."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ],
+      "settings": {
+        "headline": "What to know"
+      }
+    },
+    "1777215749e58ca0c4": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "salon_footer": {
+      "type": "salon-footer",
+      "blocks": {
+        "l1": {
+          "type": "link",
+          "settings": {
+            "label": "Suites",
+            "url": "/#suites"
+          }
+        },
+        "l2": {
+          "type": "link",
+          "settings": {
+            "label": "Apply",
+            "url": "/#apply"
+          }
+        },
+        "l3": {
+          "type": "link",
+          "settings": {
+            "label": "Contact",
+            "url": "/#contact"
+          }
+        }
+      },
+      "block_order": [
+        "l1",
+        "l2",
+        "l3"
+      ],
+      "settings": {
+        "logo_line1": "Stacked",
+        "logo_line2": "with Style",
+        "copyright_text": "Stacked with Style Salon Suites · Upland, CA",
+        "enable_json_ld": false,
+        "schema_name": "Stacked with Style Salon Suites",
+        "schema_description": "Private salon suites in Upland, California for independent beauty professionals.",
+        "schema_city": "Upland",
+        "schema_region": "CA",
+        "schema_country": "US",
+        "schema_area": "Upland, CA"
+      }
+    }
+  },
+  "order": [
+    "salon_header",
+    "salon_maintenance_hero",
+    "salon_maintenance_info",
+    "1777215749e58ca0c4",
+    "salon_footer"
+  ]
+}

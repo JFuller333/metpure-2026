@@ -1,1 +1,136 @@
-class MCartDrawer extends HTMLElement{constructor(){super(),this.cartDrawerInner=this.querySelector(".m-cart-drawer__inner"),this.cartDrawerCloseIcon=this.querySelector(".m-cart-drawer__close"),this.cartOverlay=this.querySelector(".m-cart__overlay"),this.rootUrl=window.Shopify.routes.root,this.setHeaderCartIconAccessibility(),this.cartDrawerCloseIcon.addEventListener("click",this.close.bind(this)),this.addEventListener("click",(e=>{e.target.closest(".m-cart-drawer__inner")!==this.cartDrawerInner&&this.close()}))}setHeaderCartIconAccessibility(){document.querySelectorAll(".m-cart-icon-bubble").forEach((e=>{e.setAttribute("role","button"),e.setAttribute("aria-haspopup","dialog"),e.addEventListener("click",(t=>{MinimogSettings.enable_cart_drawer&&(t.preventDefault(),this.open(e))}))}))}open(e){e&&this.setActiveElement(e),this.classList.add("m-cart-drawer--active"),requestAnimationFrame((()=>{this.style.setProperty("--m-bg-opacity","0.5"),this.cartDrawerInner.style.setProperty("--translate-x","0")})),window.MinimogEvents.emit(MinimogTheme.pubSubEvents.openCartDrawer),document.documentElement.classList.add("prevent-scroll")}close(){this.style.setProperty("--m-bg-opacity","0"),this.cartDrawerInner.style.setProperty("--translate-x","100%"),setTimeout((()=>{this.classList.remove("m-cart-drawer--active"),document.documentElement.classList.remove("prevent-scroll")}),300)}renderContents(e){this.classList.contains("m-cart--empty")&&this.classList.remove("m-cart--empty"),this.productId=e.id,this.getSectionsToRender().forEach((t=>{(t.selector?document.querySelector(t.selector):document.getElementById(t.id)).innerHTML=this.getSectionInnerHTML(e.sections[t.id],t.selector)})),setTimeout((()=>{this.open()}))}updateCartCount(e){document.querySelectorAll(".m-cart-count-bubble").forEach((t=>{e>0?(t.textContent=e,t.classList.remove("m:hidden")):t.classList.add("m:hidden")}))}getCart(){return fetchJSON(this.rootUrl+"cart.json")}onCartDrawerUpdate(e=!0){fetch(`${MinimogSettings.routes.cart}?section_id=cart-drawer`).then((e=>e.text())).then((t=>{this.getSectionsToRender().forEach((r=>{if("cart-items"===r.block){(r.selector?document.querySelector(r.selector):document.getElementById(r.id)).innerHTML=this.getSectionInnerHTML(t,r.selector)}else if(e){(r.selector?document.querySelector(r.selector):document.getElementById(r.id)).innerHTML=this.getSectionInnerHTML(t,r.selector)}}))})).catch((e=>{})),this.getCart().then((e=>{this.classList.toggle("m-cart--empty",0===e.item_count),this.updateCartCount(e.item_count)}))}getSectionInnerHTML(e,t=".shopify-section"){return(new DOMParser).parseFromString(e,"text/html").querySelector(t).innerHTML}getSectionsToRender(){return[{id:"cart-drawer",selector:"[data-minimog-cart-items]",block:"cart-items"},{id:"cart-drawer",selector:"[data-minimog-cart-discounts]",block:"cart-footer"},{id:"cart-drawer",selector:"[data-cart-subtotal]",block:"cart-footer"},{id:"cart-drawer",selector:"[data-minimog-gift-wrapping]",block:"cart-footer"}]}getSectionDOM(e,t=".shopify-section"){return(new DOMParser).parseFromString(e,"text/html").querySelector(t)}setActiveElement(e){this.activeElement=e}}customElements.define("m-cart-drawer",MCartDrawer);class MCartDrawerItems extends MCartTemplate{getSectionsToRender(){return[{id:"MinimogCartDrawer",section:"cart-drawer",selector:"[data-minimog-cart-items]"},{id:"MinimogCartDrawer",section:"cart-drawer",selector:"[data-minimog-cart-discounts]"},{id:"MinimogCartDrawer",section:"cart-drawer",selector:"[data-cart-subtotal]"},{id:"MinimogCartDrawer",section:"cart-drawer",selector:"[data-minimog-gift-wrapping]"}]}}customElements.define("m-cart-drawer-items",MCartDrawerItems);
+class CartDrawer extends HTMLElement {
+  constructor() {
+    super();
+
+    this.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
+    this.querySelector('#CartDrawer-Overlay').addEventListener('click', this.close.bind(this));
+    this.setHeaderCartIconAccessibility();
+  }
+
+  setHeaderCartIconAccessibility() {
+    const cartLink = document.querySelector('#cart-icon-bubble');
+    if (!cartLink) return;
+
+    cartLink.setAttribute('role', 'button');
+    cartLink.setAttribute('aria-haspopup', 'dialog');
+    cartLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      this.open(cartLink);
+    });
+    cartLink.addEventListener('keydown', (event) => {
+      if (event.code.toUpperCase() === 'SPACE') {
+        event.preventDefault();
+        this.open(cartLink);
+      }
+    });
+  }
+
+  open(triggeredBy) {
+    if (triggeredBy) this.setActiveElement(triggeredBy);
+    const cartDrawerNote = this.querySelector('[id^="Details-"] summary');
+    if (cartDrawerNote && !cartDrawerNote.hasAttribute('role')) this.setSummaryAccessibility(cartDrawerNote);
+    // here the animation doesn't seem to always get triggered. A timeout seem to help
+    setTimeout(() => {
+      this.classList.add('animate', 'active');
+    });
+
+    this.addEventListener(
+      'transitionend',
+      () => {
+        const containerToTrapFocusOn = this.classList.contains('is-empty')
+          ? this.querySelector('.drawer__inner-empty')
+          : document.getElementById('CartDrawer');
+        const focusElement = this.querySelector('.drawer__inner') || this.querySelector('.drawer__close');
+        trapFocus(containerToTrapFocusOn, focusElement);
+      },
+      { once: true }
+    );
+
+    document.body.classList.add('overflow-hidden');
+  }
+
+  close() {
+    this.classList.remove('active');
+    removeTrapFocus(this.activeElement);
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  setSummaryAccessibility(cartDrawerNote) {
+    cartDrawerNote.setAttribute('role', 'button');
+    cartDrawerNote.setAttribute('aria-expanded', 'false');
+
+    if (cartDrawerNote.nextElementSibling.getAttribute('id')) {
+      cartDrawerNote.setAttribute('aria-controls', cartDrawerNote.nextElementSibling.id);
+    }
+
+    cartDrawerNote.addEventListener('click', (event) => {
+      event.currentTarget.setAttribute('aria-expanded', !event.currentTarget.closest('details').hasAttribute('open'));
+    });
+
+    cartDrawerNote.parentElement.addEventListener('keyup', onKeyUpEscape);
+  }
+
+  renderContents(parsedState) {
+    this.querySelector('.drawer__inner').classList.contains('is-empty') &&
+      this.querySelector('.drawer__inner').classList.remove('is-empty');
+    this.productId = parsedState.id;
+    this.getSectionsToRender().forEach((section) => {
+      const sectionElement = section.selector
+        ? document.querySelector(section.selector)
+        : document.getElementById(section.id);
+
+      if (!sectionElement) return;
+      sectionElement.innerHTML = this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
+    });
+
+    setTimeout(() => {
+      this.querySelector('#CartDrawer-Overlay').addEventListener('click', this.close.bind(this));
+      this.open();
+    });
+  }
+
+  getSectionInnerHTML(html, selector = '.shopify-section') {
+    return new DOMParser().parseFromString(html, 'text/html').querySelector(selector).innerHTML;
+  }
+
+  getSectionsToRender() {
+    return [
+      {
+        id: 'cart-drawer',
+        selector: '#CartDrawer',
+      },
+      {
+        id: 'cart-icon-bubble',
+      },
+    ];
+  }
+
+  getSectionDOM(html, selector = '.shopify-section') {
+    return new DOMParser().parseFromString(html, 'text/html').querySelector(selector);
+  }
+
+  setActiveElement(element) {
+    this.activeElement = element;
+  }
+}
+
+customElements.define('cart-drawer', CartDrawer);
+
+class CartDrawerItems extends CartItems {
+  getSectionsToRender() {
+    return [
+      {
+        id: 'CartDrawer',
+        section: 'cart-drawer',
+        selector: '.drawer__inner',
+      },
+      {
+        id: 'cart-icon-bubble',
+        section: 'cart-icon-bubble',
+        selector: '.shopify-section',
+      },
+    ];
+  }
+}
+
+customElements.define('cart-drawer-items', CartDrawerItems);
