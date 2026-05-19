@@ -1,1 +1,0 @@
- var edd_collection_msg = 'not_set';
